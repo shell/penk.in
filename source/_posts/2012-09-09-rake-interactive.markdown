@@ -17,6 +17,8 @@ I bet you running in this situation fairly often. I even find this in lines in [
 rake db:drop && rake db:create && rake db:migrate && rake db:seed
 ```
 
+<!-- more -->
+
 How many times rails environment is getting loaded? Let's count!
 
 ```bash
@@ -26,8 +28,6 @@ echo "puts 'oh, hai!'" >> config/application.rb
 ```
 
 4 times we are loading rails environment. But do we really need to load it all the time? what if we forgot to do 'rake stats'?
-
-<!-- more -->
 
 ```bash
 time rails runner ''

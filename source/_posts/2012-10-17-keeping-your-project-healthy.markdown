@@ -11,6 +11,8 @@ Whether you are running consultant company or startup or maybe just playing with
 
 Once in a while, it's very important to step aside of actual development and make a good cleanup, clearing your technical debt, and ensuring a quality maintainable project.
 
+<!-- more -->
+
 Why care about maintainability?
 
   * new developers can pick up project very easily and be productive from day 1
@@ -18,7 +20,7 @@ Why care about maintainability?
   * reduce the amount of bugs, and time spent having to fix bugs by clearing up convoluted, time pressured solutions.
 
 I always find myself to do this kind of cleaning up when I join a new project. I have decided to make a list of the things that I find myself doing routinely when joining a new project, this is a sort of checklist if you will.
-<!-- more -->
+
 ### rails-footnotes
 
   If you write Rails applications on the daily basis, you should know this plugin by Jose Valim. What it do, is displaying all kind of interesting information that happen in the cycle of request. Sessions, request parameters, cookies, filter chain, routes, queries.

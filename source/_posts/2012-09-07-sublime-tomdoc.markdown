@@ -15,11 +15,11 @@ categories:
 
 So to promote writing of documentation in your company, one approach is to build tools around helping programmers write it!
 
+<!-- more -->
+
 **Motivation** for this plugin was to have fully functional TomDoc plugin.
 
 You can find source code <https://github.com/shell/sublime-tomdoc>
-
-<!-- more -->
 
 ### Installation
 
