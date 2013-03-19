@@ -97,3 +97,7 @@ facebook_like: true
 instagram_user: penkinv
 instagram_client: 1bb623a476c44befb71b37df0f8c5fac
 instagram_access_token: 5f1dec942e184937bd87e92afef97d3c
+
+coderwall_user: shell
+rubygems_user: shell
+geeklist_user: mindwork
