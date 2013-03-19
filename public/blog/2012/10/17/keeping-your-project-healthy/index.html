@@ -1,0 +1,474 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Keeping your project healthy - Httpster: Vladimir Penkin</title>
+  <meta name="author" content="Vladimir Penkin">
+  <link rel="author" href="humans.txt">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  
+    
+  
+  <meta name="description" content="Whether you are running consultant company or startup or maybe just playing with some code. It&#8217;s easy to get caught in the flow of development &hellip;">
+  
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://httpster.in/blog/2012/10/17/keeping-your-project-healthy/">
+  <link href="/favicon.png" rel="icon">
+  <link href='http://fonts.googleapis.com/css?family=Cantarell' rel='stylesheet' type='text/css'>
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Httpster: Vladimir Penkin" type="application/atom+xml">
+  <meta name="og:type" content="website" />
+  <meta name="og:site_name" content="Httpster: Vladimir Penkin" />
+  <meta name="og:title" content="Keeping your project healthy" />
+  <meta name="og:description" content="Whether you are running consultant company or startup or maybe just playing with some code. It&#8217;s easy to get caught in the flow of development &hellip;" />
+  <meta name="og:url" content="http://httpster.in/blog/2012/10/17/keeping-your-project-healthy/"/>
+  <meta name="url" content="http://httpster.in/blog/2012/10/17/keeping-your-project-healthy/">
+  
+  <meta name="subject" content=""/>
+  <meta name="category" content=""/>
+  
+  <meta name="distribution" content="global">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-12025643-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <nav role="navigation"><div class="navbar">
+  <div class="navbar-inner">
+    <a class="brand" href="/">Httpster: Vladimir Penkin</a>
+    <ul class="nav">
+      <li><a href="/">Home</a></li>
+      <li><a href="/blog/archives">Archives</a></li>
+    </ul>
+    <ul class="nav" data-subscription="rss">
+      <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+      
+    </ul>
+      
+    <form class="navbar-form" action="http://google.com/search" method="get">
+      <fieldset role="search">
+        <input type="hidden" name="q" value="site:httpster.in" />
+        <input class="span2" type="text" name="q" results="0" placeholder="Search"/>
+      </fieldset>
+    </form>
+      
+    
+  </div>
+</div>
+</nav>
+  <div class="wrapper_single">
+    <div class="container">
+      <article class="span8 offset2" role="article">
+        <div class="article-format">
+
+  <header>
+    
+      <h1 class="entry-title">Keeping Your Project Healthy</h1>
+    
+    
+      <p class="meta">
+        
+  
+
+
+  
+    <span class="byline author vcard">by <span class="fn">Vladimir Penkin</span></span>
+  
+
+ - 
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-10-17T14:53:00-05:00" pubdate data-updated="true">Oct 17<span>th</span>, 2012</time> - 
+        
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Whether you are running consultant company or startup or maybe just playing with some code. It&#8217;s easy to get caught in the flow of development. With pressure to release features on time, it is increasingly common to accrue technical debt.</p>
+
+<p>Once in a while, it&#8217;s very important to step aside of actual development and make a good cleanup, clearing your technical debt, and ensuring a quality maintainable project.</p>
+
+<!-- more -->
+
+
+<p>Why care about maintainability?</p>
+
+<ul>
+<li>new developers can pick up project very easily and be productive from day 1</li>
+<li>if you leave project for some time it will be easy to get back.</li>
+<li>reduce the amount of bugs, and time spent having to fix bugs by clearing up convoluted, time pressured solutions.</li>
+</ul>
+
+
+<p>I always find myself to do this kind of cleaning up when I join a new project. I have decided to make a list of the things that I find myself doing routinely when joining a new project, this is a sort of checklist if you will.</p>
+
+<h3>rails-footnotes</h3>
+
+<p>  If you write Rails applications on the daily basis, you should know this plugin by Jose Valim. What it do, is displaying all kind of interesting information that happen in the cycle of request. Sessions, request parameters, cookies, filter chain, routes, queries.</p>
+
+<p>  There is text editor integration with MacVim, Textmate and SublimeText2. You can jump to particular place in code from footnotes. Also it replaces error page with proper links to files.</p>
+
+<p>  <a href="https://github.com/josevalim/rails-footnotes">https://github.com/josevalim/rails-footnotes</a></p>
+
+<p>  Also take a look at more light alternative:
+  <a href="http://miniprofiler.com/">http://miniprofiler.com/</a></p>
+
+<h3>Bullet</h3>
+
+<p>  The Bullet gem is designed to help you increase your application’s performance by reducing the number of queries it makes. It will watch your queries while you develop your application and notify you when you should add eager loading (N+1 queries), when you’re using eager loading that isn’t necessary and when you should use counter cache.</p>
+
+<p>  <a href="https://github.com/flyerhzm/bullet">https://github.com/flyerhzm/bullet</a></p>
+
+<h3>Remove trailing spaces</h3>
+
+<p>  Seriously, remove them right now! Trailing spaces is a minor detail but it adds a level of noise to git logs in development process. It is very annoying!</p>
+
+<p><img src="/images/trailing_whitespaces.png" alt="Trailing noise" /></p>
+
+<h4>To clean up whitespaces in all files in project you can use following command</h4>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>find . -not <span class="se">\(</span> -name .svn -prune -o -name .git -prune <span class="se">\)</span> -type f -print0 | xargs -0 file -In | grep -v binary | cut -d <span class="s2">&quot;:&quot;</span> -f1 | xargs -0 sed -i <span class="s1">&#39;&#39;</span> -E <span class="s2">&quot;s/[[:space:]]*$//&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>  Script goes through all files except binary and source control files and removes trailing whitespaces.</p>
+
+<h4>Setup text editor to remove trailing spaces before saving file</h4>
+
+<ul>
+<li><p><em>sublime</em></p>
+
+<p>Recently popular Sublime Text 2 have this functionality built in by default. You just need to add following string to configuration file:</p></li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="s2">&quot;trim_trailing_white_space_on_save&quot;</span>: <span class="nb">true</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li><p><em>textmate</em></p>
+
+<p>Here is textmate bundle to Convert Tabs To Spaces and Remove Trailing Whitespace</p>
+
+<p><a href="https://github.com/glennr/uber-glory-tmbundle">https://github.com/glennr/uber-glory-tmbundle</a></p></li>
+<li><p><em>vim</em></p>
+
+<p>If you are using vim, it&#8217;s a very good chance you already setup this functionality.
+If not, you can use this link <a href="http://rails-bestpractices.com/posts/60-remove-trailing-whitespace">http://rails-bestpractices.com/posts/60-remove-trailing-whitespace</a></p></li>
+</ul>
+
+
+<h3>Keep your seeds fresh!</h3>
+
+<p>  Seeds are very important, whether it&#8217;s demo(developer) data or actual production seed.
+  When updating models associations or structure do not forget to reflect this changes in seeds.rb file.
+  On one of our projects I spend TENS of hours working on seed script and sample data, so we can deploy fully working staging application in no time. Any time that customer wants to check a progress. This tends to be an area that get habitually neglected, and makes proper testing, and staging impossible.</p>
+
+<p>  Another antipattern that I usually see is folks keeping seed data in migrations. Seriously why you want to dig to migration every time you forget password for admin user?</p>
+
+<p><a href="https://github.com/gregbell/active_admin/blob/master/lib/generators/active_admin/devise/devise_generator.rb#L49">active_admin example</a></p>
+
+<h3>Extract modules</h3>
+
+<p>  Go through all the models and check if you can extract some code from models to general utility modules. This will(hopefully!) not break anything inside but make code more readable.
+  Also consider to going even further - apply SRP(Single Responsibility Principle) and compose classes that do only one thing, but do it good.</p>
+
+<h3>Make a decent README file</h3>
+
+<p>  There is 3 types of readme files for rails projects. Most popular is almost empty readme file with project name and short description. Next by popularity is file starting with line &#8220;== Welcome to Rails&#8221;. Rare beast is readme file that actually reflects the project, shows you <code>installation instructions</code>, <code>usage</code> patterns, goes through custom <code>rake tasks</code> that used to run project and <code>guide to run tests!</code></p>
+
+<p>Check out <a href="http://tom.preston-werner.com/2010/08/23/readme-driven-development.html">Readme Driven Development</a></p>
+
+<h3>Do not forget about /doc folder</h3>
+
+<p>  This folder can be very good to keep your project documentation. Of course we all know about github wiki pages or basecamp or any other knowledge base of choice. But do you really want to be dependent of external service to keep your documentation?</p>
+
+<p>  With just a few keystrokes in your editor you can have access to all documentation related to project. Credentials, setting up development machine, deployment, testing, tips, technical debts, just random ideas, list can go forever.</p>
+
+<p>  But wait, it&#8217;s not the best thing yet. The best thing is you can <strong>track</strong> changes in documentation just going through commits! Why use two places for tracking news in the code instead of one?(SCM)</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git rm -r --cached doc/
+</span><span class='line'>git commit -m <span class="s1">&#39;Removed doc folder from repo&#39;</span>
+</span><span class='line'>rm -rf doc/
+</span><span class='line'>
+</span><span class='line'>git submodule add git@github.com:user/project.wiki.git doc
+</span><span class='line'>git commit -m <span class="s1">&#39;Initialize wiki doc repository&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Before running that script you need to tell github to create wiki repository by hitting url: <code>http://github.com/user/repo/wiki/_access</code>
+Your doc/ folder will be separate submodule inside your repo. You can keep a good track of what is happening inside doc/ directory.</p>
+
+<p><a href="http://coderwall.com/p/vuy3nq">Pro Tip</a></p>
+
+<h3>RVMRCFY!</h3>
+
+<p>  Create and check in in to repository .rvmrc file with specific version of ruby that you will be running. This will keep everyone on the same page while development process. I was in situations when my version of ruby as miserably failing on tests while it was working for everyone else, this is easilly avoidable!</p>
+
+<p>  If you using zsh, here is function that will help you to easily create .rvmrc file for project</p>
+
+<p><a href="http://coderwall.com/p/41he7a?i=2&amp;p=1&amp;q=author%3Ashell&amp;t%5B%5D=shell">Pro Tip</a></p>
+
+<h3>Newrelic rpm</h3>
+
+<p>  Setup free account to monitor your servers. Newrelic is sending emails when your CPU or memory is over threshold.
+  Also by default you can browse page response time and find controllers that spend most of resources.</p>
+
+<p><a href="http://newrelic.com/">NewRelic</a></p>
+
+<h3>Live metrics</h3>
+
+<p>  Instrumental App makes it easy to see what&#8217;s happening in your application right now.
+  Collecting live information about performance of application can get your eyes open on a lot of things. With just few changes you can save hundreds of dollars on hardware.</p>
+
+<p>  Check out <a href="https://instrumentalapp.com">https://instrumentalapp.com</a></p>
+
+<h3>Code Climate - collect metrics</h3>
+
+<p>  The best way to reflect on code is to collect various code metrics.</p>
+
+<p>  Check out <a href="https://codeclimate.com/">https://codeclimate.com/</a></p>
+
+<h3>Use capistrano to deploy(unless you using heroku)</h3>
+
+<p>  Use automated deployment with no excuse! Either heroku or capistrano or even rsync</p>
+
+<p>  <a href="https://gist.github.com/2161449">gist</a></p>
+
+<h3>Wrapping up</h3>
+
+<p>  This is list of most common things in every project, hope this will help you to make your project more maintainable. &lt;3 &lt;3 &lt;3</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+
+  
+    <span class="byline author vcard">by <span class="fn">Vladimir Penkin</span></span>
+  
+
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-10-17T14:53:00-05:00" pubdate data-updated="true">Oct 17<span>th</span>, 2012</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://httpster.in/blog/2012/10/17/keeping-your-project-healthy/" data-via="mindwork" data-counturl="http://httpster.in/blog/2012/10/17/keeping-your-project-healthy/" >Tweet</a>
+  
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    
+      <a class="pull-left" href="/blog/2012/09/07/sublime-tomdoc/" title="Previous Post: TomDoc package for SublimeText2">&laquo; TomDoc package for SublimeText2</a>
+    
+    
+  </footer>
+
+</div>
+
+        
+      </article>
+    </div>
+  </div>
+  <div id="footer-widgets">
+  <div class="container">
+    <div class="row">
+  <div class="span3">
+    <h2>recent posts</h2>
+    <ul class="recent_posts">
+      
+        <li>
+          <a href="/blog/2012/10/17/keeping-your-project-healthy/">Keeping your project healthy</a>
+        </li>
+      
+        <li>
+          <a href="/blog/2012/09/07/sublime-tomdoc/">TomDoc package for SublimeText2</a>
+        </li>
+      
+        <li>
+          <a href="/blog/2012/09/06/switch-to-zsh/">Switching to zsh and why you should do it now</a>
+        </li>
+      
+        <li>
+          <a href="/blog/2012/07/27/sinatra-template/">Sinatra template</a>
+        </li>
+      
+        <li>
+          <a href="/blog/2011/03/11/rails3_before_render-plugin/">rails3_before_render plugin</a>
+        </li>
+      
+    </ul>
+    <h2><a href="/blog/archives">archives</a></h2>
+  </div>
+  <div class="span3">
+    
+<h2>instagram</h2>
+<div class="instagram" data-instagram-user="penkinv" data-instagram-client="1bb623a476c44befb71b37df0f8c5fac" data-instagram-access-token="5f1dec942e184937bd87e92afef97d3c"></div>
+<button id="instabutton" class="btn">more</button>
+
+
+  </div>
+  <div class="span4">
+    
+<h2>twitter</h2>
+<a href="https://twitter.com/mindwork" class="twitter-follow-button" data-show-count="true" data-lang="en">Follow @mindwork</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+<div class="tweet" data-twitter-user="mindwork">
+</div>
+
+
+  </div>
+  <div class="span2">
+    <h2>found on</h2>
+
+<a href="https://github.com/shell/" rel="tooltip" title="Github"><img class="social_icon" title="Github" alt="github icon" src="/images/glyphicons_381_github.png"></a>
+
+
+
+
+
+
+
+<a href="http://twitter.com/mindwork" rel="tooltip" title="Twitter"><img class="social_icon" title="Twitter" alt="Twitter icon" src="/images/glyphicons_391_twitter_t.png"></a>
+
+
+
+
+
+
+
+<h2>contact at</h2>
+<a href="mailto:penkinv@gmail.com">penkinv@gmail.com</a>
+
+
+  </div>
+</div>
+
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-left">
+  <a href="/">Httpster: Vladimir Penkin</a>
+  - Copyright &copy; 2013 - Vladimir Penkin
+</p>
+<p class="pull-right">
+  <span>Powered by <a href="http://octopress.org/">Octopress</a>.</span>
+  
+    <span>Designed by <a href="http://www.AdrianArtiles.com">Adrian Artiles</a>.</span>
+  
+</p>
+
+  </div>
+</footer>
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+<script>window.jQuery || document.write('<script src="/javascripts/libs/jquery-1.7.2.min.js" type="text/javascript"><\/script>')</script>
+<script src="/javascripts/libs/bootstrap.min.js" type="text/javascript"></script>
+<script src="/javascripts/jquery.tweet.js" type="text/javascript"></script>
+<script src="/javascripts/jquery.instagram.js" type="text/javascript"></script>
+<script src="/javascripts/libs/jquery.masonry.min.js" type="text/javascript"></script>
+<script src="/javascripts/custom.js" type="text/javascript"></script>
+
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: sinatra | Httpster: Vladimir Penkin]]></title>
+  <link href="http://httpster.in/blog/categories/sinatra/atom.xml" rel="self"/>
+  <link href="http://httpster.in/"/>
+  <updated>2013-03-19T10:46:46-05:00</updated>
+  <id>http://httpster.in/</id>
+  <author>
+    <name><![CDATA[Vladimir Penkin]]></name>
+    <email><![CDATA[penkinv@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Sinatra template]]></title>
+    <link href="http://httpster.in/blog/2012/07/27/sinatra-template/"/>
+    <updated>2012-07-27T18:18:00-05:00</updated>
+    <id>http://httpster.in/blog/2012/07/27/sinatra-template</id>
+    <content type="html"><![CDATA[<p>Recently I found myself doing a couple of very simple services for my cliens with Sinatra. Just some basic authentication, <code>active_record</code> and <code>mysql2</code> database, few forms, rails view helpers. There is a lot of guides and tutorials around internet. But it seems that there is no good Sinatra template  with testing coverate, basic files structure, etc.</p>
+
+<p>So I made one! <a href="https://github.com/shell/sinatra-template">Sinatra Template</a></p>
+
+<h2>Features</h2>
+
+<pre><code>* HTTP basic authentication
+* ActiveRecord orm
+* Sqlite3 for development, Mysql2 for production
+* 2 very basic but associated models
+* HAML, blueprint, jquery
+* User and Admin interfaces
+* Scroller with products
+* Full rake tasks for db management(hacked sinatra-activerecord gem)
+* Testing suite out of the box(RSpec)
+* Some essential Rails helpers
+* Ready for deploy with passenger(config/setup_load_paths.rb)
+</code></pre>
+
+<p>Some prefer to extract controllers, models and helpers in corresponding folders and split them over files. It is a matter of taste. If you have that much code, consider using Rails instead.</p>
+
+<p>Enjoy</p>
+]]></content>
+  </entry>
+  
+</feed>

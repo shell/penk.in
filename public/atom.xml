@@ -1,0 +1,1058 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Httpster: Vladimir Penkin]]></title>
+  <link href="http://httpster.in/atom.xml" rel="self"/>
+  <link href="http://httpster.in/"/>
+  <updated>2013-03-19T10:46:46-05:00</updated>
+  <id>http://httpster.in/</id>
+  <author>
+    <name><![CDATA[Vladimir Penkin]]></name>
+    <email><![CDATA[penkinv@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Keeping your project healthy]]></title>
+    <link href="http://httpster.in/blog/2012/10/17/keeping-your-project-healthy/"/>
+    <updated>2012-10-17T14:53:00-05:00</updated>
+    <id>http://httpster.in/blog/2012/10/17/keeping-your-project-healthy</id>
+    <content type="html"><![CDATA[<p>Whether you are running consultant company or startup or maybe just playing with some code. It&#8217;s easy to get caught in the flow of development. With pressure to release features on time, it is increasingly common to accrue technical debt.</p>
+
+<p>Once in a while, it&#8217;s very important to step aside of actual development and make a good cleanup, clearing your technical debt, and ensuring a quality maintainable project.</p>
+
+<!-- more -->
+
+
+<p>Why care about maintainability?</p>
+
+<ul>
+<li>new developers can pick up project very easily and be productive from day 1</li>
+<li>if you leave project for some time it will be easy to get back.</li>
+<li>reduce the amount of bugs, and time spent having to fix bugs by clearing up convoluted, time pressured solutions.</li>
+</ul>
+
+
+<p>I always find myself to do this kind of cleaning up when I join a new project. I have decided to make a list of the things that I find myself doing routinely when joining a new project, this is a sort of checklist if you will.</p>
+
+<h3>rails-footnotes</h3>
+
+<p>  If you write Rails applications on the daily basis, you should know this plugin by Jose Valim. What it do, is displaying all kind of interesting information that happen in the cycle of request. Sessions, request parameters, cookies, filter chain, routes, queries.</p>
+
+<p>  There is text editor integration with MacVim, Textmate and SublimeText2. You can jump to particular place in code from footnotes. Also it replaces error page with proper links to files.</p>
+
+<p>  <a href="https://github.com/josevalim/rails-footnotes">https://github.com/josevalim/rails-footnotes</a></p>
+
+<p>  Also take a look at more light alternative:
+  <a href="http://miniprofiler.com/">http://miniprofiler.com/</a></p>
+
+<h3>Bullet</h3>
+
+<p>  The Bullet gem is designed to help you increase your application’s performance by reducing the number of queries it makes. It will watch your queries while you develop your application and notify you when you should add eager loading (N+1 queries), when you’re using eager loading that isn’t necessary and when you should use counter cache.</p>
+
+<p>  <a href="https://github.com/flyerhzm/bullet">https://github.com/flyerhzm/bullet</a></p>
+
+<h3>Remove trailing spaces</h3>
+
+<p>  Seriously, remove them right now! Trailing spaces is a minor detail but it adds a level of noise to git logs in development process. It is very annoying!</p>
+
+<p><img src="http://httpster.in/images/trailing_whitespaces.png" alt="Trailing noise" /></p>
+
+<h4>To clean up whitespaces in all files in project you can use following command</h4>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>find . -not <span class="se">\(</span> -name .svn -prune -o -name .git -prune <span class="se">\)</span> -type f -print0 | xargs -0 file -In | grep -v binary | cut -d <span class="s2">&quot;:&quot;</span> -f1 | xargs -0 sed -i <span class="s1">&#39;&#39;</span> -E <span class="s2">&quot;s/[[:space:]]*$//&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>  Script goes through all files except binary and source control files and removes trailing whitespaces.</p>
+
+<h4>Setup text editor to remove trailing spaces before saving file</h4>
+
+<ul>
+<li><p><em>sublime</em></p>
+
+<p>Recently popular Sublime Text 2 have this functionality built in by default. You just need to add following string to configuration file:</p></li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="s2">&quot;trim_trailing_white_space_on_save&quot;</span>: <span class="nb">true</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li><p><em>textmate</em></p>
+
+<p>Here is textmate bundle to Convert Tabs To Spaces and Remove Trailing Whitespace</p>
+
+<p><a href="https://github.com/glennr/uber-glory-tmbundle">https://github.com/glennr/uber-glory-tmbundle</a></p></li>
+<li><p><em>vim</em></p>
+
+<p>If you are using vim, it&#8217;s a very good chance you already setup this functionality.
+If not, you can use this link <a href="http://rails-bestpractices.com/posts/60-remove-trailing-whitespace">http://rails-bestpractices.com/posts/60-remove-trailing-whitespace</a></p></li>
+</ul>
+
+
+<h3>Keep your seeds fresh!</h3>
+
+<p>  Seeds are very important, whether it&#8217;s demo(developer) data or actual production seed.
+  When updating models associations or structure do not forget to reflect this changes in seeds.rb file.
+  On one of our projects I spend TENS of hours working on seed script and sample data, so we can deploy fully working staging application in no time. Any time that customer wants to check a progress. This tends to be an area that get habitually neglected, and makes proper testing, and staging impossible.</p>
+
+<p>  Another antipattern that I usually see is folks keeping seed data in migrations. Seriously why you want to dig to migration every time you forget password for admin user?</p>
+
+<p><a href="https://github.com/gregbell/active_admin/blob/master/lib/generators/active_admin/devise/devise_generator.rb#L49">active_admin example</a></p>
+
+<h3>Extract modules</h3>
+
+<p>  Go through all the models and check if you can extract some code from models to general utility modules. This will(hopefully!) not break anything inside but make code more readable.
+  Also consider to going even further - apply SRP(Single Responsibility Principle) and compose classes that do only one thing, but do it good.</p>
+
+<h3>Make a decent README file</h3>
+
+<p>  There is 3 types of readme files for rails projects. Most popular is almost empty readme file with project name and short description. Next by popularity is file starting with line &#8220;== Welcome to Rails&#8221;. Rare beast is readme file that actually reflects the project, shows you <code>installation instructions</code>, <code>usage</code> patterns, goes through custom <code>rake tasks</code> that used to run project and <code>guide to run tests!</code></p>
+
+<p>Check out <a href="http://tom.preston-werner.com/2010/08/23/readme-driven-development.html">Readme Driven Development</a></p>
+
+<h3>Do not forget about /doc folder</h3>
+
+<p>  This folder can be very good to keep your project documentation. Of course we all know about github wiki pages or basecamp or any other knowledge base of choice. But do you really want to be dependent of external service to keep your documentation?</p>
+
+<p>  With just a few keystrokes in your editor you can have access to all documentation related to project. Credentials, setting up development machine, deployment, testing, tips, technical debts, just random ideas, list can go forever.</p>
+
+<p>  But wait, it&#8217;s not the best thing yet. The best thing is you can <strong>track</strong> changes in documentation just going through commits! Why use two places for tracking news in the code instead of one?(SCM)</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git rm -r --cached doc/
+</span><span class='line'>git commit -m <span class="s1">&#39;Removed doc folder from repo&#39;</span>
+</span><span class='line'>rm -rf doc/
+</span><span class='line'>
+</span><span class='line'>git submodule add git@github.com:user/project.wiki.git doc
+</span><span class='line'>git commit -m <span class="s1">&#39;Initialize wiki doc repository&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Before running that script you need to tell github to create wiki repository by hitting url: <code>http://github.com/user/repo/wiki/_access</code>
+Your doc/ folder will be separate submodule inside your repo. You can keep a good track of what is happening inside doc/ directory.</p>
+
+<p><a href="http://coderwall.com/p/vuy3nq">Pro Tip</a></p>
+
+<h3>RVMRCFY!</h3>
+
+<p>  Create and check in in to repository .rvmrc file with specific version of ruby that you will be running. This will keep everyone on the same page while development process. I was in situations when my version of ruby as miserably failing on tests while it was working for everyone else, this is easilly avoidable!</p>
+
+<p>  If you using zsh, here is function that will help you to easily create .rvmrc file for project</p>
+
+<p><a href="http://coderwall.com/p/41he7a?i=2&amp;p=1&amp;q=author%3Ashell&amp;t%5B%5D=shell">Pro Tip</a></p>
+
+<h3>Newrelic rpm</h3>
+
+<p>  Setup free account to monitor your servers. Newrelic is sending emails when your CPU or memory is over threshold.
+  Also by default you can browse page response time and find controllers that spend most of resources.</p>
+
+<p><a href="http://newrelic.com/">NewRelic</a></p>
+
+<h3>Live metrics</h3>
+
+<p>  Instrumental App makes it easy to see what&#8217;s happening in your application right now.
+  Collecting live information about performance of application can get your eyes open on a lot of things. With just few changes you can save hundreds of dollars on hardware.</p>
+
+<p>  Check out <a href="https://instrumentalapp.com">https://instrumentalapp.com</a></p>
+
+<h3>Code Climate - collect metrics</h3>
+
+<p>  The best way to reflect on code is to collect various code metrics.</p>
+
+<p>  Check out <a href="https://codeclimate.com/">https://codeclimate.com/</a></p>
+
+<h3>Use capistrano to deploy(unless you using heroku)</h3>
+
+<p>  Use automated deployment with no excuse! Either heroku or capistrano or even rsync</p>
+
+<p>  <a href="https://gist.github.com/2161449">gist</a></p>
+
+<h3>Wrapping up</h3>
+
+<p>  This is list of most common things in every project, hope this will help you to make your project more maintainable. &lt;3 &lt;3 &lt;3</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[TomDoc package for SublimeText2]]></title>
+    <link href="http://httpster.in/blog/2012/09/07/sublime-tomdoc/"/>
+    <updated>2012-09-07T00:26:00-05:00</updated>
+    <id>http://httpster.in/blog/2012/09/07/sublime-tomdoc</id>
+    <content type="html"><![CDATA[<h2>TomDoc package for SublimeText2</h2>
+
+<p><strong>TomDoc</strong> - is a code documentation specification that helps you write precise documentation that is nice to read in plain text, yet structured enough to be automatically extracted and processed by a machine.</p>
+
+<p><strong>SublimeText2</strong> - is very powerfull text editor that are taking over TextMate right now.</p>
+
+<p>So to promote writing of documentation in your company, one approach is to build tools around helping programmers write it!</p>
+
+<!-- more -->
+
+
+<p><strong>Motivation</strong> for this plugin was to have fully functional TomDoc plugin.</p>
+
+<p>You can find source code <a href="https://github.com/shell/sublime-tomdoc">https://github.com/shell/sublime-tomdoc</a></p>
+
+<h3>Installation</h3>
+
+<p>Right now package is not accepted to package manager source, so only way to install it is to go SublimeText2 packages directory and do:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git clone git@github.com:shell/sublime-tomdoc.git
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Usage</h3>
+
+<p>Pressing <strong>ctrl+enter</strong> on the previous line of method definition</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">hello</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>results to</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># Public: Duplicate some text an arbitrary number of times.</span>
+</span><span class='line'><span class="c1">#</span>
+</span><span class='line'><span class="c1"># a -</span>
+</span><span class='line'><span class="c1"># b -</span>
+</span><span class='line'><span class="c1">#</span>
+</span><span class='line'><span class="c1"># Returns the duplicated String.</span>
+</span><span class='line'><span class="k">def</span> <span class="nf">hello</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Works respectfully for all other supported constructions</p>
+
+<p>Other usage way is to type &#8216;tom&#8217; and hit <strong>TAB</strong> to generate default TomDoc skeleton text.</p>
+
+<p>Plugin supports following constructions for TomDoc:</p>
+
+<ul>
+<li>Method Documentation</li>
+<li>Initialize method Documentation</li>
+<li>Class/Module Documentation</li>
+<li>Constants Documentation</li>
+<li>Attributes</li>
+</ul>
+
+
+<h3>What do you think?</h3>
+
+<p>Shoot us email if you have some problems with this plugin or want specific features</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Switching to zsh and why you should do it now]]></title>
+    <link href="http://httpster.in/blog/2012/09/06/switch-to-zsh/"/>
+    <updated>2012-09-06T23:13:00-05:00</updated>
+    <id>http://httpster.in/blog/2012/09/06/switch-to-zsh</id>
+    <content type="html"><![CDATA[<h2>Switching to zsh and why you should do it now</h2>
+
+<p>If you working with ruby or rails, there is big chance that you spending lots of time in console. Yeah you probably using already this wonderful project that helps you everyday called <a href="http://www.iterm2.com/">iTerm2</a>. But why don&#8217;t make your work even more comfortable?!</p>
+
+<p><em>zsh</em> - is a shell designed for interactive use, although it is also a powerful scripting language. Many of the useful features of bash, ksh, and tcsh were incorporated into zsh; many original features were added</p>
+
+<p><em>oh-my-zsh!</em> - A community-driven framework for managing your zsh configuration. Includes 40+ optional plugins (rails, git, OSX, hub, capistrano, brew, ant, macports, etc), over 80 terminal themes to spice up your morning, and an auto-update tool so that makes it easy to keep up with the latest updates from the community</p>
+
+<p>There is no reason why not to try it, automatic script will install everything for you. If you decide to stick up with good old configured bash, just run uninstallation script.</p>
+
+<!-- more -->
+
+
+<h3>Installation</h3>
+
+<p>Installation is deadly easy:</p>
+
+<h4>via <code>curl</code></h4>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>via <code>wget</code></h4>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>wget --no-check-certificate https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | sh
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>If you have some troubles - manual installation is available.
+After installation open up new console window and say &#8220;OH-MY-ZSH!&#8221;</p>
+
+<p>All configuration is done via <strong>.zshrc</strong> file.</p>
+
+<h3>Features</h3>
+
+<p><em>zsh</em> comes with a bunch of nifty functionality built in and  <em>oh-my-zsh</em> comes with handful of interesting plugins.</p>
+
+<p>I will not explain how to enable them here, but roughly will go through best. You can find plugins in <em>~/.oh-my-zsh/plugins</em> folder.</p>
+
+<h4>bundler</h4>
+
+<p>Plugin adds nifty shortcuts like:</p>
+
+<ul>
+<li><em>bi</em> for &#8216;bundle install&#8217;</li>
+<li><em>be</em> for &#8216;bundle exec&#8217;</li>
+<li><em>bu</em> for &#8216;bundle update&#8217;</li>
+</ul>
+
+
+<p>Also it wrapps all regular commands that can require &#8216;bundle exec&#8217; before them and add it for you. Now you will never need to run command twice, just because bundle wasn&#8217;t setted up properly.</p>
+
+<h4>cloudapp by Zach Holman</h4>
+
+<p><a href="http://getcloudapp.com/">CloudApp</a> allows you to share images, links, music, videos and files. Usually you just drop files to icon and app automatically uploads them to cloud and drops short link into your clipboard. It automatically uploads screenshots from your desktop.</p>
+
+<p>Plugin allows you to upload a file from the command line to CloudApp.</p>
+
+<h4>git</h4>
+
+<p>Adds lots of aliases to type less while using git. Something that you probably already setted up is: <em>ga</em>(git add), <em>gb</em>(git branch), <em>gc</em>(git commit).</p>
+
+<p>One of my favorites are:</p>
+
+<ul>
+<li><em>ggpull</em> - pulls current branch from server. Like &#8216;git pull&#8217; but with current branch name</li>
+<li><em>ggpush</em> - same as previous but for push</li>
+<li><em>ggpnp</em> - doing pull and then push for current branch.</li>
+</ul>
+
+
+<h4>github!</h4>
+
+<p>Plugin adds nifty commands to manage your github repositories:</p>
+
+<ul>
+<li>empty_gh - creates new repo from scratch. Adds README file and pushes to your account</li>
+<li>new_gh - Used for directory not setted up for git yet. creates .gitignore and README files and pushes to github</li>
+<li>exist_gh - use this one when github repo is setted up already you just want to add remote and push updates from here</li>
+</ul>
+
+
+<h4>osx</h4>
+
+<p>Some commands to rule your system:</p>
+
+<ul>
+<li>tab() - opens up new tab in your terminal of choise(Terminal.app or iTerm2)</li>
+<li>pfs() - returns path for selected item in finder</li>
+<li>cdf() - cd&#8217;s to selected item in finder</li>
+<li>quick-look() - opens up file with quick-look</li>
+</ul>
+
+
+<h4>pow</h4>
+
+<p><a href="http://pow.cx/">Pow</a> is a zero-config Rack server for Mac OS X.</p>
+
+<p>So this plugin adds few commands to rule that doomsday device:</p>
+
+<ul>
+<li>kapow - a command that will restart an app</li>
+<li>powit - makes symlink from current directory so it will be served by pow</li>
+<li>kaput - view the standard out (puts) from any pow app</li>
+</ul>
+
+
+<h4>rails and rails3</h4>
+
+<p>Some aliases:</p>
+
+<ul>
+<li>rc   - rails console</li>
+<li>rg   - rails generate</li>
+<li>rgm  - rails generate migration</li>
+<li>rs   - rails server</li>
+<li>rsd  - rails server &#8211;debug</li>
+<li>mig=&#8217;rake db:migrate&#8217;</li>
+<li>roll=&#8217;rake db:rollback&#8217;</li>
+</ul>
+
+
+<h4>textmate</h4>
+
+<p>Some aliasses:</p>
+
+<ul>
+<li>et   - &#8216;mate .&#8217;</li>
+<li>mr   - Edit Ruby app in TextMate</li>
+</ul>
+
+
+<h4>vi-mode</h4>
+
+<p>One of my favorite plugins. Brings power of vim move/edit commands in console</p>
+
+<p>But wait, it&#8217;s not all! Most of plugins for particular tools(git, github, bundler, brew&#8230;) adds autocompletion for this commands.</p>
+
+<h3>More information</h3>
+
+<p>Ryan Bates have wonderful screencast about oh-my-zsh
+<a href="http://railscasts.com/episodes/308-oh-my-zsh">http://railscasts.com/episodes/308-oh-my-zsh</a></p>
+
+<hr />
+
+<p>layout: post
+author: &#8220;Vladimir Penkin&#8221;
+title: &#8220;Switching to zsh and why you should do it now&#8221;
+date: 2012-09-06 23:13
+comments: true</p>
+
+<h2>categories:</h2>
+
+<h2>Switching to zsh and why you should do it now</h2>
+
+<p>If you working with ruby or rails, there is big chance that you spending lots of time in console. Yeah you probably using already this wonderful project that helps you everyday called <a href="http://www.iterm2.com/">iTerm2</a>. But why don&#8217;t make your work even more comfortable?!</p>
+
+<p><em>zsh</em> - is a shell designed for interactive use, although it is also a powerful scripting language. Many of the useful features of bash, ksh, and tcsh were incorporated into zsh; many original features were added</p>
+
+<p><em>oh-my-zsh!</em> - A community-driven framework for managing your zsh configuration. Includes 40+ optional plugins (rails, git, OSX, hub, capistrano, brew, ant, macports, etc), over 80 terminal themes to spice up your morning, and an auto-update tool so that makes it easy to keep up with the latest updates from the community</p>
+
+<p>There is no reason why not to try it, automatic script will install everything for you. If you decide to stick up with good old configured bash, just run uninstallation script.</p>
+
+<h3>Installation</h3>
+
+<p>Installation is deadly easy:</p>
+
+<h4>via <code>curl</code></h4>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>via <code>wget</code></h4>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>wget --no-check-certificate https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | sh
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>If you have some troubles - manual installation is available.
+After installation open up new console window and say &#8220;OH-MY-ZSH!&#8221;</p>
+
+<p>All configuration is done via <strong>.zshrc</strong> file.</p>
+
+<h3>Features</h3>
+
+<p><em>zsh</em> comes with a bunch of nifty functionality built in and  <em>oh-my-zsh</em> comes with handful of interesting plugins.</p>
+
+<p>I will not explain how to enable them here, but roughly will go through best. You can find plugins in <em>~/.oh-my-zsh/plugins</em> folder.</p>
+
+<h4>bundler</h4>
+
+<p>Plugin adds nifty shortcuts like:</p>
+
+<ul>
+<li><em>bi</em> for &#8216;bundle install&#8217;</li>
+<li><em>be</em> for &#8216;bundle exec&#8217;</li>
+<li><em>bu</em> for &#8216;bundle update&#8217;</li>
+</ul>
+
+
+<p>Also it wrapps all regular commands that can require &#8216;bundle exec&#8217; before them and add it for you. Now you will never need to run command twice, just because bundle wasn&#8217;t setted up properly.</p>
+
+<h4>cloudapp by Zach Holman</h4>
+
+<p><a href="http://getcloudapp.com/">CloudApp</a> allows you to share images, links, music, videos and files. Usually you just drop files to icon and app automatically uploads them to cloud and drops short link into your clipboard. It automatically uploads screenshots from your desktop.</p>
+
+<p>Plugin allows you to upload a file from the command line to CloudApp.</p>
+
+<h4>git</h4>
+
+<p>Adds lots of aliases to type less while using git. Something that you probably already setted up is: <em>ga</em>(git add), <em>gb</em>(git branch), <em>gc</em>(git commit).</p>
+
+<p>One of my favorites are:</p>
+
+<ul>
+<li><em>ggpull</em> - pulls current branch from server. Like &#8216;git pull&#8217; but with current branch name</li>
+<li><em>ggpush</em> - same as previous but for push</li>
+<li><em>ggpnp</em> - doing pull and then push for current branch.</li>
+</ul>
+
+
+<h4>github!</h4>
+
+<p>Plugin adds nifty commands to manage your github repositories:</p>
+
+<ul>
+<li>empty_gh - creates new repo from scratch. Adds README file and pushes to your account</li>
+<li>new_gh - Used for directory not setted up for git yet. creates .gitignore and README files and pushes to github</li>
+<li>exist_gh - use this one when github repo is setted up already you just want to add remote and push updates from here</li>
+</ul>
+
+
+<h4>osx</h4>
+
+<p>Some commands to rule your system:</p>
+
+<ul>
+<li>tab() - opens up new tab in your terminal of choise(Terminal.app or iTerm2)</li>
+<li>pfs() - returns path for selected item in finder</li>
+<li>cdf() - cd&#8217;s to selected item in finder</li>
+<li>quick-look() - opens up file with quick-look</li>
+</ul>
+
+
+<h4>pow</h4>
+
+<p><a href="http://pow.cx/">Pow</a> is a zero-config Rack server for Mac OS X.</p>
+
+<p>So this plugin adds few commands to rule that doomsday device:</p>
+
+<ul>
+<li>kapow - a command that will restart an app</li>
+<li>powit - makes symlink from current directory so it will be served by pow</li>
+<li>kaput - view the standard out (puts) from any pow app</li>
+</ul>
+
+
+<h4>rails and rails3</h4>
+
+<p>Some aliases:</p>
+
+<ul>
+<li>rc   - rails console</li>
+<li>rg   - rails generate</li>
+<li>rgm  - rails generate migration</li>
+<li>rs   - rails server</li>
+<li>rsd  - rails server &#8211;debug</li>
+<li>mig=&#8217;rake db:migrate&#8217;</li>
+<li>roll=&#8217;rake db:rollback&#8217;</li>
+</ul>
+
+
+<h4>textmate</h4>
+
+<p>Some aliasses:</p>
+
+<ul>
+<li>et   - &#8216;mate .&#8217;</li>
+<li>mr   - Edit Ruby app in TextMate</li>
+</ul>
+
+
+<h4>vi-mode</h4>
+
+<p>One of my favorite plugins. Brings power of vim move/edit commands in console</p>
+
+<p>But wait, it&#8217;s not all! Most of plugins for particular tools(git, github, bundler, brew&#8230;) adds autocompletion for this commands.</p>
+
+<h3>More information</h3>
+
+<p>Ryan Bates have wonderful screencast about oh-my-zsh
+<a href="http://railscasts.com/episodes/308-oh-my-zsh">http://railscasts.com/episodes/308-oh-my-zsh</a></p>
+
+<hr />
+
+<p>layout: post
+author: &#8220;Vladimir Penkin&#8221;
+title: &#8220;Switching to zsh and why you should do it now&#8221;
+date: 2012-09-06 23:13
+comments: true</p>
+
+<h2>categories:</h2>
+
+<h2>Switching to zsh and why you should do it now</h2>
+
+<p>If you working with ruby or rails, there is big chance that you spending lots of time in console. Yeah you probably using already this wonderful project that helps you everyday called <a href="http://www.iterm2.com/">iTerm2</a>. But why don&#8217;t make your work even more comfortable?!</p>
+
+<p><em>zsh</em> - is a shell designed for interactive use, although it is also a powerful scripting language. Many of the useful features of bash, ksh, and tcsh were incorporated into zsh; many original features were added</p>
+
+<p><em>oh-my-zsh!</em> - A community-driven framework for managing your zsh configuration. Includes 40+ optional plugins (rails, git, OSX, hub, capistrano, brew, ant, macports, etc), over 80 terminal themes to spice up your morning, and an auto-update tool so that makes it easy to keep up with the latest updates from the community</p>
+
+<p>There is no reason why not to try it, automatic script will install everything for you. If you decide to stick up with good old configured bash, just run uninstallation script.</p>
+
+<h3>Installation</h3>
+
+<p>Installation is deadly easy:</p>
+
+<h4>via <code>curl</code></h4>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>via <code>wget</code></h4>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>wget --no-check-certificate https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | sh
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>If you have some troubles - manual installation is available.
+After installation open up new console window and say &#8220;OH-MY-ZSH!&#8221;</p>
+
+<p>All configuration is done via <strong>.zshrc</strong> file.</p>
+
+<h3>Features</h3>
+
+<p><em>zsh</em> comes with a bunch of nifty functionality built in and  <em>oh-my-zsh</em> comes with handful of interesting plugins.</p>
+
+<p>I will not explain how to enable them here, but roughly will go through best. You can find plugins in <em>~/.oh-my-zsh/plugins</em> folder.</p>
+
+<h4>bundler</h4>
+
+<p>Plugin adds nifty shortcuts like:</p>
+
+<ul>
+<li><em>bi</em> for &#8216;bundle install&#8217;</li>
+<li><em>be</em> for &#8216;bundle exec&#8217;</li>
+<li><em>bu</em> for &#8216;bundle update&#8217;</li>
+</ul>
+
+
+<p>Also it wrapps all regular commands that can require &#8216;bundle exec&#8217; before them and add it for you. Now you will never need to run command twice, just because bundle wasn&#8217;t setted up properly.</p>
+
+<h4>cloudapp by Zach Holman</h4>
+
+<p><a href="http://getcloudapp.com/">CloudApp</a> allows you to share images, links, music, videos and files. Usually you just drop files to icon and app automatically uploads them to cloud and drops short link into your clipboard. It automatically uploads screenshots from your desktop.</p>
+
+<p>Plugin allows you to upload a file from the command line to CloudApp.</p>
+
+<h4>git</h4>
+
+<p>Adds lots of aliases to type less while using git. Something that you probably already setted up is: <em>ga</em>(git add), <em>gb</em>(git branch), <em>gc</em>(git commit).</p>
+
+<p>One of my favorites are:</p>
+
+<ul>
+<li><em>ggpull</em> - pulls current branch from server. Like &#8216;git pull&#8217; but with current branch name</li>
+<li><em>ggpush</em> - same as previous but for push</li>
+<li><em>ggpnp</em> - doing pull and then push for current branch.</li>
+</ul>
+
+
+<h4>github!</h4>
+
+<p>Plugin adds nifty commands to manage your github repositories:</p>
+
+<ul>
+<li>empty_gh - creates new repo from scratch. Adds README file and pushes to your account</li>
+<li>new_gh - Used for directory not setted up for git yet. creates .gitignore and README files and pushes to github</li>
+<li>exist_gh - use this one when github repo is setted up already you just want to add remote and push updates from here</li>
+</ul>
+
+
+<h4>osx</h4>
+
+<p>Some commands to rule your system:</p>
+
+<ul>
+<li>tab() - opens up new tab in your terminal of choise(Terminal.app or iTerm2)</li>
+<li>pfs() - returns path for selected item in finder</li>
+<li>cdf() - cd&#8217;s to selected item in finder</li>
+<li>quick-look() - opens up file with quick-look</li>
+</ul>
+
+
+<h4>pow</h4>
+
+<p><a href="http://pow.cx/">Pow</a> is a zero-config Rack server for Mac OS X.</p>
+
+<p>So this plugin adds few commands to rule that doomsday device:</p>
+
+<ul>
+<li>kapow - a command that will restart an app</li>
+<li>powit - makes symlink from current directory so it will be served by pow</li>
+<li>kaput - view the standard out (puts) from any pow app</li>
+</ul>
+
+
+<h4>rails and rails3</h4>
+
+<p>Some aliases:</p>
+
+<ul>
+<li>rc   - rails console</li>
+<li>rg   - rails generate</li>
+<li>rgm  - rails generate migration</li>
+<li>rs   - rails server</li>
+<li>rsd  - rails server &#8211;debug</li>
+<li>mig=&#8217;rake db:migrate&#8217;</li>
+<li>roll=&#8217;rake db:rollback&#8217;</li>
+</ul>
+
+
+<h4>textmate</h4>
+
+<p>Some aliasses:</p>
+
+<ul>
+<li>et   - &#8216;mate .&#8217;</li>
+<li>mr   - Edit Ruby app in TextMate</li>
+</ul>
+
+
+<h4>vi-mode</h4>
+
+<p>One of my favorite plugins. Brings power of vim move/edit commands in console</p>
+
+<p>But wait, it&#8217;s not all! Most of plugins for particular tools(git, github, bundler, brew&#8230;) adds autocompletion for this commands.</p>
+
+<h3>More information</h3>
+
+<p>Ryan Bates have wonderful screencast about oh-my-zsh
+<a href="http://railscasts.com/episodes/308-oh-my-zsh">http://railscasts.com/episodes/308-oh-my-zsh</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Sinatra template]]></title>
+    <link href="http://httpster.in/blog/2012/07/27/sinatra-template/"/>
+    <updated>2012-07-27T18:18:00-05:00</updated>
+    <id>http://httpster.in/blog/2012/07/27/sinatra-template</id>
+    <content type="html"><![CDATA[<p>Recently I found myself doing a couple of very simple services for my cliens with Sinatra. Just some basic authentication, <code>active_record</code> and <code>mysql2</code> database, few forms, rails view helpers. There is a lot of guides and tutorials around internet. But it seems that there is no good Sinatra template  with testing coverate, basic files structure, etc.</p>
+
+<p>So I made one! <a href="https://github.com/shell/sinatra-template">Sinatra Template</a></p>
+
+<h2>Features</h2>
+
+<pre><code>* HTTP basic authentication
+* ActiveRecord orm
+* Sqlite3 for development, Mysql2 for production
+* 2 very basic but associated models
+* HAML, blueprint, jquery
+* User and Admin interfaces
+* Scroller with products
+* Full rake tasks for db management(hacked sinatra-activerecord gem)
+* Testing suite out of the box(RSpec)
+* Some essential Rails helpers
+* Ready for deploy with passenger(config/setup_load_paths.rb)
+</code></pre>
+
+<p>Some prefer to extract controllers, models and helpers in corresponding folders and split them over files. It is a matter of taste. If you have that much code, consider using Rails instead.</p>
+
+<p>Enjoy</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[rails3_before_render plugin]]></title>
+    <link href="http://httpster.in/blog/2011/03/11/rails3_before_render-plugin/"/>
+    <updated>2011-03-11T14:53:00-05:00</updated>
+    <id>http://httpster.in/blog/2011/03/11/rails3_before_render-plugin</id>
+    <content type="html"><![CDATA[<p>  I&#8217;ve just released small plugin <a href="https://github.com/shell/rails3_before_render">rails3_before_render</a>. It adds a hook like <code>before_filter</code> to your controllers that gets executed between when your action is completed and the template is rendered.  It can really DRY up loading some data.</p>
+
+<p>  Please be carefull using that. Regular <code>before/after/around</code> filters is enough for <strong>most</strong> of the tasks that you can imagine. If not you always call method directly, that will increase readability of your code. Use <code>before_render</code> in exceptional cases.</p>
+
+<p>  <a href="http://blog.davidchelimsky.net/wp-content/uploads/2010/11/duplication.pdf">Here</a> is good presentation by David Chelimsky about code duplication and DRY concept.</p>
+
+<h2>Use case</h2>
+
+<p>  Mostly I&#8217;ve needed that plugin for my <code>mugen</code> gem.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Mygengo</span><span class="o">::</span><span class="no">JobsController</span> <span class="o">&lt;</span> <span class="ss">Mygengo</span><span class="p">:</span><span class="ss">:MygengoController</span>
+</span><span class='line'>  <span class="o">.</span> <span class="o">.</span> <span class="o">.</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">show</span>
+</span><span class='line'>    <span class="vi">@job</span> <span class="o">=</span> <span class="ss">Mugen</span><span class="p">:</span><span class="ss">:Job</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:id</span><span class="o">]</span><span class="p">)</span>
+</span><span class='line'>    <span class="vi">@preview</span> <span class="o">=</span> <span class="ss">Mugen</span><span class="p">:</span><span class="ss">:Job</span><span class="o">.</span><span class="n">preview</span><span class="p">(</span><span class="vi">@job</span><span class="o">[</span><span class="s1">&#39;job_id&#39;</span><span class="o">]</span><span class="p">)</span>
+</span><span class='line'>    <span class="vi">@comments</span> <span class="o">=</span> <span class="ss">Mugen</span><span class="p">:</span><span class="ss">:Job</span><span class="o">.</span><span class="n">comments</span><span class="p">(</span><span class="vi">@job</span><span class="o">[</span><span class="s1">&#39;job_id&#39;</span><span class="o">]</span><span class="p">)</span>
+</span><span class='line'>  <span class="o">.</span> <span class="o">.</span> <span class="o">.</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>  There is error check after each api request that populate <code>Mugen.errors</code> variable with messages. Every action of controller after all requests has been sent need to check that variable and populate flash messages with that. Without having plugin I used wrapper function like this:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># mygengo_controller.rb</span>
+</span><span class='line'><span class="k">def</span> <span class="nf">mygengo_requests</span>
+</span><span class='line'>  <span class="k">yield</span>
+</span><span class='line'>  <span class="n">parse_errrors</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># jobs_controller</span>
+</span><span class='line'><span class="n">mygengo_requests</span> <span class="k">do</span>
+</span><span class='line'>  <span class="vi">@job</span> <span class="o">=</span> <span class="ss">Mugen</span><span class="p">:</span><span class="ss">:Job</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:id</span><span class="o">]</span><span class="p">)</span>
+</span><span class='line'>  <span class="vi">@preview</span> <span class="o">=</span> <span class="ss">Mugen</span><span class="p">:</span><span class="ss">:Job</span><span class="o">.</span><span class="n">preview</span><span class="p">(</span><span class="vi">@job</span><span class="o">[</span><span class="s1">&#39;job_id&#39;</span><span class="o">]</span><span class="p">)</span>
+</span><span class='line'>  <span class="vi">@comments</span> <span class="o">=</span> <span class="ss">Mugen</span><span class="p">:</span><span class="ss">:Job</span><span class="o">.</span><span class="n">comments</span><span class="p">(</span><span class="vi">@job</span><span class="o">[</span><span class="s1">&#39;job_id&#39;</span><span class="o">]</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<!-- more -->
+
+
+<p>  After 5-th action code duplication seems unreasonable. Regular filters like <code>before_filter</code> and <code>after_filter</code> didn&#8217;t fit here. Errors parsing clearly needs to be executed right before rendering.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Mygengo</span><span class="o">::</span><span class="no">MygengoController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+</span><span class='line'>  <span class="n">before_render</span> <span class="ss">:parse_errrors</span>
+</span><span class='line'>  <span class="o">.</span> <span class="o">.</span> <span class="o">.</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>  With that I could remove <code>mygengo_request</code> method along with wrapping each action in controller.</p>
+
+<h2>before_render</h2>
+
+<p>  Before writing this plugin I have found <a href="https://github.com/xtoddx/before_render">before_render</a> plugin by Todd Willey. Sadly it worked for rails 2.x only. Rails 3 brought us completely new architecture of ActionPack and as I have found even ActiveSupport had major changes. Callbacks module is now more efficient that is was before.</p>
+
+<p>  New <code>ActiveSupport::Callbacks</code> methods were used, in analogy with ActionDispatch. That allowed me to escape reimplementing callback filter chains.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[TextMate Project Drawer Enhanced]]></title>
+    <link href="http://httpster.in/blog/2011/03/10/textmate-project-drawer-enhanced/"/>
+    <updated>2011-03-10T14:53:00-05:00</updated>
+    <id>http://httpster.in/blog/2011/03/10/textmate-project-drawer-enhanced</id>
+    <content type="html"><![CDATA[<p><a href="https://github.com/jezdez/textmate-missingdrawer">Missing Drawer</a> is a better sidebar for Textmate project.</p>
+
+<p>First thing to notice, is when you hiding project drawer it automatically resizes text window, so you can enjoy full screen without more actions.</p>
+
+<p>Also it adds &#8220;Open Terminal Here&#8221; button. Handy! Because you never need <code>cd</code> to working directory anymore.</p>
+
+<p><img src="https://github.com/downloads/jezdez/textmate-missingdrawer/Screen%20shot%202010-08-20.png" alt="Screenshot" class="post-img"/></p>
+
+<p>Although, there was a bug when you use it with iTerm 2. It always open new window instead of new tab. <em>fixed</em></p>
+
+<p>Also added nice enhancement that save me couple of seconds every day - <code>GitX</code> button.</p>
+
+<p><img src="http://httpster.in/images/textmate-missing-drawer.png" alt="textmate-drawer" class="post-img"/></p>
+
+<p>While my <a href="https://github.com/jezdez/textmate-missingdrawer/pull/32">pull request</a> awaiting for a merge into master branch, why not try it out right now?</p>
+
+<p><a href="http://httpster.in/downloads/MissingDrawer.tmplugin.zip">plugin</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[myGengo Api Labs Contest]]></title>
+    <link href="http://httpster.in/blog/2011/03/03/mygengo-contest/"/>
+    <updated>2011-03-03T14:53:00-05:00</updated>
+    <id>http://httpster.in/blog/2011/03/03/mygengo-contest</id>
+    <content type="html"><![CDATA[<p>Starting from a new years holidays I have participated in <a href="http://mygengo.com/services/api/lab/">myGengo Api Labs</a></p>
+
+<p>3 Things I have developed so far:</p>
+
+<p><strong>Mugen</strong> - ruby wrapper for myGengo API, based on <code>httparty</code>. Also include generators of nested rails app that provides basic interface. I have took a look on existing wrapper provided by myGengo Team, which was not very clear and rubyish way. Also it&#8217;s been a while since I wanted to try <code>httparty</code> gem by John Nunemaker. <a href="https://github.com/shell/mugen">GitHub</a>
+<a href="http://mygengo.com/services/api/plugins/details/ruby-on-rails/">Mygengo Plugin page</a></p>
+
+<!-- more -->
+
+
+<p>  Install it now with :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>gem install mugen
+</span><span class='line'><span class="nv">$ </span>rails generate mugen
+</span></code></pre></td></tr></table></div></figure>
+
+
+<br />
+
+
+<p><img src="http://httpster.in/images/screen-mugen.png" alt="mugen" class="post-img" /></p>
+
+<p><strong>Radiant-cms extension</strong> - Is also using <code>mugen</code> to talk to myGengo servers. This extension integrates to your administration interface to set up jobs for translation. Translations can easily be stored in your database and inserted in your content. <a href="http://ext.radiantcms.org/extensions/260-mygengo">Extension page</a>, <a href="https://github.com/shell/radiant-mygengo-extension">GitHub</a>
+<a href="http://mygengo.com/services/api/plugins/details/radiant/">Mygengo Plugin page</a></p>
+
+<p>  Radiant installation:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>script/extension install mygengo
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<br />
+
+
+<p><img src="http://httpster.in/images/screen-radiant-extension.png" alt="mugen" class="post-img"/></p>
+
+<p><strong>Zend Framework plugin</strong> - it took 2 days of hardcore digging in ZF documentation and coding all that classes in PHP. But I nailed it. Installation instructions for existing zf apps as well as quickstart guide available in <a href="https://github.com/shell/zf-mygengo/blob/master/README.md">readme</a>. <a href="https://github.com/shell/zf-mygengo">GitHub</a>
+<a href="http://mygengo.com/services/api/plugins/details/zend-framework/">Mygengo Plugin page</a></p>
+
+<p>Check out <a href="http://mygengo.com/services/api/lab/winners/">Winners page</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Pre and post hooks for external libraries]]></title>
+    <link href="http://httpster.in/blog/2011/02/02/pre-and-post-hooks-with-method_alias/"/>
+    <updated>2011-02-02T14:53:00-05:00</updated>
+    <id>http://httpster.in/blog/2011/02/02/pre-and-post-hooks-with-method_alias</id>
+    <content type="html"><![CDATA[<p>Ever missing hooks in your favorite libraries? <code>before_filter</code> and <code>after_fileter</code> is not working outside rails?
+Thanks to ruby awesomness it&#8217;s never been an issue for programmers who know how to use <code>alias</code> or <code>alias_method</code>.</p>
+
+<h2>Problem</h2>
+
+<p>Here I am, sitting in front of laptop, writing yet another API wrapper. As I get tired of ruby native <a href="http://www.ruby-doc.org/stdlib/libdoc/net/http/rdoc/classes/Net/HTTP.html">NET::HTTP</a> requests and wanted to try something more explicit and gave a shot to <a href="http://github.com/jnunemaker/httparty">HTTParty</a> by John Nunemaker. Syntax is very simple and I came with following code:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Account</span> <span class="o">&lt;</span> <span class="no">Client</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">stats</span><span class="p">(</span><span class="n">options</span><span class="o">=</span><span class="p">{})</span>
+</span><span class='line'>    <span class="nb">self</span><span class="o">.</span><span class="n">get</span> <span class="s2">&quot;/account/stats&quot;</span><span class="p">,</span> <span class="ss">:query</span> <span class="o">=&gt;</span> <span class="n">options</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">balance</span><span class="p">(</span><span class="n">options</span><span class="o">=</span><span class="p">{})</span>
+</span><span class='line'>    <span class="nb">self</span><span class="o">.</span><span class="n">get</span> <span class="s2">&quot;/account/balance&quot;</span><span class="p">,</span> <span class="ss">:query</span> <span class="o">=&gt;</span> <span class="n">options</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>  <span class="o">.</span><span class="n">.</span><span class="o">.</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>But apparently interaction is not so easy as it seems. All authenticated calls must be signed. The process of signing include arguments that was passed to current method. So in every method that called, it needs sign data before sending:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Account</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">stats</span><span class="p">(</span><span class="n">options</span><span class="o">=</span><span class="p">{})</span>
+</span><span class='line'>    <span class="nb">self</span><span class="o">.</span><span class="n">get</span> <span class="s2">&quot;/account/stats&quot;</span><span class="p">,</span> <span class="ss">:query</span> <span class="o">=&gt;</span> <span class="no">Mugen</span><span class="o">.</span><span class="n">set_params</span><span class="p">(</span><span class="n">options</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>  <span class="o">.</span><span class="n">.</span><span class="o">.</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">balance</span><span class="p">(</span><span class="n">options</span><span class="o">=</span><span class="p">{})</span>
+</span><span class='line'>    <span class="nb">self</span><span class="o">.</span><span class="n">get</span> <span class="s2">&quot;/account/balance&quot;</span><span class="p">,</span> <span class="ss">:query</span> <span class="o">=&gt;</span> <span class="no">Mugen</span><span class="o">.</span><span class="n">set_params</span><span class="p">(</span><span class="n">options</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>  <span class="o">.</span><span class="n">.</span><span class="o">.</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Seems like unnecessary code duplication. Isn&#8217;t this kind of thing that pre-hook is made for?
+To solve this problem you diffinetly <a href="http://railstips.org/blog/archives/2010/10/14/stop-googling/">shouldn&#8217;t google</a> for that.</p>
+
+<p>After digging httparty source code I haven&#8217;t found some pre- or post- hooks. Seems like we need to do it ourselves.</p>
+
+<!-- more -->
+
+
+<h2>Cooking hooks with alias_methiod</h2>
+
+<p>Thanks to greatness of ruby, I can open and modify native or external classes:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># lib/mugen/httparty_extensions.rb</span>
+</span><span class='line'><span class="k">module</span> <span class="nn">HTTParty</span>
+</span><span class='line'>  <span class="k">module</span> <span class="nn">ClassMethods</span>
+</span><span class='line'>    <span class="k">alias</span> <span class="ss">:original_get</span> <span class="ss">:get</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1"># Inject pre GET hook</span>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="p">{})</span>
+</span><span class='line'>      <span class="n">path</span><span class="p">,</span> <span class="n">options</span> <span class="o">=</span> <span class="n">before_get</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span> <span class="k">if</span> <span class="nb">respond_to?</span><span class="p">(</span><span class="ss">:before_get</span><span class="p">)</span>
+</span><span class='line'>      <span class="n">original_get</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Ok now we have self-cooked <code>before_get</code> method that will be called before original HTTParty.get and will do the work:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Client</span>
+</span><span class='line'>  <span class="kp">include</span> <span class="no">HTTParty</span>
+</span><span class='line'>  <span class="o">.</span><span class="n">.</span><span class="o">.</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">before_get</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">options</span><span class="o">[</span><span class="ss">:query</span><span class="o">]</span> <span class="o">=</span> <span class="no">Mugen</span><span class="o">.</span><span class="n">set_params</span><span class="p">(</span><span class="n">options</span><span class="o">[</span><span class="ss">:query</span><span class="o">]</span><span class="p">)</span> <span class="k">if</span> <span class="n">options</span><span class="o">.</span><span class="n">has_key?</span> <span class="ss">:query</span>
+</span><span class='line'>    <span class="o">[</span><span class="n">path</span><span class="p">,</span> <span class="n">options</span><span class="o">]</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>  <span class="o">.</span><span class="n">.</span><span class="o">.</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Remember to put <code>original_get</code> arguments back with last line</p>
+
+<h2>Things to watch out</h2>
+
+<p>Be aware <code>alias</code> is keyword so there is no comma after name of new method. But <code>alias_method</code> is method version of alias.</p>
+
+<p>Also do not crush others code. If I put <code>Mugen.set_params</code> in <strong><code>httparty_extensions.rb</code></strong> this can easily break other code that rely on HTTParty.</p>
+
+<!-- Discovering new tricks in ruby is always fun. -->
+
+]]></content>
+  </entry>
+  
+</feed>
