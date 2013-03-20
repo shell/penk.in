@@ -4,7 +4,7 @@
   <title><![CDATA[Httpster: Vladimir Penkin]]></title>
   <link href="http://httpster.in/atom.xml" rel="self"/>
   <link href="http://httpster.in/"/>
-  <updated>2013-03-19T12:14:03-05:00</updated>
+  <updated>2013-03-20T09:56:53-05:00</updated>
   <id>http://httpster.in/</id>
   <author>
     <name><![CDATA[Vladimir Penkin]]></name>
@@ -181,6 +181,207 @@ Your doc/ folder will be separate submodule inside your repo. You can keep a goo
 <h3>Wrapping up</h3>
 
 <p>  This is list of most common things in every project, hope this will help you to make your project more maintainable. &lt;3 &lt;3 &lt;3</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Rake interactive]]></title>
+    <link href="http://httpster.in/blog/2012/09/09/rake-interactive/"/>
+    <updated>2012-09-09T23:13:00-05:00</updated>
+    <id>http://httpster.in/blog/2012/09/09/rake-interactive</id>
+    <content type="html"><![CDATA[<h3>Motivation</h3>
+
+<p>Motivation behind this task is something that bothers me for a long time.</p>
+
+<p>I bet you running in this situation fairly often. I even find this in lines in <a href="https://github.com/search?q=rake+db%3Acreate+%26%26+rake+db%3Amigrate&amp;type=Everything&amp;repo=&amp;langOverride=&amp;start_value=1">installation instructions</a> for ruby(rails) projects.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>rake db:drop <span class="o">&amp;&amp;</span> rake db:create <span class="o">&amp;&amp;</span> rake db:migrate <span class="o">&amp;&amp;</span> rake db:seed
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<!-- more -->
+
+
+<p>How many times rails environment is getting loaded? Let&#8217;s count!</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">echo</span> <span class="s2">&quot;puts &#39;oh, hai!&#39;&quot;</span> &gt;&gt; config/application.rb
+</span><span class='line'><span class="o">(</span>rake db:drop <span class="o">&amp;&amp;</span> rake db:create <span class="o">&amp;&amp;</span> rake db:migrate <span class="o">&amp;&amp;</span> rake db:seed<span class="o">)</span> | grep <span class="s2">&quot;oh, hai!&quot;</span> | wc -l
+</span><span class='line'>-&gt; 4
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>4 times we are loading rails environment. But do we really need to load it all the time? what if we forgot to do &#8216;rake stats&#8217;?</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">time </span>rails runner <span class="s1">&#39;&#39;</span>
+</span><span class='line'>-&gt; rails runner <span class="s1">&#39;&#39;</span>  11.57s user 1.48s system 97% cpu 13.324 total
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Rails environment loads up for 11 seconds. 11 * 5 = 55. It is minute of waiting and staring at screen.</p>
+
+<p>Can we do better? Of course!</p>
+
+<h3>Rake interactive</h3>
+
+<p>Here is simple rake task that waiting for commands to execute.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">desc</span> <span class="s2">&quot;Interactive rake console&quot;</span>
+</span><span class='line'><span class="c1"># Example</span>
+</span><span class='line'><span class="c1">#   &gt; db:create</span>
+</span><span class='line'><span class="n">task</span> <span class="ss">:interactive</span> <span class="o">=&gt;</span> <span class="ss">:environment</span> <span class="k">do</span>
+</span><span class='line'>  <span class="nb">puts</span> <span class="s2">&quot;Please do not use in environments other than development&quot;</span> <span class="k">unless</span> <span class="no">Rails</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">development?</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+</span><span class='line'>  <span class="k">while</span> <span class="n">str</span> <span class="o">!=</span> <span class="s1">&#39;exit&#39;</span>
+</span><span class='line'>    <span class="no">STDOUT</span><span class="o">.</span><span class="n">print</span> <span class="s1">&#39;&gt; &#39;</span>
+</span><span class='line'>    <span class="k">begin</span>
+</span><span class='line'>      <span class="n">str</span> <span class="o">=</span> <span class="no">STDIN</span><span class="o">.</span><span class="n">gets</span>
+</span><span class='line'>      <span class="n">str</span><span class="o">.</span><span class="n">gsub!</span><span class="p">(</span><span class="sr">/\s+$/</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+</span><span class='line'>      <span class="k">if</span> <span class="n">str</span> <span class="o">==</span> <span class="s1">&#39;exit&#39;</span>
+</span><span class='line'>        <span class="k">break</span>
+</span><span class='line'>      <span class="k">else</span>
+</span><span class='line'>        <span class="ss">Rake</span><span class="p">:</span><span class="ss">:Task</span><span class="o">[</span><span class="n">str</span><span class="o">].</span><span class="n">invoke</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>    <span class="k">rescue</span> <span class="no">RuntimeError</span> <span class="o">=&gt;</span> <span class="n">e</span>
+</span><span class='line'>      <span class="no">STDOUT</span><span class="o">.</span><span class="n">puts</span> <span class="s2">&quot;Don&#39;t know how to build task &#39;</span><span class="si">#{</span><span class="n">str</span><span class="si">}</span><span class="s2">&#39;&quot;</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Of course this is very simple script, there is no support of history or chain execution. Can we do better?</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">desc</span> <span class="s2">&quot;Interactive rake console&quot;</span>
+</span><span class='line'><span class="c1"># Example</span>
+</span><span class='line'><span class="c1">#   &gt; db:create</span>
+</span><span class='line'><span class="n">task</span> <span class="ss">:interactive</span><span class="p">,</span> <span class="o">[</span><span class="ss">:script</span><span class="o">]</span> <span class="o">=&gt;</span> <span class="ss">:environment</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="p">,</span> <span class="n">args</span><span class="o">|</span>
+</span><span class='line'>  <span class="nb">puts</span> <span class="s2">&quot;Please do not use in environments other than development&quot;</span> <span class="k">unless</span> <span class="no">Rails</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">development?</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">if</span> <span class="n">args</span><span class="o">[</span><span class="ss">:script</span><span class="o">].</span><span class="n">present?</span>
+</span><span class='line'>    <span class="n">commands</span> <span class="o">=</span> <span class="n">args</span><span class="o">[</span><span class="ss">:script</span><span class="o">].</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;&amp;&amp;&quot;</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">commands</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">command</span><span class="o">|</span>
+</span><span class='line'>      <span class="n">command</span><span class="o">.</span><span class="n">strip!</span>
+</span><span class='line'>      <span class="k">begin</span>
+</span><span class='line'>        <span class="no">STDOUT</span><span class="o">.</span><span class="n">puts</span> <span class="s2">&quot;Executing: </span><span class="si">#{</span><span class="n">command</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'>        <span class="ss">Rake</span><span class="p">:</span><span class="ss">:Task</span><span class="o">[</span><span class="n">command</span><span class="o">].</span><span class="n">invoke</span>
+</span><span class='line'>      <span class="k">rescue</span> <span class="no">RuntimeError</span> <span class="o">=&gt;</span> <span class="n">e</span>
+</span><span class='line'>        <span class="no">STDOUT</span><span class="o">.</span><span class="n">puts</span> <span class="s2">&quot;Don&#39;t know how to build task &#39;</span><span class="si">#{</span><span class="n">command</span><span class="si">}</span><span class="s2">&#39;&quot;</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+</span><span class='line'>  <span class="k">while</span> <span class="n">str</span> <span class="o">!=</span> <span class="s1">&#39;exit&#39;</span>
+</span><span class='line'>    <span class="no">STDOUT</span><span class="o">.</span><span class="n">print</span> <span class="s1">&#39;&gt; &#39;</span>
+</span><span class='line'>      <span class="n">str</span> <span class="o">=</span> <span class="no">STDIN</span><span class="o">.</span><span class="n">gets</span>
+</span><span class='line'>      <span class="n">str</span><span class="o">.</span><span class="n">strip!</span>
+</span><span class='line'>      <span class="k">if</span> <span class="n">str</span> <span class="o">==</span> <span class="s1">&#39;exit&#39;</span>
+</span><span class='line'>        <span class="k">break</span>
+</span><span class='line'>      <span class="k">else</span>
+</span><span class='line'>        <span class="k">begin</span>
+</span><span class='line'>          <span class="ss">Rake</span><span class="p">:</span><span class="ss">:Task</span><span class="o">[</span><span class="n">str</span><span class="o">].</span><span class="n">invoke</span>
+</span><span class='line'>        <span class="k">rescue</span> <span class="no">RuntimeError</span> <span class="o">=&gt;</span> <span class="n">e</span>
+</span><span class='line'>          <span class="no">STDOUT</span><span class="o">.</span><span class="n">puts</span> <span class="s2">&quot;Don&#39;t know how to build task &#39;</span><span class="si">#{</span><span class="n">str</span><span class="si">}</span><span class="s2">&#39;&quot;</span>
+</span><span class='line'>        <span class="k">end</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This version accepts optional parameter - string of commands separated by &amp;&amp;</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">echo</span> <span class="s2">&quot;puts &#39;oh, hai!&#39;&quot;</span> &gt;&gt; config/application.rb
+</span><span class='line'>noglob rake interactive<span class="o">[</span><span class="s2">&quot;db:drop &amp;&amp; db:create &amp;&amp; db:migrate&quot;</span>,1<span class="o">]</span>  | grep <span class="s2">&quot;oh, hai&quot;</span> | wc -l
+</span><span class='line'>  -&gt; 1
+</span><span class='line'><span class="nb">time </span>noglob rake interactive<span class="o">[</span><span class="s2">&quot;db:drop &amp;&amp; db:create &amp;&amp; db:migrate&quot;</span>,1<span class="o">]</span>
+</span><span class='line'>  -&gt; 13.14s user 1.60s system 94% cpu 15.646 total
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Good eh? 11 seconds for rails to start and 2 more seconds for execute database tasks. Instead of 55 seconds.</p>
+
+<h3>Is it the end?</h3>
+
+<p>There are few questions left with this script.
+<strong>Model or Tasks caching</strong> - might be we need to implement something like <strong>reload!</strong> function in interactive console to reload rails models.</p>
+
+<p>But the bigger question is that you might don&#8217;t want to run <strong>yet another rails instance</strong> when you already running <strong>rails server</strong> and <strong>rails console</strong>. There seems no problem with running Rake::Task[&#8216;TASKNAME&#8217;].invoke from console. But you know what would be really cool? Run that from rails server!</p>
+
+<p>I am not sure if this can be implemented. <strong>gets</strong> is blocking operation so while waiting for user input, we will block whole server. It might be possible with experimental rails projects like <a href="https://github.com/igrigorik/async-rails">async-rails</a> or servers like unicorn or thin.</p>
+
+<p>So if you have some idea how to do that, just let us know!</p>
 ]]></content>
   </entry>
   

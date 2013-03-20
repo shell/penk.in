@@ -5,7 +5,7 @@ title: "Rake interactive"
 date: 2012-09-09 23:13
 comments: true
 categories:
-published: false
+published: true
 ---
 
 ### Motivation
