@@ -1,187 +1,206 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>Httpster: Vladimir Penkin</title>
-    <meta name="author" content="Vladimir Penkin">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="description" content="Personal site of web developer">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="canonical" href="http://penk.in/">
-    <link href="favicon.ico" rel="icon">
-    <link href="screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-    <meta name="og:type" content="website" />
-    <meta name="og:site_name" content="Httpster: Vladimir Penkin" />
-    <meta name="og:title" content="Httpster: Vladimir Penkin" />
-    <meta name="og:description" content="Personal site of web engeneer" />
-    <meta name="og:url" content="http://penk.in/index.html"/>
-    <meta name="url" content="http://penk.in/index.html">
-    <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
-    <link href='http://fonts.googleapis.com/css?family=Cantarell' rel='stylesheet' type='text/css'>
-    <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-    <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-  </head>
-  <body>
-    <div id="front-wrapper">
-      <div id="hero">
-        <div id="hero-inner" class="container">
-          <div class="span10 offset1">
-            <h1>
-              I&#8217;m <em>Vladimir Penkin</em><br />
-              an <em>entrepreneurial developer</em><br />
-              from <em>Russia</em>
-            </h1>
-            <h2></h2>
-          </div>
-        </div>
-      </div>
-      <section id="sub-hero">
-        <div class="container">
-          <div class="row">
-            <div class="span4">
-              <h2>about me</h2>
-              <p>
-                I am full-stack web developer.
-                Working with dbs, backend, frontend, rapid-prototyping, architecture, optimization, writing API.
-                Basically everything that involved from time your browser makes request to page response-interaction.
-              </p>
-              <p>
-                Natual born httpster
-                <a href='about.html'>More about me</a>
-              </p>
-            </div>
-            <div class="span6">
-              <h2>recent public projects</h2>
-              <dl id="gh_repos" class="dl-horizontal">
-                <dt>
-                  <a href="https://github.com/shell/mugen">mugen</a>
-                  <a rel="tooltip" href="https://github.com/shell/mugen" title="open sourced at Github">
-                  <img class="social_icon" src="images/glyphicons_381_github.png" alt="github icon" title="Github"></a>
-                </dt>
-                <dd>Wrapper and scaffold generator for MyGengo API</dd>
-                <dt>
-                  <a href="https://github.com/shell/join_calendar_events">join_calendar_ev</a>
-                  <a rel="tooltip" href="https://github.com/shell/join_calendar_events" title="open sourced at Github">
-                    <img class="social_icon" src="images/glyphicons_381_github.png" alt="github icon" title="Github">
-                  </a>
-                </dt>
-                <dd>Automatically open up links from event notificatio</dd>
-                <dt>
-                  <a href="https://github.com/shell/bob_status">bob_status</a>
-                  <a rel="tooltip" href="https://github.com/shell/bob_status" title="open sourced at Github">
-                    <img class="social_icon" src="images/glyphicons_381_github.png" alt="github icon" title="Github"></a></dt>
-                <dd>Send Jenkins feature branch status to Github</dd>
-                <dt>
-                  <a href="https://github.com/shell/sinatra-template">sinatra-template</a>
-                  <a rel="tooltip" href="https://github.com/shell/sinatra-template" title="open sourced at Github">
-                    <img class="social_icon" src="images/glyphicons_381_github.png" alt="github icon" title="Github"></a></dt>
-                <dd>Preconfigured sinatra template with essentials lik</dd>
-              </dl>
-            </div>
-            <div class="span2">
-              <h2>found on</h2>
-              <a href="https://github.com/shell/" rel="tooltip" title="Github">
-                <img class="social_icon" title="Github" alt="github icon" src="images/glyphicons_381_github.png">
-              </a>
-              <a href="https://rubygems.org/profiles/shell" rel="tooltip" title="RubyGems">
-                <img class="social_icon" title="RubyGems" alt="RubyGems incon" src="images/glyphicons_364_cloud_download.png">
-              </a>
-              <a href="https://coderwall.com/shell" rel="tooltip" title="Coderwall">
-                <img class="social_icon" title="Coderwall" alt="Coderwall incon" src="images/glyphicons_308_share_alt.png">
-              </a>
-              <br />
-              <a href="mailto:penkinv@gmail.com">penkinv@gmail.com</a>
-            </div>
-          </div>
-        </div>
-      </section>
-      <div class="container">
-        <div class="row" id="post-container">
-<!--           <article class="span4">
-            <div class="article-format">
-              <header>
-                <h1 class="entry-title"><a href="blog/2012/09/06/switch-to-zsh/">Switching to Zsh and Why You Should Do It Now</a></h1>
-                <p class="meta">
-                  <span class="byline author vcard">by <span class="fn">Vladimir Penkin</span></span>
-                  -
-                  <time datetime="2012-09-06T23:13:00-05:00" pubdate data-updated="true">Sep 6<span>th</span>, 2012</time> -
-                </p>
-              </header>
-              <div class="entry-content">
-                <h2>Switching to zsh and why you should do it now</h2>
-                <p>If you working with ruby or rails, there is big chance that you spending lots of time in console. Yeah you probably using already this wonderful project that helps you everyday called <a href="http://www.iterm2.com/">iTerm2</a>. But why don&#8217;t make your work even more comfortable?!</p>
-                <p><em>zsh</em> - is a shell designed for interactive use, although it is also a powerful scripting language. Many of the useful features of bash, ksh, and tcsh were incorporated into zsh; many original features were added</p>
-                <p><em>oh-my-zsh!</em> - A community-driven framework for managing your zsh configuration. Includes 40+ optional plugins (rails, git, OSX, hub, capistrano, brew, ant, macports, etc), over 80 terminal themes to spice up your morning, and an auto-update tool so that makes it easy to keep up with the latest updates from the community</p>
-                <p>There is no reason why not to try it, automatic script will install everything for you. If you decide to stick up with good old configured bash, just run uninstallation script.</p>
-              </div>
-              <footer>
-                <a rel="full-article" href="blog/2012/09/06/switch-to-zsh/">Continue &rarr;</a>
-              </footer>
-            </div>
-          </article> -->
-          <article class="span4">
-            <div class="article-format">
-              <header>
-                <h1 class="entry-title"><a href="blog/2012/07/27/sinatra-template/">Sinatra Template</a></h1>
-<!--                 <p class="meta">
-                  <span class="byline author vcard">by <span class="fn">Vladimir Penkin</span></span>
-                  -
-                  <time datetime="2012-07-27T18:18:00-05:00" pubdate data-updated="true">Jul 27<span>th</span>, 2012</time> -
-                  posted in
-                  <span class="categories">
-                  <a class='category' href='/blog/categories/sinatra/'>sinatra</a>
-                  </span>
-                </p> -->
-              </header>
-              <div class="entry-content">
-                <p>Recently I found myself doing a couple of very simple services for my cliens with Sinatra. Just some basic authentication, <code>active_record</code> and <code>mysql2</code> database, few forms, rails view helpers. There is a lot of guides and tutorials around internet. But it seems that there is no good Sinatra template  with testing coverate, basic files structure, etc.</p>
-                <p>So I made one! <a href="https://github.com/shell/sinatra-template">Sinatra Template</a></p>
-                <h2>Features</h2>
-                <pre>
-                  <code>* HTTP basic authentication
-* ActiveRecord orm
-* Sqlite3 for development, Mysql2 for production
-* 2 very basic but associated models
-* HAML, blueprint, jquery
-* User and Admin interfaces
-* Scroller with products
-* Full rake tasks for db management(hacked sinatra-activerecord gem)
-* Testing suite out of the box(RSpec)
-* Some essential Rails helpers
-* Ready for deploy with passenger(config/setup_load_paths.rb)
-</code></pre>
-                <p>Some prefer to extract controllers, models and helpers in corresponding folders and split them over files. It is a matter of taste. If you have that much code, consider using Rails instead.</p>
-                <p>Enjoy</p>
-              </div>
-            </div>
-          </article>
-        </div>
-        <div class="row">
-          <ul class="pager">
-          </ul>
-        </div>
+<!--[if lt IE 8 ]><html class="no-js ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="no-js ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 8)|!(IE)]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+
+<head>
+  <!--- Basic Page Needs -->
+  <meta charset="utf-8">
+  <title>Vladimir Penkin</title>
+  <meta name="author" content="Vladimir Penkin">
+  <meta name="description" content="The personal website of Vladimir Penkin">
+  <meta name="theme-color" content="#333333">
+
+  <!-- Open Graph -->
+  <meta name="og:type" content="website" />
+  <meta name="og:site_name" content="Vladimir Penkin" />
+  <meta name="og:title" content="Vladimir Penkin" />
+  <meta name="og:description" content="The personal website of Vladimir Penkin" />
+  <meta name="og:url" content="http://penk.in/"/>
+
+  <!-- Mobile Specific Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <link rel="pgpkey" href="/keypub.txt">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/default.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/media-queries.css">
+  <link rel="stylesheet" href="css/magnific-popup.css">
+
+  <!-- Script -->
+  <script src="js/modernizr.js"></script>
+
+  <!-- Favicons -->
+  <link rel="icon" href="favicon.ico">
+  <link rel="alternate icon" type="image/png" href="favicon.png">
+</head>
+
+<body>
+  <!-- Header -->
+  <header id="home">
+    <nav id="nav-wrap">
+      <a class="mobile-btn" href="#nav-wrap" title="Show navigation">Show navigation</a>
+      <a class="mobile-btn" href="#" title="Hide navigation">Hide navigation</a>
+      <ul id="nav" class="nav">
+        <li class="current">
+          <a class="smoothscroll" href="#home">Home</a>
+        </li>
+        <li>
+          <a class="smoothscroll" href="#about">About</a>
+        </li>
+        <li>
+          <a class="smoothscroll" href="#contact">Contact</a>
+        </li>
+        <!-- <li>
+          <a href="#">Resume</a>
+        </li> -->
+      </ul>
+    </nav>
+
+    <div class="row banner">
+      <div class="banner-text">
+        <h1 class="responsive-headline">Hello,
+          <br>I'm Vladimir Penkin</h1>
+        <hr>
+        <h3>
+          <a class="smoothscroll" href="#about">I'm a software engineer from Russia. Scroll down to learn more.</a>
+        </h3>
+        <hr />
+        <ul class="social social-links">
+          <li>
+            <a rel="me" target="_blank" href="https://github.com/shell"><i class="fa fa-github"></i></a>
+          </li>
+          <li>
+            <a rel="me" target="_blank" href="https://www.linkedin.com/in/vladimirpenkin"><i class="fa fa-linkedin"></i></a>
+          </li>
+          <li>
+            <a rel="me" target="_blank" href="https://keybase.io/penkinv"><i class="fa fa-id-card"></i></a>
+          </li>
+          <li>
+            <a rel="me" target="_blank" href="mailto:penkinv@gmail.com"><i class="fa fa-envelope"></i></a>
+          </li>
+          <li>
+            <a rel="pgpkey" target="_blank" href="vladimir.asc"><i class="fa fa-key"></i></a>
+          </li>
+        </ul>
       </div>
     </div>
-    <footer class="footer">
-      <div class="container">
-        <p class="pull-left">
-          <a href="/">Httpster: Vladimir Penkin</a> - Copyright &copy; 2017 - Vladimir Penkin
-        </p>
-        <p class="pull-right">
-          <span>Powered by magic</span>
+
+    <p class="scrolldown">
+      <a class="smoothscroll" href="#about">
+        <i class="icon-down-circle"></i>
+      </a>
+    </p>
+  </header>
+
+  <section id="about">
+      <div class="row">
+          <div class="three columns">
+              <img class="profile-pic" src="images/avatar52672_transparent.png" alt="" />
+          </div>
+          <div class="nine columns main-col">
+              <h2>About Me</h2>
+              <p>
+                I studied computer science at Taganrog South University of Radio Engineering.
+                I like writing code and learning new things. I love to
+                travel and have lived in Colombia.
+              </p>
+              <p>
+                I'm a generalist. I believe with the good knowledge base you can do stuff.
+                And language or framework is not that important.
+                You would hit a performance penalty at the beginning,
+                but in the end you can always grow wiser and bring something new to the table.
+              </p>
+              <p>
+                I worked with <a href="#">Ruby</a>, <a href="#">C#</a>, <a href="#">TypeScript</a>. Dabbing in <a href="#">Go</a> and <a href="#">Python</a>
+              </p>
+              <p>Check out what I'm up to
+                  <a href="/now/">now</a>.
+              </p>
+              <!-- <div class="row">
+                <div class="columns download">
+                  <p>
+                    <a href="resume.pdf" class="button">
+                      <i class="fa fa-download"></i>Download/View Resume
+                    </a>
+                  </p>
+                </div>
+              </div> -->
+          </div>
+      </div>
+  </section>
+
+  <section id="contact">
+    <div class="row section-head">
+      <div class="two columns header-col">
+        <h1><span>Get In Touch.</span></h1>
+      </div>
+      <div class="ten columns">
+        <p class="lead">
+            Let me know if you have any cool ideas or want to work
+            together on something! Feel free to send me a message
+            on <a href="https://keybase.io/penkinv">Keybase</a>
+            or shoot me an email ʕ'ᴥ'ʔ ("'')
         </p>
       </div>
+    </div>
+  </section>
 
-      <script type="text/javascript">
-        var _gaq = _gaq || [];
-        _gaq.push(['_setAccount', 'UA-12025643-1']);
-        _gaq.push(['_trackPageview']);
-        (function() {
-          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-        })();
-      </script>
-    </footer>
-  </body>
+  <footer>
+    <div class="row">
+      <div class="twelve columns">
+        <ul class="social social-links">
+          <li>
+            <a rel="me" target="_blank" href="https://github.com/shell">
+              <i class="fa fa-github"></i>
+            </a>
+          </li>
+          <li>
+            <a rel="me" target="_blank" href="https://www.linkedin.com/in/vladimirpenkin">
+              <i class="fa fa-linkedin"></i>
+            </a>
+          </li>
+          <li>
+            <a rel="me" target="_blank" href="https://keybase.io/penkinv">
+              <i class="fa fa-id-card"></i>
+            </a>
+          </li>
+          <li>
+            <a rel="me" target="_blank" href="mailto:penkinv@gmail.com">
+              <i class="fa fa-envelope"></i>
+            </a>
+          </li>
+          <li>
+            <a rel="pgpkey" target="_blank" href="vladimir.asc">
+              <i class="fa fa-key"></i>
+            </a>
+          </li>
+        </ul>
+        <ul class="copyright">
+          <li>&copy; Copyright 2020 Vladimir Penkin</li>
+        </ul>
+      </div>
+      <div id="go-top">
+        <a class="smoothscroll" title="Back to Top" href="#home">
+          <i class="icon-up-open"></i>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="js/jquery-1.10.2.min.js"><\/script>')</script>
+
+  <script src="js/jquery.flexslider.js"></script>
+  <script src="js/waypoints.js"></script>
+  <script src="js/jquery.fittext.js"></script>
+  <script src="js/magnific-popup.js"></script>
+  <script src="js/init.js"></script>
+
+</body>
+
 </html>
