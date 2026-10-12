@@ -1,0 +1,14 @@
+---
+import { render } from 'astro:content';
+import SocialLinks from '../components/SocialLinks.astro';
+import Base from '../layouts/Base.astro';
+import { requirePage } from '../lib/content';
+
+const contact = await requirePage('contact');
+const { Content } = await render(contact);
+---
+<Base title={contact.data.title} description={contact.data.description} og="contact" path="/contact">
+  <h1>{contact.data.title}</h1>
+  <div class="prose"><Content /></div>
+  <SocialLinks />
+</Base>

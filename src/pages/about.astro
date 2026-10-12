@@ -1,0 +1,16 @@
+---
+import { render } from 'astro:content';
+import AvatarCard from '../components/AvatarCard.astro';
+import Base from '../layouts/Base.astro';
+import { requirePage } from '../lib/content';
+
+const about = await requirePage('about');
+const { Content } = await render(about);
+---
+<Base title={about.data.title} description={about.data.description} og="about" path="/about">
+  <h1>{about.data.title}</h1>
+  <div class="prose">
+    <AvatarCard size={140} class="page-avatar" />
+    <Content />
+  </div>
+</Base>
