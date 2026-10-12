@@ -64,3 +64,22 @@ h3 { font-size: 1.15rem; margin: 1.5rem 0 0.25rem; }
 .prose p { margin: 0 0 1.1rem; }
 .page-avatar { float: right; margin: 0 0 1rem 1.5rem; }
 @media (max-width: 30rem) { .page-avatar { float: none; margin: 0 0 1.5rem; } }
+
+/* Résumé */
+.resume-header { margin-bottom: 1rem; }
+.resume-title { color: var(--heading); font-size: 1.2rem; margin: 0 0 0.25rem; }
+.resume-header .meta a { color: var(--muted); }
+.button { display: inline-flex; align-items: center; gap: 0.4rem; margin-top: 1rem; padding: 0.45rem 0.9rem; border: 1px solid var(--accent); border-radius: 6px; font-family: var(--font-mono); font-size: 0.85rem; text-decoration: none; }
+.button:hover { background: var(--accent); color: var(--bg); }
+.row { display: flex; justify-content: space-between; align-items: baseline; gap: 0.25rem 1rem; flex-wrap: wrap; }
+.company { margin-bottom: 2rem; }
+.company h3 { margin: 0; }
+.company h3 a { color: var(--heading); text-decoration: none; }
+.company h3 a:hover { color: var(--accent); }
+.role h4 { color: var(--accent); font-size: 1rem; margin: 0.75rem 0 0.25rem; }
+.role ul { margin: 0.25rem 0 0; padding-left: 1.2rem; }
+.role li { margin: 0.2rem 0; }
+.context { font-style: italic; color: var(--muted); margin: 0.25rem 0; }
+.skills { list-style: none; padding: 0; }
+.skills li { margin: 0.2rem 0; }
+.skills strong { color: var(--heading); display: inline-block; min-width: 12rem; }

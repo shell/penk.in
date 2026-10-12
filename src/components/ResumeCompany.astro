@@ -1,0 +1,33 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { formatPeriod } from '../lib/dates';
+import { inline } from '../lib/markdown';
+
+interface Props {
+  company: CollectionEntry<'resume'>['data']['experience'][number];
+}
+const { company } = Astro.props;
+const meta = (location: string | undefined, period: string) => [location, period].filter(Boolean).join(' · ');
+const companyMeta = meta(company.location, formatPeriod(company.start, company.end));
+---
+<section class="company">
+  <div class="row">
+    <h3>{company.url ? <a href={company.url}>{company.company}</a> : company.company}</h3>
+    {companyMeta && <span class="meta">{companyMeta}</span>}
+  </div>
+  {company.roles.map((role) => {
+    const roleMeta = meta(role.location, formatPeriod(role.start, role.end));
+    return (
+      <div class="role">
+        <div class="row">
+          <h4>{role.title}</h4>
+          {roleMeta && <span class="meta">{roleMeta}</span>}
+        </div>
+        {role.context && <p class="context" set:html={inline(role.context)} />}
+        {role.highlights.length > 0 && (
+          <ul>{role.highlights.map((h) => <li set:html={inline(h)} />)}</ul>
+        )}
+      </div>
+    );
+  })}
+</section>
