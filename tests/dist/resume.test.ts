@@ -1,43 +1,53 @@
 import { describe, expect, it } from 'vitest';
-import { html } from './helpers';
+import { formatPeriod } from '../../src/lib/dates';
+import { esc, html, innerAll, textOf, yamlDocument } from './helpers';
+
+interface Role { title: string; start?: number | string; end?: number | string; location?: string }
+interface Company extends Role { company: string; url?: string; roles: Role[] }
+interface Cv {
+  name: string;
+  title: string;
+  pdf: string;
+  skills: { label: string; items: string[] }[];
+  experience: Company[];
+  education: { school: string }[];
+  languages: { language: string }[];
+}
 
 const page = html('resume.html');
-const pos = (needle: string) => {
-  const i = page.indexOf(needle);
-  if (i === -1) throw new Error(`"${needle}" not found on /resume`);
-  return i;
-};
+const cv = yamlDocument<Cv>('resume.yaml');
+const meta = (location: string | undefined, period: string) => [location, period].filter(Boolean).join(' · ');
 
 describe('/resume', () => {
   it('has the header and PDF download', () => {
-    expect(page).toMatch(/<h1[^>]*>Vladimir Penkin<\/h1>/);
-    expect(page).toContain('Staff Software Engineer · Platform &amp; Backend');
-    expect(page).toContain('href="/Vladimir_Penkin_CV_2026.pdf"');
+    expect(page).toMatch(new RegExp(`<h1[^>]*>${esc(cv.name)}</h1>`));
+    expect(page).toContain(esc(cv.title));
+    expect(page).toContain(`href="${cv.pdf}"`);
     expect(page).toContain('download');
   });
 
   it('orders sections like the CV', () => {
-    const order = ['>Profile<', '>Experience<', '>Skills<', '>Projects<', '>Education<', '>Languages<'].map(pos);
-    expect([...order].sort((a, b) => a - b)).toEqual(order);
+    const headings = innerAll(page, 'h2').map(textOf);
+    expect(headings).toEqual(['Profile', 'Experience', 'Skills', 'Projects', 'Education', 'Languages']);
   });
 
-  it('nests Rev roles under one company with periods', () => {
-    expect(page).toMatch(/<a href="http:\/\/rev.com\/"[^>]*>Rev\.com<\/a>/);
-    expect(pos('Staff SWE, Technical Lead (SmartDepo)')).toBeLessThan(pos('Staff SWE (Rev Legal)'));
-    expect(page).toContain('2015 – 2026');
-    expect(page).toContain('2023 – 2025');
-  });
-
-  it('renders the context line and inline links', () => {
-    expect(page).toContain('<a href="https://www.smartdepo.law/">SmartDepo</a>: legal deposition-summary product');
-    expect(page).toContain('<a href="https://bstock.com/">bstock.com</a>');
-    expect(page).toContain('Medellín · 2012 – 2013');
+  it('lists companies and their roles in file order, with periods', () => {
+    expect(innerAll(page, 'h3').map(textOf)).toEqual(cv.experience.map((c) => c.company));
+    expect(innerAll(page, 'h4').map(textOf)).toEqual(cv.experience.flatMap((c) => c.roles.map((r) => r.title)));
+    for (const c of cv.experience) {
+      if (c.url) expect(page).toContain(`<a href="${esc(c.url)}">${esc(c.company)}</a>`);
+      const companyMeta = meta(c.location, formatPeriod(c.start as never, c.end as never));
+      if (companyMeta) expect(page).toContain(`<span class="meta">${esc(companyMeta)}</span>`);
+      for (const r of c.roles) {
+        const roleMeta = meta(r.location, formatPeriod(r.start as never, r.end as never));
+        if (roleMeta) expect(page).toContain(`<h4>${esc(r.title)}</h4><span class="meta">${esc(roleMeta)}</span>`);
+      }
+    }
   });
 
   it('renders skills, education and languages', () => {
-    expect(page).toMatch(/<strong>AI\/LLM<\/strong>/);
-    expect(page).toContain('LiteLLM, summarization pipelines, scikit-learn, spaCy');
-    expect(page).toContain('Southern Federal University');
-    expect(page).toContain('Russian');
+    for (const s of cv.skills) expect(page).toContain(`<strong>${esc(s.label)}</strong> ${esc(s.items.join(', '))}`);
+    for (const e of cv.education) expect(page).toContain(esc(e.school));
+    for (const l of cv.languages) expect(page).toContain(`<strong>${esc(l.language)}</strong>`);
   });
 });

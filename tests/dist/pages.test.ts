@@ -1,14 +1,16 @@
 import { describe, expect, it } from 'vitest';
-import { html } from './helpers';
+import { html, markdownPage, metaContent, textOf } from './helpers';
 
 describe('/about', () => {
   const page = html('about.html');
-  it('renders the about prose with avatar and links to life and books', () => {
-    expect(page).toContain('<title>About · Vladimir Penkin</title>');
-    expect(page).toMatch(/<h1[^>]*>About<\/h1>/);
-    expect(page).toContain('dabbling in Go and Python');
-    expect(page).toContain('href="/life"');
-    expect(page).toContain('href="/books"');
+  const about = markdownPage('about');
+  it('renders about.md with the avatar and a canonical URL', () => {
+    expect(page).toContain(`<title>${about.data.title} · Vladimir Penkin</title>`);
+    expect(page).toMatch(new RegExp(`<h1[^>]*>${about.data.title}</h1>`));
+    expect(metaContent(page, 'name="description"')).toBe(about.data.description);
+    expect(page).toContain('<link rel="canonical" href="https://penk.in/about">');
+    const prose = textOf(page.slice(page.indexOf('<div class="prose">'), page.indexOf('</main>')));
+    for (const paragraph of about.paragraphs) expect(prose).toContain(paragraph);
     expect(page).toMatch(/<img[^>]+alt="Illustrated portrait of Vladimir Penkin"/);
     expect(page).toContain('aria-current="page"');
   });
@@ -16,8 +18,9 @@ describe('/about', () => {
 
 describe('/contact', () => {
   const page = html('contact.html');
+  const contact = markdownPage('contact');
   it('shows the work email and social links, no PGP', () => {
-    expect(page).toMatch(/<h1[^>]*>Contact<\/h1>/);
+    expect(page).toMatch(new RegExp(`<h1[^>]*>${contact.data.title}</h1>`));
     expect(page).toContain('href="mailto:work@penk.in"');
     expect(page).toContain('href="https://github.com/shell"');
     // Text nodes only: hashed asset file names could contain any letters.
@@ -26,9 +29,17 @@ describe('/contact', () => {
 });
 
 describe('/404', () => {
+  const page = html('404.html');
   it('exists and links home', () => {
-    const page = html('404.html');
     expect(page).toMatch(/<h1[^>]*>Page not found<\/h1>/);
     expect(page).toContain('href="/"');
+  });
+
+  it('has its own title, is noindex and has no canonical URL', () => {
+    expect(page).toContain('<title>Page not found · Vladimir Penkin</title>');
+    expect(page).toContain('<meta property="og:title" content="Page not found · Vladimir Penkin">');
+    expect(page).toContain('<meta name="robots" content="noindex">');
+    expect(page).not.toContain('rel="canonical"');
+    expect(page).not.toContain('og:url');
   });
 });

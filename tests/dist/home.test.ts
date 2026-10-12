@@ -1,24 +1,30 @@
 import { describe, expect, it } from 'vitest';
-import { html } from './helpers';
+import { html, markdownPage, metaContent, textOf } from './helpers';
 
 const page = html('index.html');
+const home = markdownPage('home');
 
 describe('homepage', () => {
   it('has the title, description and canonical URL', () => {
     expect(page).toContain('<title>Vladimir Penkin</title>');
-    expect(page).toContain('<meta name="description" content="Staff software engineer in San Francisco. Platform &amp; backend.">');
+    expect(metaContent(page, 'name="description"')).toBe(home.data.description);
     expect(page).toContain('<link rel="canonical" href="https://penk.in/">');
+    expect(page).not.toContain('name="robots"');
   });
 
   it('has Open Graph tags using property=', () => {
     expect(page).toContain('<meta property="og:title" content="Vladimir Penkin">');
+    expect(metaContent(page, 'property="og:description"')).toBe(home.data.description);
     expect(page).toContain('<meta property="og:url" content="https://penk.in/">');
     expect(page).toContain('<meta property="og:image" content="https://penk.in/og/home.png">');
   });
 
-  it('shows the name, intro and avatar', () => {
+  it('shows the name, the intro rendered from home.md and the avatar', () => {
     expect(page).toMatch(/<h1[^>]*>Vladimir Penkin<\/h1>/);
-    expect(page).toContain('Staff software engineer in San Francisco. Platform &amp; backend.');
+    const start = page.indexOf('<div class="intro">');
+    expect(start).toBeGreaterThan(-1);
+    const intro = textOf(page.slice(start, page.indexOf('</section>', start)));
+    for (const paragraph of home.paragraphs) expect(intro).toContain(paragraph);
     expect(page).toMatch(/<img[^>]+alt="Illustrated portrait of Vladimir Penkin"/);
   });
 

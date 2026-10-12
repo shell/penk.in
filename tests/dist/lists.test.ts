@@ -1,33 +1,65 @@
 import { describe, expect, it } from 'vitest';
-import { html } from './helpers';
+import { decadeOf, formatPartialDate, yearOf } from '../../src/lib/dates';
+import { esc, html, innerAll, textOf, yamlList } from './helpers';
 
 describe('/life', () => {
   const page = html('life.html');
+  const entries = yamlList<{ date: number | string; title: string; url?: string }>('life.yaml');
+
   it('groups milestones by decade, newest first', () => {
     expect(page).toMatch(/<h1[^>]*>Life<\/h1>/);
-    const d2020 = page.indexOf('>2020s<');
-    const d2010 = page.indexOf('>2010s<');
-    const d2000 = page.indexOf('>2000s<');
-    expect(d2020).toBeGreaterThan(-1);
-    expect(d2020).toBeLessThan(d2010);
-    expect(d2010).toBeLessThan(d2000);
-    expect(page).toContain('Moved to Medellín, Colombia');
+    const expected = [...new Set(entries.map((e) => decadeOf(e.date)))].sort().reverse();
+    expect(innerAll(page, 'h2').map(textOf)).toEqual(expected);
+  });
+
+  it('shows every milestone with its date', () => {
+    for (const entry of entries) {
+      expect(page).toContain(esc(entry.title));
+      expect(page).toContain(`>${formatPartialDate(entry.date)}<`);
+      if (entry.url) expect(page).toContain(`href="${esc(entry.url)}"`);
+    }
   });
 });
 
 describe('/books', () => {
   const page = html('books.html');
-  it('groups books by year with a count', () => {
+  const books = yamlList<{ title: string; read: number | string; url?: string }>('books.yaml');
+
+  it('groups books by year, newest first, with a count', () => {
     expect(page).toMatch(/<h1[^>]*>Books<\/h1>/);
-    expect(page).toMatch(/>2026<\/h2>\s*<span class="meta">1 book<\/span>/);
+    const counts = new Map<number, number>();
+    for (const book of books) counts.set(yearOf(book.read), (counts.get(yearOf(book.read)) ?? 0) + 1);
+    const years = [...counts.keys()].sort((a, b) => b - a);
+    expect(innerAll(page, 'h2').map(textOf)).toEqual(years.map(String));
+    for (const year of years) {
+      const n = counts.get(year)!;
+      expect(page).toContain(`<h2>${year}</h2><span class="meta">${n} ${n === 1 ? 'book' : 'books'}</span>`);
+    }
+  });
+
+  it('shows every book', () => {
+    for (const book of books) {
+      expect(page).toContain(esc(book.title));
+      if (book.url) expect(page).toContain(`href="${esc(book.url)}"`);
+    }
   });
 });
 
 describe('/links', () => {
   const page = html('links.html');
-  it('groups links by topic', () => {
+  const topics = yamlList<{ topic: string; links: { title: string; url: string }[] }>('links.yaml');
+
+  it('groups links by topic, in file order', () => {
     expect(page).toMatch(/<h1[^>]*>Links<\/h1>/);
-    expect(page).toMatch(/<h2[^>]*>Personal sites I like<\/h2>/);
-    expect(page).toContain('href="https://howisfelix.today/"');
+    expect(innerAll(page, 'h2').map(textOf)).toEqual(topics.map((t) => t.topic));
+  });
+
+  it('shows every link', () => {
+    for (const { links } of topics) {
+      for (const link of links) {
+        expect(page).toContain(`href="${esc(link.url)}"`);
+        expect(page).toContain(esc(link.title));
+      }
+    }
   });
 });

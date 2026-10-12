@@ -54,7 +54,9 @@ h3 { font-size: 1.15rem; margin: 1.5rem 0 0.25rem; }
 /* Home */
 .home { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 2rem 0 4rem; }
 .home h1 { margin-top: 1.5rem; }
-.home .intro { color: var(--text); margin: 0; }
+.home .intro { color: var(--text); }
+.home .intro > :first-child { margin-top: 0; }
+.home .intro > :last-child { margin-bottom: 0; }
 
 /* Footer */
 .site-footer { border-top: 1px solid var(--border); margin-top: 5rem; padding: 1.5rem 0 3rem; display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; }

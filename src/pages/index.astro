@@ -1,16 +1,18 @@
 ---
+import { render } from 'astro:content';
 import AvatarCard from '../components/AvatarCard.astro';
 import SocialLinks from '../components/SocialLinks.astro';
 import Base from '../layouts/Base.astro';
 import { requirePage } from '../lib/content';
 
 const home = await requirePage('home');
+const { Content } = await render(home);
 ---
 <Base title={home.data.title} description={home.data.description} og="home" path="/">
   <section class="home">
     <AvatarCard size={180} />
     <h1>{home.data.title}</h1>
-    <p class="intro">{home.body?.trim()}</p>
+    <div class="intro"><Content /></div>
     <SocialLinks />
   </section>
 </Base>
