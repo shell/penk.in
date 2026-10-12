@@ -1,3 +1,12 @@
 ---
+import { requireCollection, requireDocument, requirePage } from '../lib/content';
+
+const resume = await requireDocument('resume');
+const counts = {
+  life: (await requireCollection('life')).length,
+  books: (await requireCollection('books')).length,
+  links: (await requireCollection('links')).length,
+};
+const home = await requirePage('home');
 ---
-<p>penk.in rebuild in progress</p>
+<p>{home.data.title} · {resume.data.experience.length} companies · {JSON.stringify(counts)}</p>
