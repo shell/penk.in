@@ -1,0 +1,18 @@
+---
+import { NAV } from '../lib/site';
+import ThemeToggle from './ThemeToggle.astro';
+
+interface Props {
+  path: string;
+}
+const { path } = Astro.props;
+---
+<header class="site-header">
+  <a class="brand" href="/">~/penk.in</a>
+  <nav class="site-nav" aria-label="Main">
+    {NAV.map(({ href, label }) => (
+      <a href={href} aria-current={path === href ? 'page' : undefined}>{label}</a>
+    ))}
+    <ThemeToggle />
+  </nav>
+</header>

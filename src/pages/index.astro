@@ -1,12 +1,16 @@
 ---
-import { requireCollection, requireDocument, requirePage } from '../lib/content';
+import AvatarCard from '../components/AvatarCard.astro';
+import SocialLinks from '../components/SocialLinks.astro';
+import Base from '../layouts/Base.astro';
+import { requirePage } from '../lib/content';
 
-const resume = await requireDocument('resume');
-const counts = {
-  life: (await requireCollection('life')).length,
-  books: (await requireCollection('books')).length,
-  links: (await requireCollection('links')).length,
-};
 const home = await requirePage('home');
 ---
-<p>{home.data.title} · {resume.data.experience.length} companies · {JSON.stringify(counts)}</p>
+<Base title={home.data.title} description={home.data.description} og="home" path="/">
+  <section class="home">
+    <AvatarCard size={180} />
+    <h1>{home.data.title}</h1>
+    <p class="intro">{home.body?.trim()}</p>
+    <SocialLinks />
+  </section>
+</Base>
