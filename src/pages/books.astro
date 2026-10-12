@@ -1,0 +1,32 @@
+---
+import Base from '../layouts/Base.astro';
+import { requireCollection } from '../lib/content';
+import { yearOf } from '../lib/dates';
+import { groupBy, newestFirst } from '../lib/group';
+
+const books = await requireCollection('books');
+const years = groupBy(newestFirst(books, (b) => b.data.read), (b) => String(yearOf(b.data.read)));
+const stars = (n: number) => '★'.repeat(n) + '☆'.repeat(5 - n);
+---
+<Base title="Books" description="Books Vladimir Penkin has read, by year." og="books" path="/books">
+  <h1>Books</h1>
+  {years.map(({ key, items }) => (
+    <section class="book-year">
+      <div class="row">
+        <h2>{key}</h2>
+        <span class="meta">{items.length} {items.length === 1 ? 'book' : 'books'}</span>
+      </div>
+      <ul class="books">
+        {items.map(({ data }) => (
+          <li>
+            <div class="row">
+              <span>{data.url ? <a href={data.url}>{data.title}</a> : data.title} <span class="muted">· {data.author}</span></span>
+              {data.rating && <span class="meta" aria-label={`${data.rating} out of 5`}>{stars(data.rating)}</span>}
+            </div>
+            {data.note && <p class="muted">{data.note}</p>}
+          </li>
+        ))}
+      </ul>
+    </section>
+  ))}
+</Base>

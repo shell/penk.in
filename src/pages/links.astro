@@ -1,0 +1,19 @@
+---
+import Base from '../layouts/Base.astro';
+import { requireCollection } from '../lib/content';
+
+const topics = await requireCollection('links');
+---
+<Base title="Links" description="Sites, blogs and resources Vladimir Penkin recommends." og="links" path="/links">
+  <h1>Links</h1>
+  {topics.map(({ data }) => (
+    <section>
+      <h2>{data.topic}</h2>
+      <ul class="links">
+        {data.links.map((link) => (
+          <li><a href={link.url}>{link.title}</a>{link.note && <span class="muted"> — {link.note}</span>}</li>
+        ))}
+      </ul>
+    </section>
+  ))}
+</Base>
