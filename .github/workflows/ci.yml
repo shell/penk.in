@@ -1,0 +1,48 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [master]
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  image:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: docker/setup-buildx-action@v3
+
+      - name: Log in to GHCR
+        if: github.event_name == 'push'
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      # The Dockerfile's build stage runs unit tests, astro check, the build,
+      # built-output tests and the link check, so a failing check means no image.
+      - name: Build (and push on master)
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: ${{ github.event_name == 'push' }}
+          tags: |
+            ghcr.io/shell/penk.in:${{ github.sha }}
+            ghcr.io/shell/penk.in:latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Trigger deploy in shell/infra
+        if: github.event_name == 'push'
+        env:
+          GH_TOKEN: ${{ secrets.INFRA_DISPATCH_TOKEN }}
+        run: |
+          gh api repos/shell/infra/dispatches \
+            -f event_type=deploy-penk-in \
+            -f "client_payload[sha]=${{ github.sha }}"

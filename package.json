@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "astro dev",
     "check": "astro check",
-    "build": "rm -rf node_modules/.astro && astro check && astro build",
+    "build": "rm -rf node_modules/.astro && astro check && astro build && node scripts/check-links.mjs",
     "preview": "astro preview",
     "test:unit": "vitest run tests/unit",
     "test:dist": "vitest run tests/dist",
