@@ -2,7 +2,7 @@
 # Keep in sync by hand: when the CV changes, replace public/Vladimir_Penkin_CV_2026.pdf
 # and update this file in the same commit. If the PDF file name changes, update `pdf`.
 name: Vladimir Penkin
-title: Staff Software Engineer · Platform & Backend
+title: Staff Software Engineer
 location: San Francisco, California
 contact:
   email: work@penk.in

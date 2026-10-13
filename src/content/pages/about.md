@@ -12,3 +12,6 @@ can always grow wiser and bring something new to the table.
 I've worked with Ruby, C#, TypeScript and JavaScript, and I'm dabbling in Go and Python.
 
 More: my [résumé](/resume), [life so far](/life) and [the books I've read](/books).
+
+
+Also: city-explorer, e-bike-sharing enthusiast, loose leaf tea drinker; on a mission to understand how the world works

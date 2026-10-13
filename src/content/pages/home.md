@@ -1,5 +1,9 @@
 ---
-title: Vladimir Penkin
-description: Staff software engineer in San Francisco. Platform & backend.
+title: Hi, I'm Vladimir Penkin
+description: A seasoned software engineer in San Francisco
 ---
-Staff software engineer in San Francisco. Platform & backend.
+
+_A seasoned software engineer in San Francisco, California_
+
+
+Welcome to my corner of the web
