@@ -206,3 +206,16 @@ body { position: relative; }
 .testimonial figcaption .meta { display: block; margin-top: 0.25rem; }
 .testimonial-date { color: var(--muted); }
 .testimonial-date:hover { color: var(--accent); }
+
+/* Contact */
+.contact-rows { list-style: none; padding: 0; margin: 0.5rem 0 0; }
+.contact-row { display: flex; align-items: center; gap: 0.9rem; padding: 0.75rem 0; border-bottom: 1px solid var(--border); color: var(--text); text-decoration: none; }
+.contact-row .icon { color: var(--muted); font-size: 1.2rem; }
+.contact-label { width: 6rem; flex: none; color: var(--heading); font-weight: 600; }
+.contact-value { font-family: var(--font-mono); font-size: 0.95rem; color: var(--accent); overflow-wrap: anywhere; }
+.contact-row:hover .contact-value { text-decoration: underline; text-underline-offset: 3px; }
+.contact-row:hover .icon { color: var(--accent); }
+
+/* Obfuscated email: every 2nd piece is a decoy (see src/lib/obfuscate.ts) */
+.obf > * { font: inherit; text-decoration: inherit; }
+.obf > :nth-child(2n) { display: none; }

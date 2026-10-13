@@ -12,8 +12,12 @@ async function htmlFiles(dir) {
 
 const isFile = (p) => statSync(p, { throwIfNoEntry: false })?.isFile() ?? false;
 
+// Routes nginx answers without a file (see nginx.conf).
+const SERVER_ROUTES = new Set(['/email']);
+
 function resolves(distDir, link) {
   const path = decodeURIComponent(link.split(/[?#]/)[0]);
+  if (SERVER_ROUTES.has(path)) return true;
   const base = join(distDir, path);
   return [base, `${base}.html`, join(base, 'index.html')].some(isFile);
 }

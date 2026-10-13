@@ -56,7 +56,7 @@ describe('homepage', () => {
     expect([...order].sort((a, b) => a - b)).toEqual(order);
     expect(page).toContain('href="https://github.com/shell"');
     expect(page).toContain('href="https://www.linkedin.com/in/vladimirpenkin"');
-    expect(page).toContain('href="mailto:work@penk.in"');
+    expect(page).toContain('href="/email"');
     // Text nodes only: hashed asset file names could contain any letters.
     expect(page).not.toMatch(/>[^<]*Keybase[^<]*</);
   });

@@ -1,14 +1,32 @@
 ---
 import { render } from 'astro:content';
-import SocialLinks from '../components/SocialLinks.astro';
+import Icon from '../components/Icon.astro';
+import ObfuscatedEmail from '../components/ObfuscatedEmail.astro';
 import Base from '../layouts/Base.astro';
 import { requirePage } from '../lib/content';
+import { SITE } from '../lib/site';
 
 const contact = await requirePage('contact');
 const { Content } = await render(contact);
+const channels = [
+  // /email is an nginx redirect to mailto:, and the address is shown obfuscated (see lib/obfuscate.ts).
+  { label: 'Email', value: null, href: '/email', icon: 'mail' },
+  { label: 'LinkedIn', value: `in/${SITE.linkedin}`, href: `https://www.linkedin.com/in/${SITE.linkedin}`, icon: 'linkedin' },
+  { label: 'GitHub', value: `github.com/${SITE.github}`, href: `https://github.com/${SITE.github}`, icon: 'github' },
+] as const;
 ---
 <Base title={contact.data.title} description={contact.data.description} og="contact" path="/contact" photo={contact.data.photo}>
   <h1>{contact.data.title}</h1>
   <div class="prose"><Content /></div>
-  <SocialLinks />
+  <ul class="contact-rows">
+    {channels.map(({ label, value, href, icon }) => (
+      <li>
+        <a class="contact-row" href={href} rel={href === '/email' ? 'nofollow' : 'me'}>
+          <Icon name={icon} />
+          <span class="contact-label">{label}</span>
+          <span class="contact-value">{value ?? <ObfuscatedEmail />}</span>
+        </a>
+      </li>
+    ))}
+  </ul>
 </Base>

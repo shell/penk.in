@@ -1,7 +1,7 @@
 export const SITE = {
   url: 'https://penk.in',
   name: 'Vladimir Penkin',
-  email: 'work@penk.in',
+  email: 'hello@penk.in',
   github: 'shell',
   linkedin: 'vladimirpenkin',
   /** LinkedIn has no page per recommendation; this lists all received ones (sign-in required). */

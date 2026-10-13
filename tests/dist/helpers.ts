@@ -60,6 +60,16 @@ export function markdownPage(name: string): { data: Record<string, string>; body
   return { data: load(match[1]) as Record<string, string>, body, paragraphs };
 }
 
+/**
+ * What a reader sees of HTML containing an obfuscated email: inside each `<span class="obf">`
+ * every 2nd child is a decoy hidden by CSS (`.obf > :nth-child(2n) { display: none }`). Children are never spans.
+ */
+export function visible(fragment: string): string {
+  return fragment.replace(/<span class="obf"[^>]*>([\s\S]*?)<\/span>/g, (_, inner: string) =>
+    [...inner.matchAll(/<(\w+)>([^<]*)<\/\1>/g)].filter((_, i) => i % 2 === 0).map((m) => m[2]).join(''),
+  );
+}
+
 /** The (decoded) content attribute of a <meta> tag identified by e.g. `name="description"`. */
 export function metaContent(page: string, identifier: string): string {
   const match = page.match(new RegExp(`<meta ${identifier} content="([^"]*)"`));

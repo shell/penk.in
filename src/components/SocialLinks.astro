@@ -5,11 +5,12 @@ import Icon from './Icon.astro';
 const links = [
   { href: `https://github.com/${SITE.github}`, label: 'GitHub', icon: 'github' },
   { href: `https://www.linkedin.com/in/${SITE.linkedin}`, label: 'LinkedIn', icon: 'linkedin' },
-  { href: `mailto:${SITE.email}`, label: 'Email', icon: 'mail' },
+  // /email is an nginx redirect to mailto:, so the address never appears in the HTML.
+  { href: '/email', label: 'Email', icon: 'mail' },
 ] as const;
 ---
 <ul class="social">
   {links.map(({ href, label, icon }) => (
-    <li><a href={href} aria-label={label} title={label} rel="me"><Icon name={icon} /></a></li>
+    <li><a href={href} aria-label={label} title={label} rel={href === '/email' ? 'nofollow' : 'me'}><Icon name={icon} /></a></li>
   ))}
 </ul>

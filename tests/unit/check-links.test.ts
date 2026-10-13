@@ -24,6 +24,11 @@ describe('findBrokenLinks', () => {
     expect(await findBrokenLinks(dir)).toEqual([]);
   });
 
+  it('accepts server-only routes such as /email (an nginx redirect)', async () => {
+    const dir = site({ 'index.html': '<a href="/email" rel="nofollow">mail</a>' });
+    expect(await findBrokenLinks(dir)).toEqual([]);
+  });
+
   it('reports missing internal targets with their source file', async () => {
     const dir = site({ 'index.html': '<a href="/nope">x</a><link href="/missing.css">' });
     expect(await findBrokenLinks(dir)).toEqual([

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { esc, html, markdownPage, metaContent, textOf } from './helpers';
+import { esc, html, markdownPage, metaContent, textOf, visible } from './helpers';
 
 describe('/about', () => {
   const page = html('about.html');
@@ -36,10 +36,25 @@ describe('/contact', () => {
   const contact = markdownPage('contact');
   it('shows the work email and social links, no PGP', () => {
     expect(page).toMatch(new RegExp(`<h1[^>]*>${contact.data.title}</h1>`));
-    expect(page).toContain('href="mailto:work@penk.in"');
+    expect(page).toContain('href="/email"');
     expect(page).toContain('href="https://github.com/shell"');
     // Text nodes only: hashed asset file names could contain any letters.
     expect(page).not.toMatch(/>[^<]*(PGP|GPG|Keybase)[^<]*</);
+  });
+
+  it('lists email, LinkedIn and GitHub as labelled rows with icons', () => {
+    const rows = [...page.matchAll(/<a class="contact-row" href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/g)];
+    expect(rows.map((r) => r[1])).toEqual([
+      '/email',
+      'https://www.linkedin.com/in/vladimirpenkin',
+      'https://github.com/shell',
+    ]);
+    expect(rows.map((r) => textOf(visible(r[2])))).toEqual([
+      'Email hello@penk.in',
+      'LinkedIn in/vladimirpenkin',
+      'GitHub github.com/shell',
+    ]);
+    for (const r of rows) expect(r[2]).toContain('class="icon"');
   });
 });
 
