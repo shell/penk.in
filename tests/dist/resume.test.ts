@@ -7,6 +7,8 @@ interface Company extends Role { company: string; url?: string; roles: Role[] }
 interface Cv {
   name: string;
   title: string;
+  location: string;
+  contact: { email: string; github: string; linkedin: string };
   pdf: string;
   skills: { label: string; items: string[] }[];
   experience: Company[];
@@ -24,6 +26,18 @@ describe('/resume', () => {
     expect(page).toContain(esc(cv.title));
     expect(page).toContain(`href="${cv.pdf}"`);
     expect(page).toContain('download');
+  });
+
+  it('shows the location, then LinkedIn with its icon, and no email or GitHub in the header', () => {
+    const start = page.indexOf('<header class="resume-header">');
+    const header = page.slice(start, page.indexOf('</header>', start));
+    expect(textOf(header)).toContain(cv.location);
+    const linkedin = header.match(/<a class="resume-linkedin" href="([^"]+)">([\s\S]*?)<\/a>/);
+    expect(linkedin).not.toBeNull();
+    expect(linkedin![1]).toBe(`https://www.linkedin.com/in/${cv.contact.linkedin}`);
+    expect(linkedin![2]).toContain('class="icon"');
+    expect(header).not.toContain('mailto:');
+    expect(header).not.toContain('github.com');
   });
 
   it('orders sections like the CV', () => {

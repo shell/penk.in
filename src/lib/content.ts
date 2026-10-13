@@ -18,7 +18,7 @@ export async function requireDocument<C extends CollectionKey>(name: C): Promise
   return entry;
 }
 
-export async function requirePage(id: 'home' | 'about' | 'contact'): Promise<CollectionEntry<'pages'>> {
+export async function requirePage(id: 'home' | 'about' | 'contact' | 'testimonials'): Promise<CollectionEntry<'pages'>> {
   const entry = await getEntry('pages', id);
   if (!entry) throw new Error(`Page "${id}" is missing. Expected src/content/pages/${id}.md`);
   return entry;

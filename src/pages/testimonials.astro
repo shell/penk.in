@@ -1,0 +1,36 @@
+---
+import { Image } from 'astro:assets';
+import { render } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import { avatarFor } from '../lib/avatars';
+import { requireCollection, requirePage } from '../lib/content';
+import { formatPartialDate } from '../lib/dates';
+import { newestFirst } from '../lib/group';
+import { SITE } from '../lib/site';
+
+const intro = await requirePage('testimonials');
+const { Content } = await render(intro);
+const testimonials = newestFirst(await requireCollection('testimonials'), (t) => t.data.date);
+const paragraphs = (text: string) => text.trim().split(/\n\s*\n/);
+---
+<Base title={intro.data.title} description={intro.data.description} og="testimonials" path="/testimonials" photo={intro.data.photo}>
+  <h1>{intro.data.title}</h1>
+  <div class="prose testimonials-intro"><Content /></div>
+  <div class="testimonials">
+    {testimonials.map(({ data }) => (
+      <figure class="testimonial">
+        <blockquote>
+          {paragraphs(data.text).map((p) => <p>{p}</p>)}
+        </blockquote>
+        <figcaption>
+          {data.avatar && <Image src={avatarFor(data.avatar)} alt="" width={48} height={48} densities={[1, 2]} format="webp" loading="lazy" class="testimonial-avatar" />}
+          <span>
+            <a class="testimonial-name" href={data.url} rel="noopener">{data.name}</a>
+            <span class="testimonial-headline">{data.headline}</span>
+            <span class="meta">{data.relationship} · <a class="testimonial-date" href={SITE.linkedinRecommendations} rel="noopener">{formatPartialDate(data.date)}</a></span>
+          </span>
+        </figcaption>
+      </figure>
+    ))}
+  </div>
+</Base>

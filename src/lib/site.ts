@@ -4,6 +4,8 @@ export const SITE = {
   email: 'work@penk.in',
   github: 'shell',
   linkedin: 'vladimirpenkin',
+  /** LinkedIn has no page per recommendation; this lists all received ones (sign-in required). */
+  linkedinRecommendations: 'https://www.linkedin.com/in/vladimirpenkin/details/recommendations/',
   umamiId: 'b996cf54-3aaf-42dd-9e55-615a691978a1',
 } as const;
 
@@ -19,6 +21,7 @@ export const OG_PAGES = {
   home: 'Vladimir Penkin',
   about: 'About',
   resume: 'Résumé',
+  testimonials: 'Testimonials',
   life: 'Life',
   books: 'Read Books',
   links: 'Links',

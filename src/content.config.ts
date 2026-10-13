@@ -87,6 +87,22 @@ const books = defineCollection({
   }).strict(),
 });
 
+const testimonials = defineCollection({
+  loader: file('src/content/testimonials.yaml', { parser: parseYamlList }),
+  schema: z.object({
+    id: z.string(), // added by the YAML loader
+    name: z.string(),
+    url: z.string().url(),
+    /** Photo file name in src/assets/testimonials (no extension). */
+    avatar: z.string().regex(/^[a-z0-9-]+$/, 'lowercase letters, digits and dashes').optional(),
+    headline: z.string(),
+    relationship: z.string(),
+    date: partialDate,
+    /** Paragraphs separated by a blank line, copied as written. */
+    text: z.string().min(1),
+  }).strict(),
+});
+
 const links = defineCollection({
   loader: file('src/content/links.yaml', { parser: parseYamlList }),
   schema: z.object({
@@ -115,4 +131,4 @@ const pages = defineCollection({
   }).strict(),
 });
 
-export const collections = { resume, life, books, links, pages };
+export const collections = { resume, life, books, links, testimonials, pages };

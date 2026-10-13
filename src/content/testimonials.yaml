@@ -1,0 +1,93 @@
+# LinkedIn recommendations, copied as written (https://www.linkedin.com/in/vladimirpenkin/details/recommendations/).
+# url: their LinkedIn profile. avatar: photo file name in src/assets/testimonials (no extension), optional.
+# date: when it was given (YYYY, YYYY-MM or YYYY-MM-DD). text: paragraphs separated by a blank line.
+- name: Blake Henry
+  url: https://www.linkedin.com/in/blakeh42/
+  avatar: blake-henry
+  headline: Builder
+  relationship: Worked with Vladimir on the same team
+  date: 2026-10-12
+  text: |
+    Vlad was a joy to work with on the Marketplace team at Rev and a great mentor for my first software engineering position! Highly recommend him if you are looking for a no-ego engineer who loves to make great things.
+- name: Gage Domhoff
+  url: https://www.linkedin.com/in/gagedomhoff/
+  avatar: gage-domhoff
+  headline: Quality Assurance Engineer
+  relationship: Worked with Vladimir on the same team
+  date: 2026-10-10
+  text: |
+    I had the pleasure of working with Vladimir for over five years. I was a QA engineer and he was a developer on our team, building complex legal SaaS products. One of the biggest projects we shipped together was an end-to-end legal marketplace for RTC deliverables. It combined AI-driven processing with human reviewers, so it had a lot of moving parts and very little room for error.
+
+    Vlad is a very talented developer. He handled hard technical problems with skill and care, and his work was consistently solid. What stood out most to me as a QA engineer was how well he took feedback. He never treated a bug report as criticism. He saw it as a shared goal, dug into the problem, and turned fixes around quickly and thoroughly. That attitude made the whole team better and made our releases more reliable.
+
+    He’s also simply a great person to work with. He’s positive, easy to talk to, and collaborative even under deadline pressure. Any team would be lucky to have Vlad, and I’d gladly work with him again.
+- name: Bryan Roscoe
+  url: https://www.linkedin.com/in/bryanroscoe/
+  avatar: bryan-roscoe
+  headline: Software Engineer | Ex-Google | Ex-Meta | Ex-NASA
+  relationship: Worked with Vladimir on different teams
+  date: 2026-10-09
+  text: |
+    I had the pleasure of working with Vladimir at Rev, where he was one of the first engineers I got to know when I joined the company. Coming from a background in defense software, I was still getting up to speed with modern web development, and Vladimir was incredibly welcoming and generous with his time.
+
+    He helped me navigate a new codebase, get comfortable with frontend technologies, and become productive in an unfamiliar environment. I really appreciated his technical knowledge, patience, and willingness to share what he knew.
+
+    My early experiences with Vladimir left a lasting positive impression. He's the kind of engineer who makes the people around him better, and I'd be happy to work with him again.
+- name: Scott Olmsted
+  url: https://www.linkedin.com/in/scottolmsted/
+  avatar: scott-olmsted
+  headline: Retired Software Engineer
+  relationship: Client
+  date: 2012-04-10
+  text: |
+    Vladimir worked remotely on web development projects for me using Ruby on Rails. I found him to be a good problem-solver and able to produce what was needed. I recommend him to others.
+- name: Bill Cornell
+  url: https://www.linkedin.com/in/bcornell/
+  avatar: bill-cornell
+  headline: Retirado.
+  relationship: Managed Vladimir directly
+  date: 2011-03-30
+  text: |
+    What a great developer Voffka is. I've hired and managed a ton of them over 20 years and he is one of my all-time favorites. We built a solid business behind his work - he is thoughtful, never cuts corners, and has great technical ability.
+- name: Scott Olmsted
+  url: https://www.linkedin.com/in/scottolmsted/
+  avatar: scott-olmsted
+  headline: Retired Software Engineer
+  relationship: Client
+  date: 2011-03-21
+  text: |
+    I have hired Vladimir on a contract basis to work on several web development projects using Ruby on Rails. His work has been excellent and he has been a real help in keeping these projects on track.
+- name: Denis Markin
+  url: https://www.linkedin.com/in/denis-markin/
+  avatar: denis-markin
+  headline: Principal Software Engineer @ Truemed
+  relationship: Worked with Vladimir on the same team
+  date: 2011-03-09
+  text: |
+    Vladimir is one of those guys which prefer to push things forward - very passionate about making things happen and using of edge tools. We're coding in pair sometimes, and it's quite good time!
+
+    Talk to him if you need quickly prototype or build any kind of Ruby on Rails app.
+- name: Denis Lunev
+  url: https://www.linkedin.com/in/denislunev/
+  avatar: denis-lunev
+  headline: Fractional CTO | Payments, AI Implementation & Technical Strategy | Founder at DepositFix (Payments & Billing Automation)
+  relationship: Worked with Vladimir on the same team
+  date: 2011-03-03
+  text: |
+    Vladimir is very motivated and proactive web developer, always learns something new. He is eager to share his experience with others.
+- name: Sergey Druppov
+  url: https://www.linkedin.com/in/sdruppov/
+  avatar: sergey-druppov
+  headline: CEO & Co-founder @ Oggetto | Global E-Commerce Solution Partner for Retail
+  relationship: Managed Vladimir directly
+  date: 2011-03-03
+  text: |
+    I have been working with Vladimir at Oggetto Web for about 1.5 years on a few serious Magento projects. Working as a lead developer, Vladimir has demonstrated professional skills in such web technologies as PHP, MySQL, JavaScript, AJAX and also Magento and Zend Framework. He was attentive to details and reliable. I may recommend this person to others and will be happy to work with him in future.
+- name: Ivan Burlakov
+  url: https://www.linkedin.com/in/iburlakov/
+  avatar: ivan-burlakov
+  headline: Engineering Team Lead @ Frisbii
+  relationship: Worked with Vladimir on different teams
+  date: 2009-11-12
+  text: |
+    Vladimir is one of the best professionals that i ever worked with. It was a pleasure to work with him in one team. Also he is a guru of the Go(game). I'm happy that I had a chance to work with him. Thank you Vladimir.

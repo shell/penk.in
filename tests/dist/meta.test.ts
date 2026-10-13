@@ -2,7 +2,7 @@ import { existsSync, readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { html } from './helpers';
 
-const SLUGS = ['home', 'about', 'resume', 'life', 'books', 'links', 'contact'];
+const SLUGS = ['home', 'about', 'resume', 'testimonials', 'life', 'books', 'links', 'contact'];
 
 describe('OG images', () => {
   it.each(SLUGS)('og/%s.png is a 1200x630 PNG', (slug) => {
@@ -18,7 +18,7 @@ describe('OG images', () => {
 describe('sitemap', () => {
   it('lists every page with clean URLs and no 404', () => {
     const xml = html('sitemap-0.xml');
-    for (const path of ['/', '/about', '/resume', '/life', '/books', '/links', '/contact']) {
+    for (const path of ['/', '/about', '/resume', '/testimonials', '/life', '/books', '/links', '/contact']) {
       expect(xml).toContain(`<loc>https://penk.in${path}</loc>`);
     }
     expect(xml).not.toContain('404');

@@ -1,6 +1,7 @@
 ---
 import Icon from '../components/Icon.astro';
 import ResumeCompany from '../components/ResumeCompany.astro';
+import TestimonialsPill from '../components/TestimonialsPill.astro';
 import Base from '../layouts/Base.astro';
 import { requireDocument } from '../lib/content';
 import { formatPeriod } from '../lib/dates';
@@ -12,12 +13,11 @@ const { data: cv } = await requireDocument('resume');
   <header class="resume-header">
     <h1>{cv.name}</h1>
     <p class="resume-title">{cv.title}</p>
+    <p class="meta">{cv.location}</p>
     <p class="meta">
-      {cv.location} ·
-      <a href={`mailto:${cv.contact.email}`}>{cv.contact.email}</a> ·
-      <a href={`https://github.com/${cv.contact.github}`}>github.com/{cv.contact.github}</a> ·
-      <a href={`https://www.linkedin.com/in/${cv.contact.linkedin}`}>linkedin.com/in/{cv.contact.linkedin}</a>
+      <a class="resume-linkedin" href={`https://www.linkedin.com/in/${cv.contact.linkedin}`}><Icon name="linkedin" /> linkedin.com/in/{cv.contact.linkedin}</a>
     </p>
+    <TestimonialsPill />
     <a class="button" href={cv.pdf} download><Icon name="download" /> Download PDF</a>
   </header>
 
