@@ -1,9 +1,14 @@
 import { siGithub } from 'simple-icons';
 import arrowUpRight from 'lucide-static/icons/arrow-up-right.svg?raw';
+import bookOpen from 'lucide-static/icons/book-open.svg?raw';
+import clock from 'lucide-static/icons/clock.svg?raw';
 import download from 'lucide-static/icons/download.svg?raw';
+import fileText from 'lucide-static/icons/file-text.svg?raw';
+import link from 'lucide-static/icons/link.svg?raw';
 import mail from 'lucide-static/icons/mail.svg?raw';
 import moon from 'lucide-static/icons/moon.svg?raw';
 import sun from 'lucide-static/icons/sun.svg?raw';
+import user from 'lucide-static/icons/user.svg?raw';
 
 // simple-icons dropped LinkedIn at LinkedIn's request; this is its last published path (CC0).
 const LINKEDIN_PATH =
@@ -19,6 +24,11 @@ export const ICONS = {
   'arrow-up-right': arrowUpRight,
   github: brand(siGithub.path),
   linkedin: brand(LINKEDIN_PATH),
+  user,
+  'file-text': fileText,
+  clock,
+  'book-open': bookOpen,
+  link,
 } as const;
 
 export type IconName = keyof typeof ICONS;

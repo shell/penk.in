@@ -20,6 +20,12 @@ describe('photo bands', () => {
     expect(b).toMatch(/<img[^>]*\salt(?:=""|(?=[\s>]))/);
   });
 
+  it('the homepage has the tall hero band, fetched with high priority', () => {
+    const b = band(html('index.html'));
+    expect(b).toMatch(/^<div class="photo-band photo-band--hero"/);
+    expect(b).toContain('fetchpriority="high"');
+  });
+
   it('the 404 page has no photo band', () => {
     expect(html('404.html')).not.toContain('photo-band');
   });

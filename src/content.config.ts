@@ -95,7 +95,11 @@ const pages = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string(),
+    /** Inline Markdown; *emphasis* renders in the accent colour on the homepage. */
+    subtitle: z.string().optional(),
     photo: z.string().optional(),
+    /** Homepage chips, inline Markdown each (**bold** part is highlighted). */
+    stats: z.array(z.string()).min(1).optional(),
   }).strict(),
 });
 
