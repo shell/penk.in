@@ -1,15 +1,22 @@
 import { describe, expect, it } from 'vitest';
-import { decadeOf, formatPartialDate, yearOf } from '../../src/lib/dates';
+import { decadeColor, formatPartialDate, yearOf } from '../../src/lib/dates';
+import { newestFirst } from '../../src/lib/group';
 import { esc, html, innerAll, textOf, yamlList } from './helpers';
 
 describe('/life', () => {
   const page = html('life.html');
   const entries = yamlList<{ date: number | string; title: string; url?: string }>('life.yaml');
 
-  it('groups milestones by decade, newest first', () => {
+  it('is one timeline, newest first, coloured by decade, with no decade headings', () => {
     expect(page).toMatch(/<h1[^>]*>Life<\/h1>/);
-    const expected = [...new Set(entries.map((e) => decadeOf(e.date)))].sort().reverse();
-    expect(innerAll(page, 'h2').map(textOf)).toEqual(expected);
+    expect(innerAll(page, 'h2')).toEqual([]);
+    expect(page).not.toMatch(/\d+ entr(y|ies)/);
+    const sorted = newestFirst(entries, (e) => e.date);
+    const hues = [...page.matchAll(/<li class="hue-(\w+)">/g)].map((m) => m[1]);
+    expect(hues).toEqual(sorted.map((e) => decadeColor(e.date)));
+    const positions = sorted.map((e) => page.indexOf(esc(e.title)));
+    expect(positions.every((p) => p > -1)).toBe(true);
+    expect([...positions].sort((a, b) => a - b)).toEqual(positions);
   });
 
   it('shows every milestone with its date', () => {

@@ -1,15 +1,30 @@
-# Life milestones, any order (the page sorts newest first and groups by decade).
+# Life milestones, any order (the page sorts newest first; entries with the same date keep file order).
 # date: YYYY, YYYY-MM or YYYY-MM-DD. description and url are optional.
+- date: 1995
+  title: First programming, on a Lunokhod (Big Trak)
+  description: "A programmable toy rover: punch in moves, watch it go."
+  url: https://en.wikipedia.org/wiki/Big_Trak
+- date: 2000
+  title: First computer programs, in BASIC
 - date: 2007
   title: Started studying Computer Science
   description: Southern Federal University, Taganrog, Russia.
 - date: 2007
   title: First job as a web developer
+- date: 2009
+  title: Went freelance
+- date: 2011
+  title: Graduated from Southern Federal University
+  description: Taganrog, Russia.
 - date: 2012
   title: Moved to Medellín, Colombia
-  description: Co-founded StaunchRobots, a Rails development shop.
+  description: Co-founded StaunchRobots, a Rails consultancy.
 - date: 2015
   title: Joined Rev
+- date: 2023
+  title: Staff SWE, Rev Legal
 - date: 2025
   title: Became tech lead for SmartDepo
   description: Led its integration into Rev’s platform after the acquisition.
+- date: 2026
+  title: Left Rev

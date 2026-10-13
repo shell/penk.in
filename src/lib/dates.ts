@@ -1,3 +1,5 @@
+import { HUES, type Hue } from './hues';
+
 export type PartialDate = number | string;
 
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -24,6 +26,12 @@ export function formatPeriod(start?: PartialDate, end?: PartialDate | 'present')
 
 export function decadeOf(d: PartialDate): string {
   return `${Math.floor(yearOf(d) / 10) * 10}s`;
+}
+
+/** Timeline colour for the date's decade: 1990s accent, 2000s blue, 2010s green, 2020s purple, then repeating. */
+export function decadeColor(d: PartialDate): Hue {
+  const index = Math.floor(yearOf(d) / 10) - 199;
+  return HUES[((index % HUES.length) + HUES.length) % HUES.length];
 }
 
 export function sortKey(d: PartialDate): string {
