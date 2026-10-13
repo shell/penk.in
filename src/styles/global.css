@@ -225,6 +225,8 @@ body { position: relative; }
 /* Text and city share one grid cell: the city spans the full row behind the text, its ⌘ box on the right. */
 .not-found > div { grid-area: 1 / 1; z-index: 1; max-width: 17rem; }
 .not-found-city { grid-area: 1 / 1; }
+/* On wide screens the city spills into both page margins: bigger, and the ⌘ box clears the text. */
+@media (min-width: 64rem) { .not-found-city { width: 130%; margin-left: -12%; } }
 .big-404 { margin: 0; font-family: var(--font-mono); font-weight: 600; font-size: clamp(5rem, 14vw, 7.5rem); line-height: 1; letter-spacing: -0.05em; color: var(--heading); text-shadow: 0 2px 18px var(--bg); }
 .big-404 span { color: var(--accent); }
 .not-found h1 { margin: 0.75rem 0 0.25rem; font-size: 1.6rem; text-shadow: 0 1px 12px var(--bg); }
