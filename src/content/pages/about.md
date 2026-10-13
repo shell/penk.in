@@ -16,4 +16,4 @@ More: my [résumé](/resume), [life so far](/life) and [the books I've read](/bo
 
 Also: city-explorer, e-bike-sharing enthusiast, loose leaf tea drinker; on a mission to understand how the world works
 
-<!-- Your story: who you are outside work, in your own words. -->
+[//]: # (Your story: who you are outside work, in your own words.)

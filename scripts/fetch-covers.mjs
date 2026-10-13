@@ -16,7 +16,7 @@ export async function fetchCovers(books, dir, { fetch = globalThis.fetch } = {})
     if (book.isbn === undefined) continue;
     const parsed = isbnSchema.safeParse(book.isbn);
     if (!parsed.success) {
-      result.failed.push({ isbn: String(book.isbn), error: 'invalid ISBN' });
+      result.failed.push({ isbn: String(book.isbn), error: parsed.error.issues[0].message });
       continue;
     }
     const isbn = parsed.data;
@@ -28,7 +28,7 @@ export async function fetchCovers(books, dir, { fetch = globalThis.fetch } = {})
       continue;
     }
     try {
-      const res = await fetch(coverUrl(isbn));
+      const res = await fetch(coverUrl(isbn), { signal: AbortSignal.timeout(15000) });
       if (res.status === 404) {
         result.missing.push(isbn);
         continue;
@@ -36,10 +36,12 @@ export async function fetchCovers(books, dir, { fetch = globalThis.fetch } = {})
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const type = res.headers.get('content-type') ?? '';
       if (!type.startsWith('image/jpeg')) throw new Error(`unexpected content-type "${type}"`);
-      await writeFile(file, new Uint8Array(await res.arrayBuffer()));
+      const bytes = new Uint8Array(await res.arrayBuffer());
+      if (bytes.length < 3 || bytes[0] !== 0xff || bytes[1] !== 0xd8 || bytes[2] !== 0xff) throw new Error('not a JPEG');
+      await writeFile(file, bytes, { flag: 'wx' });
       result.fetched.push(isbn);
     } catch (error) {
-      result.failed.push({ isbn, error: error.message });
+      result.failed.push({ isbn, error: error instanceof Error ? error.message : String(error) });
     }
   }
   return result;
