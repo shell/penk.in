@@ -1,7 +1,7 @@
 ---
 title: Hi, I'm Vladimir Penkin
 description: A seasoned software engineer in San Francisco
-subtitle: A seasoned *software engineer* in *San Francisco, California*
+subtitle: A seasoned *software engineer*
 stats:
   - coding since **2000**
   - lived in **3** countries

@@ -82,13 +82,19 @@ describe('/links', () => {
     }
   });
 
-  it('renders each link as a card with its note and domain', () => {
+  it('renders each link as a compact card with its note, and the domain as a tooltip', () => {
+    expect(page).not.toContain('class="domain"');
     for (const { links } of topics) {
       for (const link of links) {
-        const start = page.indexOf(`<a class="link-card" href="${esc(link.url)}"`);
-        expect(start).toBeGreaterThan(-1);
+        const href = esc(link.url).replace(/[.*+?^$()|[\]\\{}]/g, '\\$&');
+        const tag = page.match(new RegExp(`<a class="link-card" href="${href}"[^>]*>`));
+        expect(tag).not.toBeNull();
+        expect(tag![0]).toContain(`title="${esc(domainOf(link.url))}"`);
+        expect(tag![0]).toContain('target="_blank"');
+        expect(tag![0]).toContain('rel="noopener"');
+        const start = page.indexOf(tag![0]);
         const card = textOf(page.slice(start, page.indexOf('</a>', start)));
-        expect(card).toContain(domainOf(link.url));
+        expect(card).toContain(link.title);
         if (link.note) expect(card).toContain(link.note);
       }
     }

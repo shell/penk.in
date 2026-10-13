@@ -13,10 +13,9 @@ const topics = await requireCollection('links');
       <ul class="link-cards">
         {data.links.map((link) => (
           <li>
-            <a class="link-card" href={link.url}>
+            <a class="link-card" href={link.url} title={domainOf(link.url)} target="_blank" rel="noopener">
               <strong>{link.title}</strong>
               {link.note && <span class="note">{link.note}</span>}
-              <span class="domain">{domainOf(link.url)}</span>
             </a>
           </li>
         ))}

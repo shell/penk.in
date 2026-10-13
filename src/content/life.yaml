@@ -13,7 +13,7 @@
 - date: 2007
   title: First job as a web developer
 - date: 2007
-  title: Moved to Taganrog, Russia
+  title: Moved to 📍Taganrog, Russia
   description: Southern Federal University.
 - date: 2009
   title: Started my own freelance practice
@@ -22,19 +22,21 @@
   title: Graduated from Southern Federal University
   description: Master of Computer Science · Taganrog, Russia.
 - date: 2012
-  title: Moved to Medellín, Colombia
+  title: Moved to 📍Medellín, Colombia
   description: Co-founded StaunchRobots, a Rails consultancy.
 - date: 2015
   title: Joined Rev
   hue: purple
 - date: 2016
-  title: Moved to Moscow, Russia
+  title: Moved to 📍Moscow, Russia
   hue: purple
 - date: 2021
-  title: Moved to San Francisco, California
+  title: Moved to 📍San Francisco, California
   description: One dream comes true.
 - date: 2023
   title: Staff SWE, Rev Legal
+- date: 2024
+  title: Married Anna 💍
 - date: 2025
   title: Became tech lead for SmartDepo
   description: Led its integration into Rev’s platform after the acquisition.

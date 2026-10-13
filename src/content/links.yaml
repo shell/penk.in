@@ -1,14 +1,123 @@
 # Curated links, grouped by topic. note is optional.
-- topic: Personal sites I like
+- topic: Sites and people I like on the internet
   links:
-    - { title: Tania Rascia, url: https://www.taniarascia.com/, note: "Clear developer tutorials and notes; this site's résumé page borrows her layout." }
-    - { title: Railcode, url: https://railcode.dev/, note: "Build internal apps and share them securely with your team." }
-    - { title: Natalie Somersall, url: https://some-natalie.dev/, note: "Writing on GitHub Actions, self-hosted runners and security." }
-    - { title: Xuanwo, url: https://xuanwo.io/, note: "Open source, Rust and data freedom, plus how he codes with agents." }
-    - { title: Paul Stamatiou, url: https://paulstamatiou.com/, note: "Long-form essays on design, tech and gear." }
-    - { title: マリウス, url: https://xn--gckvb8fzb.com/, note: "A journal on privacy, minimal tech and life on the road." }
-    - { title: Spencer, url: https://spenc.es/, note: "Software engineer in Rome who makes music and things; inspired this site's contact page." }
-    - { title: Anand Chowdhary, url: https://anandchowdhary.com/, note: "A detailed public life timeline that inspired this site's /life." }
-    - { title: Andrew Martin, url: https://andrewmart.in/, note: "Full-stack engineer in SF building developer tooling." }
-    - { title: Dusted Codes, url: https://dusted.codes/, note: "Thoughtful writing on .NET, F# and software." }
-    - { title: How is Felix today?, url: https://howisfelix.today/, note: "A life quantified, in public." }
+    - title: Alex Danco
+      url: https://alexdanco.com/
+      note: Essays on startups, tech and the economics of abundance and scarcity.
+    - title: Alice GG
+      url: https://www.alicegg.tech/
+      note: Making games in Go and Godot, plus thoughts on software.
+    - title: Anand Chowdhary
+      url: https://anandchowdhary.com/
+      note: A detailed public life timeline that inspired this site's /life.
+    - title: Andreas Klinger
+      url: https://klinger.io/
+      note: Notes on product, engineering and startups.
+    - title: Andrew Martin
+      url: https://andrewmart.in/
+      note: Full-stack engineer in SF building developer tooling.
+    - title: Aryan Ebrahimpour
+      url: https://avestura.dev/
+      note: Deep dives on Git, Postgres, C and Zig, with a philosophical streak.
+    - title: Ash Furrow
+      url: https://ashfurrow.com/
+      note: Compassionate software development, open source and community.
+    - title: Bits about Money
+      url: https://www.bitsaboutmoney.com/
+      note: Patrick McKenzie on the plumbing of finance and the businesses behind it.
+    - title: Cory Zue
+      url: https://www.coryzue.com/
+      note: A developer and solopreneur building products on the side.
+    - title: David Heinemeier Hansson
+      url: https://world.hey.com/dhh
+      note: Creator of Rails and co-owner of 37signals, on software and business.
+    - title: Dmitry Kudryavtsev
+      url: https://kudmitry.com/
+      note: Software engineer and tech entrepreneur building sustainable online businesses.
+    - title: Dusted Codes
+      url: https://dusted.codes/
+      note: Thoughtful writing on .NET, F# and software.
+    - title: Flo Crivello
+      url: https://flocrivello.com/
+      note: Founder of Lindy, musing on philosophy, business strategy and tech.
+    - title: Giulio Magnifico
+      url: https://giuliomagnifico.blog/
+      note: Homelab, OpenWrt, Grafana and self-hosted tinkering.
+    - title: How is Felix today?
+      url: https://howisfelix.today/
+      note: A life quantified, in public.
+    - title: Jeffrey Paul
+      url: https://sneak.berlin/
+      note: Berlin-based hacker and founder writing on security, privacy and self-hosting.
+    - title: John Mathews
+      url: https://johnmathews.is/
+      note: Personal blog of John Mathews.
+    - title: Josh Can Help
+      url: https://www.joshcanhelp.com/
+      note: Software, digital identity, focus and personal improvement.
+    - title: Julia Evans
+      url: https://jvns.ca/
+      note: Joyful explanations of Linux, networking and how computers work.
+    - title: Justin Garrison
+      url: https://justingarrison.com/
+      note: Development, infrastructure, culture and life.
+    - title: Kevin Sookocheff
+      url: https://sookocheff.com/
+      note: Software architecture and distributed systems.
+    - title: Krzysztof Kowalczyk
+      url: https://blog.kowalczyk.info/
+      note: Go, performance and indie software, from the author of SumatraPDF.
+    - title: Laurie Voss
+      url: https://seldo.com/
+      note: Web, data and AI thoughts from npm's co-founder.
+    - title: Natalie Somersall
+      url: https://some-natalie.dev/
+      note: Writing on GitHub Actions, self-hosted runners and security.
+    - title: Paul Stamatiou
+      url: https://paulstamatiou.com/
+      note: Long-form essays on design, tech and gear.
+    - title: rachelbythebay
+      url: https://rachelbythebay.com/w/
+      note: Ops and programming war stories from a veteran sysadmin.
+    - title: Rasul Kireev
+      url: https://www.rasulkireev.com/
+      note: A digital garden of book reviews, programming and personal growth.
+    - title: Scott Hanselman
+      url: https://www.hanselman.com/blog/
+      note: Open source, .NET and the cloud, from a longtime developer advocate.
+    - title: Sean Goedecke
+      url: https://www.seangoedecke.com/
+      note: Essays on how software engineering really works at big tech companies.
+    - title: Separate Concerns
+      url: https://blog.separateconcerns.com/
+      note: Pierre Chapuis on system architecture, programming and startups.
+    - title: Sergey Kibish
+      url: https://sergeykibish.com/
+      note: Practical notes on Azure, Terraform, Cosmos DB and protobufs.
+    - title: Spencer
+      url: https://spenc.es/
+      note: Software engineer in Rome who makes music and things; inspired this site's contact page.
+    - title: Tania Rascia
+      url: https://www.taniarascia.com/
+      note: Clear developer tutorials and notes; this site's résumé page borrows her layout.
+    - title: taylor.town
+      url: https://taylor.town/
+      note: Playful essays and odd experiments from Taylor Troesh.
+    - title: Tyler Tringas
+      url: https://tylertringas.com/
+      note: Micro-SaaS, indie business and calm funding.
+    - title: tyler.io
+      url: https://tyler.io/
+      note: Tyler Hall's 'mostly nonsense' on indie Mac apps and tinkering.
+    - title: Vale
+      url: https://vale.rocks/
+      note: Declan Chidlow on front-end web development, plus writing, photography and musings.
+    - title: Wesley Moore
+      url: https://www.wezm.net/v2/
+      note: Rust, Linux and open-source tinkering.
+    - title: Zach Holman
+      url: https://zachholman.com/
+      note: Writing and talks on startups, remote work and building teams.
+    - title: マリウス
+      url: https://xn--gckvb8fzb.com/
+      note: A journal on privacy, minimal tech and life on the road.
