@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { html, markdownPage, metaContent, textOf } from './helpers';
+import { esc, html, markdownPage, metaContent, textOf } from './helpers';
 
 describe('/about', () => {
   const page = html('about.html');
@@ -13,6 +13,21 @@ describe('/about', () => {
     for (const paragraph of about.paragraphs) expect(prose).toContain(paragraph);
     expect(page).toMatch(/<img[^>]+alt="Illustrated portrait of Vladimir Penkin"/);
     expect(page).toContain('aria-current="page"');
+  });
+
+  it('has a sidebar card with the round avatar, location, tech pills and links', () => {
+    const start = page.indexOf('<aside class="about-card"');
+    expect(start).toBeGreaterThan(-1);
+    const card = page.slice(start, page.indexOf('</aside>', start));
+    expect(card).toMatch(/<img(?=[^>]*alt="Illustrated portrait of Vladimir Penkin")(?=[^>]*class="avatar-card avatar-card--round")[^>]*>/);
+    expect(textOf(card)).toContain('Vladimir Penkin');
+    expect(textOf(card)).toContain(String(about.data.location));
+    const tech = about.data.tech as unknown as string[];
+    const dabbling = about.data.dabbling as unknown as string[];
+    expect([...card.matchAll(/<li class="pill">([^<]*)<\/li>/g)].map((m) => m[1])).toEqual(tech.map(esc));
+    expect([...card.matchAll(/<li class="pill pill--dim">([^<]*)<\/li>/g)].map((m) => m[1])).toEqual(dabbling.map(esc));
+    const hrefs = [...card.matchAll(/<a href="([^"]+)"/g)].map((m) => m[1]);
+    expect(hrefs).toEqual(['/resume', '/life', '/books']);
   });
 });
 

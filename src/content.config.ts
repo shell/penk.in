@@ -102,6 +102,10 @@ const pages = defineCollection({
     photo: z.string().optional(),
     /** Homepage chips, inline Markdown each (**bold** part is highlighted). */
     stats: z.array(z.string()).min(1).optional(),
+    /** About sidebar: city shown under the name, and tech pills (dabbling ones are dimmed). */
+    location: z.string().optional(),
+    tech: z.array(z.string()).optional(),
+    dabbling: z.array(z.string()).optional(),
   }).strict(),
 });
 
