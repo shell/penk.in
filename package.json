@@ -10,7 +10,8 @@
     "test:unit": "vitest run tests/unit",
     "test:dist": "vitest run tests/dist",
     "test": "npm run test:unit && npm run build && npm run test:dist",
-    "icons": "node scripts/make-icons.mjs"
+    "icons": "node scripts/make-icons.mjs",
+    "covers": "node scripts/fetch-covers.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "3.7.4",
