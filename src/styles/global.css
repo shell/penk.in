@@ -114,10 +114,6 @@ h3 { font-size: 1.15rem; margin: 1.5rem 0 0.25rem; }
 @media (max-width: 30rem) { .timeline li { grid-template-columns: 1fr; gap: 0; } }
 
 /* Books + links */
-.book-year .row h2 { margin-bottom: 0.5rem; }
-.books { list-style: none; padding: 0; margin: 0; }
-.books li { border-bottom: 1px solid var(--border); padding: 0.6rem 0; }
-.books p { margin: 0.2rem 0 0; font-size: 0.95rem; }
 .link-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; list-style: none; padding: 0; margin: 0; }
 @media (max-width: 35rem) { .link-cards { grid-template-columns: 1fr; } }
 .link-card { display: flex; flex-direction: column; gap: 0.1rem; height: 100%; padding: 0.75rem 0.9rem; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; color: var(--text); text-decoration: none; }
@@ -146,3 +142,15 @@ body { position: relative; }
     var(--bg) 100%
   );
 }
+
+.shelf { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem 1rem; list-style: none; padding: 0; margin: 0; }
+@media (max-width: 40rem) { .shelf { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 28rem) { .shelf { grid-template-columns: repeat(2, 1fr); } }
+.cover { display: block; width: 100%; height: auto; aspect-ratio: 2 / 3; object-fit: cover; border-radius: 3px 8px 8px 3px; box-shadow: inset 4px 0 0 rgb(0 0 0 / 0.25), 0 8px 18px rgb(0 0 0 / 0.35); }
+.cover-fallback { display: flex; flex-direction: column; justify-content: center; gap: 0.4rem; padding: 0.75rem; background: var(--surface); border: 1px solid var(--border); box-shadow: none; }
+.cover-fallback::before { content: ''; width: 1.4rem; height: 3px; border-radius: 2px; background: var(--purple); }
+.cover-title { color: var(--heading); font-weight: 600; font-size: 0.9rem; line-height: 1.25; }
+.cover-author { font-family: var(--font-mono); font-size: 0.7rem; color: var(--muted); }
+.book-title { margin: 0.5rem 0 0; color: var(--heading); font-weight: 600; font-size: 0.9rem; line-height: 1.3; }
+.shelf .meta, .book-note { margin: 0.1rem 0 0; }
+.book-note { font-size: 0.85rem; }

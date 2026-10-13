@@ -2,6 +2,7 @@ import { defineCollection } from 'astro:content';
 import { file, glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 import { parseYamlDocument, parseYamlList } from './lib/yaml-loader';
+import { isbnSchema } from './lib/isbn';
 
 const partialDate = z.union([
   z.number().int().min(1900).max(2100),
@@ -72,6 +73,7 @@ const books = defineCollection({
     id: z.string(), // added by the YAML loader
     title: z.string(),
     author: z.string(),
+    isbn: isbnSchema.optional(),
     read: partialDate,
     rating: z.number().int().min(1).max(5).optional(),
     note: z.string().optional(),

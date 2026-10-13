@@ -1,4 +1,5 @@
-# Books I've read. read: YYYY or YYYY-MM. rating (1–5), note and url are optional.
+# Books I've read. read: YYYY or YYYY-MM. rating (1–5), note, url and isbn are optional.
+# isbn must be quoted ("9780593135204"); run `npm run covers` after adding one to fetch its cover.
 - title: "PLACEHOLDER — replace with a real book"
   author: Nobody
   read: 2026

@@ -1,6 +1,8 @@
+import { existsSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { decadeColor, formatPartialDate, yearOf } from '../../src/lib/dates';
 import { newestFirst } from '../../src/lib/group';
+import { normalizeIsbn } from '../../src/lib/isbn';
 import { domainOf } from '../../src/lib/links';
 import { esc, html, innerAll, textOf, yamlList } from './helpers';
 
@@ -31,17 +33,23 @@ describe('/life', () => {
 
 describe('/books', () => {
   const page = html('books.html');
-  const books = yamlList<{ title: string; read: number | string; url?: string }>('books.yaml');
+  const books = yamlList<{ title: string; author: string; read: number | string; url?: string; isbn?: string }>('books.yaml');
 
-  it('groups books by year, newest first, with a count', () => {
+  it('groups books by year, newest first, without a count', () => {
     expect(page).toMatch(/<h1[^>]*>Books<\/h1>/);
-    const counts = new Map<number, number>();
-    for (const book of books) counts.set(yearOf(book.read), (counts.get(yearOf(book.read)) ?? 0) + 1);
-    const years = [...counts.keys()].sort((a, b) => b - a);
+    const years = [...new Set(books.map((b) => yearOf(b.read)))].sort((a, b) => b - a);
     expect(innerAll(page, 'h2').map(textOf)).toEqual(years.map(String));
-    for (const year of years) {
-      const n = counts.get(year)!;
-      expect(page).toContain(`<h2>${year}</h2><span class="meta">${n} ${n === 1 ? 'book' : 'books'}</span>`);
+    expect(page).not.toMatch(/\d+ books?</);
+  });
+
+  it('shows a cover when the file exists, else the fallback tile', () => {
+    for (const book of books) {
+      const file = book.isbn && `src/assets/books/${normalizeIsbn(book.isbn)}.jpg`;
+      if (file && existsSync(file)) {
+        expect(page).toContain(`alt="${esc(`Cover of ${book.title} by ${book.author}`)}"`);
+      } else {
+        expect(page).toContain(`<span class="cover-title">${esc(book.title)}</span>`);
+      }
     }
   });
 

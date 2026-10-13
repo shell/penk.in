@@ -1,4 +1,5 @@
 ---
+import BookCover from '../components/BookCover.astro';
 import Base from '../layouts/Base.astro';
 import { requireCollection } from '../lib/content';
 import { yearOf } from '../lib/dates';
@@ -12,18 +13,15 @@ const stars = (n: number) => '★'.repeat(n) + '☆'.repeat(5 - n);
   <h1>Books</h1>
   {years.map(({ key, items }) => (
     <section class="book-year">
-      <div class="row">
-        <h2>{key}</h2>
-        <span class="meta">{items.length} {items.length === 1 ? 'book' : 'books'}</span>
-      </div>
-      <ul class="books">
+      <h2>{key}</h2>
+      <ul class="shelf">
         {items.map(({ data }) => (
           <li>
-            <div class="row">
-              <span>{data.url ? <a href={data.url}>{data.title}</a> : data.title} <span class="muted">· {data.author}</span></span>
-              {data.rating && <span class="meta" aria-label={`${data.rating} out of 5`}>{stars(data.rating)}</span>}
-            </div>
-            {data.note && <p class="muted">{data.note}</p>}
+            <BookCover title={data.title} author={data.author} isbn={data.isbn} />
+            <p class="book-title">{data.url ? <a href={data.url}>{data.title}</a> : data.title}</p>
+            <p class="meta">{data.author}</p>
+            {data.rating && <p class="meta" aria-label={`${data.rating} out of 5`}>{stars(data.rating)}</p>}
+            {data.note && <p class="muted book-note">{data.note}</p>}
           </li>
         ))}
       </ul>
