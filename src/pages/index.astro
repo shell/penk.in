@@ -2,7 +2,6 @@
 import { render } from 'astro:content';
 import AvatarCard from '../components/AvatarCard.astro';
 import SectionCards from '../components/SectionCards.astro';
-import SocialLinks from '../components/SocialLinks.astro';
 import StatChips from '../components/StatChips.astro';
 import Base from '../layouts/Base.astro';
 import { requirePage } from '../lib/content';
@@ -19,6 +18,5 @@ const { Content } = await render(home);
     {home.data.stats && <StatChips stats={home.data.stats} />}
     <div class="intro"><Content /></div>
     <SectionCards />
-    <SocialLinks />
   </section>
 </Base>
