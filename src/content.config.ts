@@ -92,7 +92,11 @@ const links = defineCollection({
 
 const pages = defineCollection({
   loader: glob({ pattern: '*.md', base: 'src/content/pages' }),
-  schema: z.object({ title: z.string(), description: z.string() }).strict(),
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    photo: z.string().optional(),
+  }).strict(),
 });
 
 export const collections = { resume, life, books, links, pages };

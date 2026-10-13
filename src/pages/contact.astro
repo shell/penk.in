@@ -7,7 +7,7 @@ import { requirePage } from '../lib/content';
 const contact = await requirePage('contact');
 const { Content } = await render(contact);
 ---
-<Base title={contact.data.title} description={contact.data.description} og="contact" path="/contact">
+<Base title={contact.data.title} description={contact.data.description} og="contact" path="/contact" photo={contact.data.photo}>
   <h1>{contact.data.title}</h1>
   <div class="prose"><Content /></div>
   <SocialLinks />

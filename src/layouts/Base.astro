@@ -8,6 +8,8 @@ import '../styles/tokens.css';
 import '../styles/global.css';
 import Footer from '../components/Footer.astro';
 import Nav from '../components/Nav.astro';
+import PhotoBand from '../components/PhotoBand.astro';
+import { DEFAULT_PHOTO } from '../lib/photos';
 import { SITE, type OgSlug } from '../lib/site';
 
 interface Props {
@@ -16,8 +18,12 @@ interface Props {
   og: OgSlug;
   path: string;
   noindex?: boolean;
+  /** Photo name in src/assets/photos, or false for no photo band. */
+  photo?: string | false;
+  /** Tall homepage hero instead of the short page band. */
+  hero?: boolean;
 }
-const { title, description, og, path, noindex = false } = Astro.props;
+const { title, description, og, path, noindex = false, photo = DEFAULT_PHOTO, hero = false } = Astro.props;
 const fullTitle = path === '/' ? SITE.name : `${title} · ${SITE.name}`;
 const canonical = `${SITE.url}${path === '/' ? '/' : path}`;
 const ogImage = `${SITE.url}/og/${og}.png`;
@@ -54,6 +60,7 @@ const ogImage = `${SITE.url}/og/${og}.png`;
     <script is:inline defer src="https://umami.penk.in/script.js" data-website-id={SITE.umamiId}></script>
   </head>
   <body>
+    {photo !== false && <PhotoBand photo={photo} variant={hero ? 'hero' : 'band'} />}
     <div class="container">
       <Nav path={path} />
       <main>

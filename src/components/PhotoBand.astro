@@ -1,0 +1,22 @@
+---
+import { Picture } from 'astro:assets';
+import { photoFor } from '../lib/photos';
+
+interface Props {
+  photo: string;
+  variant: 'hero' | 'band';
+}
+const { photo, variant } = Astro.props;
+const src = photoFor(photo);
+---
+<div class:list={['photo-band', `photo-band--${variant}`]} aria-hidden="true">
+  <Picture
+    src={src}
+    alt=""
+    formats={['avif', 'webp']}
+    widths={[640, 1024, 1600, 2400]}
+    sizes="100vw"
+    loading="eager"
+    fetchpriority={variant === 'hero' ? 'high' : 'auto'}
+  />
+</div>

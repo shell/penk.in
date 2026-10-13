@@ -8,6 +8,9 @@
   --accent: #f2b84b;
   --blue: #58a6ff;
   --green: #7ee787;
+  --purple: #d2a8ff;
+  --glow: #f2b84b2e;
+  --veil: 45%;
   --font-body: 'Schibsted Grotesk', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;
   color-scheme: dark;
@@ -24,6 +27,9 @@
     --accent: #9a6400;
     --blue: #0b5cad;
     --green: #1a7f37;
+    --purple: #7e3fbf;
+    --glow: #9a640018;
+    --veil: 65%;
     color-scheme: light;
   }
 }
@@ -38,5 +44,8 @@
   --accent: #9a6400;
   --blue: #0b5cad;
   --green: #1a7f37;
+  --purple: #7e3fbf;
+  --glow: #9a640018;
+  --veil: 65%;
   color-scheme: light;
 }

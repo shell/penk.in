@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { html, markdownPage, metaContent, textOf } from './helpers';
+import { html, innerAll, markdownPage, metaContent, textOf } from './helpers';
 
 const page = html('index.html');
 const home = markdownPage('home');
@@ -20,7 +20,7 @@ describe('homepage', () => {
   });
 
   it('shows the name, the intro rendered from home.md and the avatar', () => {
-    expect(page).toMatch(/<h1[^>]*>Vladimir Penkin<\/h1>/);
+    expect(textOf(innerAll(page, 'h1')[0])).toBe(textOf(home.data.title));
     const start = page.indexOf('<div class="intro">');
     expect(start).toBeGreaterThan(-1);
     const intro = textOf(page.slice(start, page.indexOf('</section>', start)));
