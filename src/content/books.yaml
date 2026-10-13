@@ -1,5 +1,302 @@
-# Books I've read. read: YYYY or YYYY-MM. rating (1–5), note, url and isbn are optional.
+# Books I have read, imported from Notion ("Книги прочитанные") on 2026-10-13.
+# read: YYYY, YYYY-MM or YYYY-MM-DD, optional — books without it are listed under "Earlier".
+# rating (1–5), note, url and isbn are optional.
 # isbn must be quoted ("9780593135204"); run `npm run covers` after adding one to fetch its cover.
-- title: "PLACEHOLDER — replace with a real book"
-  author: Nobody
-  read: 2026
+# cover: file name in src/assets/books (no extension), for a cover added by hand to a book without an ISBN.
+- title: Confessions of an Economic Hit Man
+  author: John Perkins
+  read: '2026-09-04'
+  isbn: '9780786134847'
+- title: The Pragmatic Programmer
+  author: Dave Thomas, Andy Hunt
+  read: '2026-08-28'
+  isbn: '9780135957059'
+- title: The Denial of Death
+  author: Ernest Becker
+  read: '2026-08-18'
+  isbn: '0029021502'
+- title: Software Engineering at Google
+  author: Titus Winters, Tom Manshreck & Hyrum Wright
+  read: '2026-07-05'
+  isbn: '9781492082798'
+- title: Designing Event-Driven Systems
+  author: Ben Stopford
+  read: '2026-06-16'
+- title: The Almanack of Naval Ravikant
+  author: Eric Jorgenson, Naval Ravikant
+  read: '2026-06-12'
+  isbn: '9781544514222'
+- title: Hackers and Painters
+  author: Paul Graham
+  read: '2026-06-07'
+  isbn: '9780596550660'
+- title: Thinking in Systems
+  author: Donella H. Meadows
+  read: '2026-05-30'
+  isbn: '9781136551390'
+- title: The Future of Everything is Lies, I Guess
+  author: Kyle Kingsbury
+  read: '2026-05-22'
+- title: A Philosophy of Software Design
+  author: John Ousterhout
+  read: '2026-05-18'
+  isbn: '9781732102200'
+- title: The Lessons of History
+  author: Will and Ariel Durant
+  read: '2026-05-03'
+  isbn: '9781439149959'
+- title: An Immigrant's Love Letter to the West
+  author: Konstantin Kisin
+  read: '2026-04-10'
+  isbn: '9781408716069'
+- title: Радостная мудрость
+  author: Йонге Мингьюр Ринпоче
+  read: '2026-02-21'
+  isbn: '9780307407795'
+- title: 'The Coddling of the American Mind: How Good Intentions and Bad Ideas Are Setting Up a Generation for Failure'
+  author: Jonathan Haidt, Greg Lukianoff
+  read: '2026-02-09'
+  isbn: '9780735224919'
+- title: The Fifth Science
+  author: Exurb1a
+  read: '2025-12-29'
+  isbn: '9781796356304'
+- title: The case against Sexual Revolution
+  author: Louise Perry
+  read: '2025-12-12'
+  isbn: '9781509549986'
+- title: Будда, мозг и нейрофизиология счастья
+  author: Йонге Мингьюр Ринпоче
+  read: '2025-11-24'
+  isbn: '9780307346254'
+- title: Авиатор
+  author: Евгений Водолазкин
+  read: '2025-11-08'
+  isbn: '9781786072719'
+- title: Daemon
+  author: Daniel Suarez
+  read: '2025-09-14'
+  isbn: '9781101007518'
+- title: The Psychology of Money
+  author: Morgan Housel
+  read: '2025-08-22'
+  isbn: '9390166934'
+- title: Гуднайт, Америка, О!
+  author: Александр Ципкин
+  read: '2025-07-20'
+- title: Designing Data-Intensive Applications
+  author: Martin Kleppmann
+  read: '2025-06-21'
+  isbn: '9781449373320'
+- title: Anxious Generation
+  author: Jonathan Haidt
+  read: '2025-03-02'
+  isbn: '9781802063271'
+- title: Dune
+  author: Frank Herbert
+  read: '2025-01-22'
+  isbn: '9781444738209'
+- title: Круть
+  author: Виктор Пелевин
+  read: '2024-10-01'
+- title: 'The Internet Con: How to Seize the Means of Computation'
+  author: Cory Doctorow
+  read: '2024-08-04'
+  isbn: '9781804292143'
+- title: 'How to Live: 27 conflicting answers and one weird conclusion'
+  author: Derek Sivers
+  read: '2024-07-28'
+  isbn: '9781991152336'
+- title: The Four Agreements
+  author: don Muguel Ruiz
+  read: '2024-07-24'
+  isbn: '9781878424945'
+- title: The Body Keeps the Score
+  author: Bessel van der Kolk M.D.
+  read: '2024-07-18'
+  isbn: '9780143127741'
+- title: Отцы и дети
+  author: И. В. Тургенев
+  read: '2024-03-17'
+  isbn: '9781432611323'
+- title: 'Designing Distributed Systems: Patterns and Paradigms for Scalable, Reliable Services'
+  author: Brendan Burns
+  read: '2024-01-27'
+  isbn: '9781491983645'
+- title: Путешествие в Элевсин
+  author: Виктор Пелевин
+  read: '2023-11-26'
+  cover: puteshestvie-v-elevsin
+- title: 'A Thousand Brains: A New Theory of Intelligence'
+  author: Jeff Hawkins
+  read: '2023-09-13'
+  isbn: '9781549110368'
+- title: 'Designing your life: how to build a well-lived joyful life'
+  author: Bill Burnett, Dave Evans
+  read: '2023-09-04'
+- title: 'Staff Engineer: Leadership Beyond the Management Track'
+  author: Will Larson
+  read: '2023-08-30'
+  isbn: '9781736417911'
+- title: Raising Engineers
+  author: David Dettmer
+  read: '2022-08-17'
+  isbn: '9781544527628'
+- title: The Daily Stoic
+  author: Ryan Holiday
+  read: '2022-08-14'
+  isbn: '9780735211735'
+- title: System Design Interview
+  author: Alex Xu
+  read: '2022-08-07'
+  isbn: '9798664653403'
+- title: Скотный двор
+  author: Джордж Оруэлл
+  read: '2022-07-27'
+  isbn: '9798775352967'
+- title: Essentialism
+  author: Greg McKeown
+  read: '2022-07-24'
+  isbn: '9780804137386'
+- title: Тонкое искусство пофигизма
+  author: Марк Менсон
+  read: '2020-09-01'
+  isbn: '9780062884022'
+- title: Счастлив по собственному желанию
+  author: Андрей Курпатов
+  read: '2020-08-28'
+  cover: schastliv-po-sobstvennomu-zhelaniyu
+- title: Dare to Lead
+  author: Brene Brown
+  read: '2020-08-28'
+  isbn: '9780593171127'
+- title: ReWork
+  author: David Heinemeier Hansson, Jason Fried
+  read: '2012-08-28'
+  isbn: '9781785043024'
+- title: Чапаев и Пустота
+  author: Виктор Пелевин
+  read: '2011-08-28'
+  isbn: '9785519612203'
+- title: Testing with RSpec
+  author: Aaron Summer
+  read: '2011-07-27'
+- title: Ruby Best Practices
+  author: Gregory Brown
+  read: '2009-08-28'
+  isbn: '9780596157487'
+- title: Лавина
+  author: Нил Стивенсон
+  isbn: '9780613361620'
+- title: Задача трех тел
+  author: Лю Цысинь
+- title: Docker networking and service discovery
+  author: Michael Hausenblas
+- title: Software Architecture Patterns
+  author: Mark Richards
+  isbn: '9781098134273'
+- title: Docker Security
+  author: Adrian Mouat
+- title: Цифровой минимализм
+  author: Кэл Ньюпорт
+  isbn: '9780525536512'
+- title: Искусство легких касаний
+  author: Виктор Пелевин
+  cover: iskusstvo-legkih-kasaniy
+- title: Красная таблетка
+  author: Андрей Курпатов
+- title: Красная таблетка 2
+  author: Андрей Курпатов
+  isbn: '9785604360804'
+- title: Четвертая мировая война
+  author: Андрей Курпатов
+- title: Docker in the Cloud
+  author: Sébastien Goasguen
+- title: Быть эгоистом
+  author: Андрей Курпатов
+  cover: byt-egoistom
+- title: Хватит мечтать, займись делом
+  author: Кэл Ньюпорт
+  isbn: '9781455509126'
+- title: Убить иллюзии
+  author: Андрей Курпатов
+  cover: ubit-illyuzii
+- title: Тайные виды на гору Фудзи
+  author: Виктор Пелевин
+  isbn: '9785040984350'
+- title: Field guide to the Distributed Development Stack
+  author: Andrew Odewahn
+- title: Resilience and Reliability on AWS 2013
+  author: Jurg van Vliet, Flavia Paganelli, and Jasper Geurtsen
+  isbn: '9781449339265'
+- title: Мужские правила. Отношения, секс, психология
+  author: Марк Менсон
+  cover: muzhskie-pravila-otnosheniya-seks-psihologiya
+- title: Serving Workers Gig Economy
+  author: Nick Grossman
+- title: Цветы для Элжернона
+  author: Дэниел Киз
+  isbn: '9782081620445'
+- title: The Healthy Programmer
+  author: Joe Kutner
+  isbn: '9781937785314'
+- title: 12 Правил жизни
+  author: Джордан Питерсон
+  isbn: '9780345816023'
+- title: Network Programming with Go
+  author: Jan Newmarch
+  isbn: '9781484280942'
+- title: Transhumanism Inc.
+  author: Виктор Пелевин
+  isbn: '9785041231187'
+- title: Transcend. Девять шагов на пути к вечной жизни
+  author: Рэй Курцвейл, Терри Гроссман
+- title: Мы Боги
+  author: Бернард Вербер
+  isbn: '2226154981'
+- title: t
+  author: Виктор Пелевин
+  isbn: '9785699375158'
+- title: Relics
+  author: Виктор Пелевин
+  isbn: '5699122575'
+- title: Будущее пространства-времени
+  author: Стивен Хокинг
+  isbn: '9780393020229'
+- title: Приемы объектно-ориентированного проектирования
+  author: Gang of Four
+  isbn: '9780201455632'
+- title: Сценарии командной оболочки Linux
+  author: Дейв Тейлор, Брендон Перри
+  isbn: '9781593270124'
+- title: Ананасная вода для прекрасной дамы
+  author: Виктор Пелевин
+- title: Мона Лиза овердрайв
+  author: Уильям Гибсон
+  isbn: '9780553281743'
+- title: Чистая Архитектура
+  author: Роберт Мартин
+  isbn: '9789352865123'
+- title: Имортист
+  author: Юрий Никитин
+  cover: imortist
+- title: Сингомейкеры
+  author: Юрий Никитин
+- title: Я Сингуляр
+  author: Юрий Никитин
+  cover: ya-singulyar
+- title: Трансчеловек
+  author: Юрий Никитин
+  cover: transchelovek
+- title: Universe from Nothing
+  author: Lawrence Krauss
+  isbn: '9781451624458'
+- title: 'Peopleware: Productive Projects and Teams'
+  author: Timothy Lister and Tom DeMarco
+  isbn: '9780321934116'
+- title: Эгоистичный Ген
+  author: Ричард Докинз
+  isbn: '9780199291151'
+- title: Краткая история Биологии
+  author: Айзек Азимов
+  isbn: '9780313225833'

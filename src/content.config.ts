@@ -2,6 +2,7 @@ import { defineCollection } from 'astro:content';
 import { file, glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 import { parseYamlDocument, parseYamlList } from './lib/yaml-loader';
+import { ALL_HUES } from './lib/hues';
 import { isbnSchema } from './lib/isbn';
 
 const partialDate = z.union([
@@ -64,6 +65,8 @@ const life = defineCollection({
     title: z.string(),
     description: z.string().optional(),
     url: z.string().url().optional(),
+    /** Overrides the decade colour for this milestone. */
+    hue: z.enum(ALL_HUES).optional(),
   }).strict(),
 });
 
@@ -74,7 +77,10 @@ const books = defineCollection({
     title: z.string(),
     author: z.string(),
     isbn: isbnSchema.optional(),
-    read: partialDate,
+    /** Cover file name in src/assets/books (no extension) for books without an ISBN. */
+    cover: z.string().regex(/^[a-z0-9-]+$/, 'lowercase letters, digits and dashes').optional(),
+    /** When I finished it; books without a date are listed under "Earlier". */
+    read: partialDate.optional(),
     rating: z.number().int().min(1).max(5).optional(),
     note: z.string().optional(),
     url: z.string().url().optional(),

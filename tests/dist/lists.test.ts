@@ -4,11 +4,11 @@ import { decadeColor, formatPartialDate, yearOf } from '../../src/lib/dates';
 import { newestFirst } from '../../src/lib/group';
 import { normalizeIsbn } from '../../src/lib/isbn';
 import { domainOf } from '../../src/lib/links';
-import { esc, html, innerAll, textOf, yamlList } from './helpers';
+import { decode, esc, html, innerAll, textOf, yamlList } from './helpers';
 
 describe('/life', () => {
   const page = html('life.html');
-  const entries = yamlList<{ date: number | string; title: string; url?: string }>('life.yaml');
+  const entries = yamlList<{ date: number | string; title: string; hue?: string; url?: string }>('life.yaml');
 
   it('is one timeline, newest first, coloured by decade, with no decade headings', () => {
     expect(page).toMatch(/<h1[^>]*>Life<\/h1>/);
@@ -16,7 +16,7 @@ describe('/life', () => {
     expect(page).not.toMatch(/\d+ entr(y|ies)/);
     const sorted = newestFirst(entries, (e) => e.date);
     const hues = [...page.matchAll(/<li class="hue-(\w+)">/g)].map((m) => m[1]);
-    expect(hues).toEqual(sorted.map((e) => decadeColor(e.date)));
+    expect(hues).toEqual(sorted.map((e) => e.hue ?? decadeColor(e.date)));
     const positions = sorted.map((e) => page.indexOf(esc(e.title)));
     expect(positions.every((p) => p > -1)).toBe(true);
     expect([...positions].sort((a, b) => a - b)).toEqual(positions);
@@ -33,24 +33,27 @@ describe('/life', () => {
 
 describe('/books', () => {
   const page = html('books.html');
-  const books = yamlList<{ title: string; author: string; read: number | string; url?: string; isbn?: string }>('books.yaml');
+  const books = yamlList<{ title: string; author: string; read?: number | string; url?: string; isbn?: string; cover?: string }>('books.yaml');
 
-  it('groups books by year, newest first, without a count', () => {
-    expect(page).toMatch(/<h1[^>]*>Books<\/h1>/);
-    const years = [...new Set(books.map((b) => yearOf(b.read)))].sort((a, b) => b - a);
-    expect(innerAll(page, 'h2').map(textOf)).toEqual(years.map(String));
+  it('groups books by year, newest first, then undated ones under "Earlier", without a count', () => {
+    expect(page).toMatch(/<h1[^>]*>Read Books<\/h1>/);
+    const years = [...new Set(books.flatMap((b) => (b.read === undefined ? [] : [yearOf(b.read)])))].sort((a, b) => b - a);
+    const headings = years.map(String);
+    if (books.some((b) => b.read === undefined)) headings.push('Earlier');
+    expect(innerAll(page, 'h2').map(textOf)).toEqual(headings);
     expect(page).not.toMatch(/\d+ books?</);
   });
 
-  it('shows a cover when the file exists, else the fallback tile', () => {
-    for (const book of books) {
-      const file = book.isbn && `src/assets/books/${normalizeIsbn(book.isbn)}.jpg`;
-      if (file && existsSync(file)) {
-        expect(page).toContain(`alt="${esc(`Cover of ${book.title} by ${book.author}`)}"`);
-      } else {
-        expect(page).toContain(`<span class="cover-title">${esc(book.title)}</span>`);
-      }
+  it('lists one row per book, with a cover thumbnail when the file exists, else a fallback thumb', () => {
+    const rows = innerAll(page, 'li').filter((li) => li.includes('class="book-row-title"'));
+    expect(rows).toHaveLength(books.length);
+    const alts = [...page.matchAll(/alt="([^"]*)"/g)].map((m) => decode(m[1]));
+    const coverName = (b: (typeof books)[number]) => b.cover ?? (b.isbn && normalizeIsbn(b.isbn));
+    const hasCover = (b: (typeof books)[number]) => !!coverName(b) && existsSync(`src/assets/books/${coverName(b)}.jpg`);
+    for (const book of books.filter(hasCover)) {
+      expect(alts).toContain(book.read === undefined ? `Cover of ${book.title} by ${book.author}` : `Finished reading ${formatPartialDate(book.read)}`);
     }
+    expect([...page.matchAll(/class="cover cover-fallback"/g)]).toHaveLength(books.filter((b) => !hasCover(b)).length);
   });
 
   it('shows every book', () => {

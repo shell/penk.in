@@ -10,7 +10,7 @@ const entries = newestFirst(await requireCollection('life'), (e) => e.data.date)
   <h1>Life</h1>
   <ol class="timeline">
     {entries.map(({ data }) => (
-      <li class={`hue-${decadeColor(data.date)}`}>
+      <li class={`hue-${data.hue ?? decadeColor(data.date)}`}>
         <span class="meta">{formatPartialDate(data.date)}</span>
         <div>
           <strong>{data.url ? <a href={data.url}>{data.title}</a> : data.title}</strong>

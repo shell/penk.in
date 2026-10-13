@@ -1,20 +1,23 @@
 ---
 import { Image } from 'astro:assets';
 import { coverFor } from '../lib/covers';
+import { formatPartialDate, type PartialDate } from '../lib/dates';
 
 interface Props {
   title: string;
   author: string;
   isbn?: string;
+  /** Cover file name for books without an ISBN. */
+  cover?: string;
+  /** When it was finished; becomes the cover's alt text. */
+  read?: PartialDate;
 }
-const { title, author, isbn } = Astro.props;
-const cover = coverFor(isbn);
+const { title, author, isbn, cover: coverName, read } = Astro.props;
+const cover = coverFor(coverName ?? isbn);
+const alt = read === undefined ? `Cover of ${title} by ${author}` : `Finished reading ${formatPartialDate(read)}`;
 ---
 {cover ? (
-  <Image src={cover} alt={`Cover of ${title} by ${author}`} width={180} densities={[1, 2]} format="webp" loading="lazy" class="cover" />
+  <Image src={cover} alt={alt} title={alt} width={32} densities={[1, 2]} format="webp" loading="lazy" class="cover" />
 ) : (
-  <div class="cover cover-fallback" aria-hidden="true">
-    <span class="cover-title">{title}</span>
-    <span class="cover-author">{author}</span>
-  </div>
+  <span class="cover cover-fallback" aria-hidden="true"></span>
 )}

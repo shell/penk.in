@@ -20,7 +20,7 @@ export const OG_PAGES = {
   about: 'About',
   resume: 'Résumé',
   life: 'Life',
-  books: 'Books',
+  books: 'Read Books',
   links: 'Links',
   contact: 'Contact',
 } as const;
