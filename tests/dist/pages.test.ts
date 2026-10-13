@@ -61,8 +61,14 @@ describe('/contact', () => {
 describe('/404', () => {
   const page = html('404.html');
   it('exists and links home', () => {
-    expect(page).toMatch(/<h1[^>]*>Page not found<\/h1>/);
+    expect(page).toMatch(/<h1[^>]*>Wrong turn\.<\/h1>/);
     expect(page).toContain('href="/"');
+  });
+
+  it('shows the ascii.rest city GIF, a still for reduced motion, and a credit', () => {
+    expect(page).toMatch(/<source[^>]+media="\(prefers-reduced-motion: reduce\)"[^>]+srcset="\/404\/command-city\.jpg"/);
+    expect(page).toMatch(/<img[^>]+src="\/404\/command-city\.gif"/);
+    expect(page).toContain('href="https://ascii.rest/command-city/"');
   });
 
   it('has its own title, is noindex and has no canonical URL', () => {

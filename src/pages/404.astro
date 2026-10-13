@@ -2,6 +2,16 @@
 import Base from '../layouts/Base.astro';
 ---
 <Base title="Page not found" description="This page doesn't exist." og="home" path="/404" noindex photo={false}>
-  <h1>Page not found</h1>
-  <p>There's nothing here. <a href="/">Go home</a>.</p>
+  <section class="not-found">
+    <div>
+      <p class="big-404" aria-hidden="true">4<span>0</span>4</p>
+      <h1>Wrong turn.</h1>
+      <p class="muted">This page doesn't exist, or it moved when the site was rebuilt.</p>
+    </div>
+    <picture class="not-found-city" aria-hidden="true">
+      <source media="(prefers-reduced-motion: reduce)" srcset="/404/command-city.jpg" />
+      <img src="/404/command-city.gif" alt="" width="1430" height="600" />
+    </picture>
+  </section>
+  <p class="city-credit meta">City: <a href="https://ascii.rest/command-city/" rel="noopener">command city</a> by ascii.rest (MIT)</p>
 </Base>
