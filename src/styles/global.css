@@ -31,6 +31,7 @@ h3 { font-size: 1.15rem; margin: 1.5rem 0 0.25rem; }
 .site-nav { display: flex; align-items: center; gap: 1.25rem; font-family: var(--font-mono); font-size: 0.9rem; }
 .site-nav a { color: var(--muted); text-decoration: none; }
 .site-nav a:hover, .site-nav a[aria-current='page'] { color: var(--accent); }
+.brand, .site-nav a { text-shadow: 0 1px 8px color-mix(in srgb, var(--bg) 85%, transparent); }
 
 /* Icons + theme toggle */
 .icon { display: inline-flex; width: 1.1em; height: 1.1em; vertical-align: -0.15em; }
