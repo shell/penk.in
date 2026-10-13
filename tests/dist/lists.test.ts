@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { decadeColor, formatPartialDate, yearOf } from '../../src/lib/dates';
 import { newestFirst } from '../../src/lib/group';
+import { domainOf } from '../../src/lib/links';
 import { esc, html, innerAll, textOf, yamlList } from './helpers';
 
 describe('/life', () => {
@@ -54,7 +55,7 @@ describe('/books', () => {
 
 describe('/links', () => {
   const page = html('links.html');
-  const topics = yamlList<{ topic: string; links: { title: string; url: string }[] }>('links.yaml');
+  const topics = yamlList<{ topic: string; links: { title: string; url: string; note?: string }[] }>('links.yaml');
 
   it('groups links by topic, in file order', () => {
     expect(page).toMatch(/<h1[^>]*>Links<\/h1>/);
@@ -66,6 +67,18 @@ describe('/links', () => {
       for (const link of links) {
         expect(page).toContain(`href="${esc(link.url)}"`);
         expect(page).toContain(esc(link.title));
+      }
+    }
+  });
+
+  it('renders each link as a card with its note and domain', () => {
+    for (const { links } of topics) {
+      for (const link of links) {
+        const start = page.indexOf(`<a class="link-card" href="${esc(link.url)}"`);
+        expect(start).toBeGreaterThan(-1);
+        const card = textOf(page.slice(start, page.indexOf('</a>', start)));
+        expect(card).toContain(domainOf(link.url));
+        if (link.note) expect(card).toContain(link.note);
       }
     }
   });

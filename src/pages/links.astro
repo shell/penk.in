@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import { requireCollection } from '../lib/content';
+import { domainOf } from '../lib/links';
 
 const topics = await requireCollection('links');
 ---
@@ -9,9 +10,15 @@ const topics = await requireCollection('links');
   {topics.map(({ data }) => (
     <section>
       <h2>{data.topic}</h2>
-      <ul class="links">
+      <ul class="link-cards">
         {data.links.map((link) => (
-          <li><a href={link.url}>{link.title}</a>{link.note && <span class="muted"> — {link.note}</span>}</li>
+          <li>
+            <a class="link-card" href={link.url}>
+              <strong>{link.title}</strong>
+              {link.note && <span class="note">{link.note}</span>}
+              <span class="domain">{domainOf(link.url)}</span>
+            </a>
+          </li>
         ))}
       </ul>
     </section>

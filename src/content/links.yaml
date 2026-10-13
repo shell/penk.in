@@ -1,14 +1,14 @@
 # Curated links, grouped by topic. note is optional.
 - topic: Personal sites I like
   links:
-    - { title: Tania Rascia, url: https://www.taniarascia.com/ }
-    - { title: Railcode, url: https://railcode.dev/ }
-    - { title: Natalie Somersall, url: https://some-natalie.dev/ }
-    - { title: Xuanwo, url: https://xuanwo.io/ }
-    - { title: Paul Stamatiou, url: https://paulstamatiou.com/ }
-    - { title: マリウス, url: https://xn--gckvb8fzb.com/ }
-    - { title: Spencer, url: https://spenc.es/ }
-    - { title: Anand Chowdhary, url: https://anandchowdhary.com/ }
-    - { title: Andrew Martin, url: https://andrewmart.in/ }
-    - { title: Dusted Codes, url: https://dusted.codes/ }
-    - { title: How is Felix today?, url: https://howisfelix.today/ }
+    - { title: Tania Rascia, url: https://www.taniarascia.com/, note: "Clear developer tutorials and notes; this site's résumé page borrows her layout." }
+    - { title: Railcode, url: https://railcode.dev/, note: "Build internal apps and share them securely with your team." }
+    - { title: Natalie Somersall, url: https://some-natalie.dev/, note: "Writing on GitHub Actions, self-hosted runners and security." }
+    - { title: Xuanwo, url: https://xuanwo.io/, note: "Open source, Rust and data freedom, plus how he codes with agents." }
+    - { title: Paul Stamatiou, url: https://paulstamatiou.com/, note: "Long-form essays on design, tech and gear." }
+    - { title: マリウス, url: https://xn--gckvb8fzb.com/, note: "A journal on privacy, minimal tech and life on the road." }
+    - { title: Spencer, url: https://spenc.es/, note: "Software engineer in Rome who makes music and things; inspired this site's contact page." }
+    - { title: Anand Chowdhary, url: https://anandchowdhary.com/, note: "A detailed public life timeline that inspired this site's /life." }
+    - { title: Andrew Martin, url: https://andrewmart.in/, note: "Full-stack engineer in SF building developer tooling." }
+    - { title: Dusted Codes, url: https://dusted.codes/, note: "Thoughtful writing on .NET, F# and software." }
+    - { title: How is Felix today?, url: https://howisfelix.today/, note: "A life quantified, in public." }

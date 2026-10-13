@@ -115,10 +115,17 @@ h3 { font-size: 1.15rem; margin: 1.5rem 0 0.25rem; }
 
 /* Books + links */
 .book-year .row h2 { margin-bottom: 0.5rem; }
-.books, .links { list-style: none; padding: 0; margin: 0; }
+.books { list-style: none; padding: 0; margin: 0; }
 .books li { border-bottom: 1px solid var(--border); padding: 0.6rem 0; }
 .books p { margin: 0.2rem 0 0; font-size: 0.95rem; }
-.links li { padding: 0.3rem 0; }
+.link-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; list-style: none; padding: 0; margin: 0; }
+@media (max-width: 35rem) { .link-cards { grid-template-columns: 1fr; } }
+.link-card { display: flex; flex-direction: column; gap: 0.1rem; height: 100%; padding: 0.75rem 0.9rem; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; color: var(--text); text-decoration: none; }
+.link-card:hover { border-color: color-mix(in srgb, var(--accent) 50%, transparent); }
+.link-card strong { color: var(--heading); font-size: 1rem; }
+.link-card strong::after { content: ' ↗'; color: var(--accent); font-weight: 400; }
+.link-card .note { color: var(--muted); font-size: 0.9rem; line-height: 1.4; }
+.link-card .domain { font-family: var(--font-mono); font-size: 0.75rem; color: var(--blue); }
 
 /* Photo band (behind nav and page title) */
 body { position: relative; }
