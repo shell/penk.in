@@ -9,12 +9,18 @@ import { inline } from '../lib/markdown';
 
 const home = await requirePage('home');
 const { Content } = await render(home);
+// "Hi, I'm Vladimir Penkin" breaks after the greeting so the name gets its own line.
+const [, greeting, name] = home.data.title.match(/^(Hi, I['’]m)\s+(.+)$/) ?? [];
 ---
 <Base title={home.data.title} description={home.data.description} og="home" path="/" photo={home.data.photo} hero>
   <section class="home">
-    <AvatarCard size={180} round />
-    <h1>{home.data.title}</h1>
-    {home.data.subtitle && <p class="subtitle" set:html={inline(home.data.subtitle)} />}
+    <div class="home-head">
+      <AvatarCard size={180} round />
+      <div class="home-id">
+        <h1>{greeting ? <><span class="line">{greeting}</span>{' '}<span class="line">{name}</span></> : home.data.title}</h1>
+        {home.data.subtitle && <p class="subtitle" set:html={inline(home.data.subtitle)} />}
+      </div>
+    </div>
     {home.data.stats && <StatChips stats={home.data.stats} />}
     <div class="intro"><Content /></div>
     <SectionCards />

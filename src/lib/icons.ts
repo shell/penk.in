@@ -1,3 +1,4 @@
+import solarSet from '@iconify-json/solar/icons.json';
 import { siGithub } from 'simple-icons';
 import arrowUpRight from 'lucide-static/icons/arrow-up-right.svg?raw';
 import bookOpen from 'lucide-static/icons/book-open.svg?raw';
@@ -16,6 +17,10 @@ const LINKEDIN_PATH =
 
 const brand = (path: string) => `<svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="${path}"/></svg>`;
 
+// Solar duotone (24×24, fill-based) for the home cards.
+const solar = (name: keyof typeof solarSet.icons) =>
+  `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">${solarSet.icons[name].body}</svg>`;
+
 export const ICONS = {
   sun,
   moon,
@@ -29,6 +34,12 @@ export const ICONS = {
   clock,
   'book-open': bookOpen,
   link,
+  'solar-user': solar('user-rounded-bold-duotone'),
+  'solar-resume': solar('document-text-bold-duotone'),
+  'solar-life': solar('map-bold-duotone'),
+  'solar-books': solar('book-2-bold-duotone'),
+  'solar-links': solar('link-round-bold-duotone'),
+  'solar-contact': solar('letter-bold-duotone'),
 } as const;
 
 export type IconName = keyof typeof ICONS;

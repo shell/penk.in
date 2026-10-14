@@ -16,24 +16,6 @@
   color-scheme: dark;
 }
 
-@media (prefers-color-scheme: light) {
-  :root:not([data-theme='dark']) {
-    --bg: #faf7f2;
-    --surface: #ffffff;
-    --border: #e5ded2;
-    --text: #3b4049;
-    --heading: #16191d;
-    --muted: #6b7280;
-    --accent: #9a6400;
-    --blue: #0b5cad;
-    --green: #1a7f37;
-    --purple: #7e3fbf;
-    --glow: #9a640018;
-    --veil: 65%;
-    color-scheme: light;
-  }
-}
-
 :root[data-theme='light'] {
   --bg: #faf7f2;
   --surface: #ffffff;

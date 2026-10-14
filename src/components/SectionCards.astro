@@ -1,39 +1,29 @@
 ---
-import { Image } from 'astro:assets';
-import type { ImageMetadata } from 'astro';
-import avatar from '../assets/avatar.png';
-import { coverFor } from '../lib/covers';
 import type { Hue } from '../lib/hues';
-import { photoFor } from '../lib/photos';
-import { THUMBS } from '../lib/thumbs';
+import type { IconName } from '../lib/icons';
+import Icon from './Icon.astro';
 import ObfuscatedEmail from './ObfuscatedEmail.astro';
 
-// `thumb` is a photo/illustration to crop into the tile, or the name of a hand-drawn scene.
-type Thumb = { img: ImageMetadata; pos?: string } | { scene: keyof typeof THUMBS };
-
 // teaser `null` = the obfuscated email followed by " — say hi".
-const CARDS: { href: string; title: string; teaser: string | null; thumb: Thumb; hue: Hue }[] = [
-  { href: '/about', title: 'About', teaser: 'Generalist, city explorer, tea drinker', thumb: { img: avatar }, hue: 'blue' },
-  { href: '/resume', title: 'Résumé', teaser: 'The work side, one page + PDF', thumb: { scene: 'resume' }, hue: 'accent' },
-  { href: '/life', title: 'Life', teaser: 'From Lunokhod (1995) to now', thumb: { img: photoFor('iceland-kirkjufell'), pos: '62% 40%' }, hue: 'green' },
-  { href: '/books', title: 'Books', teaser: "What I've been reading", thumb: { img: coverFor('9780135957059')! }, hue: 'purple' },
-  { href: '/links', title: 'Links', teaser: 'Sites and people I like', thumb: { scene: 'links' }, hue: 'blue' },
-  { href: '/contact', title: 'Contact', teaser: null, thumb: { scene: 'contact' }, hue: 'green' },
+const CARDS: { href: string; title: string; teaser: string | null; icon: IconName; hue: Hue }[] = [
+  { href: '/about', title: 'About', teaser: 'Generalist, city explorer, tea drinker', icon: 'solar-user', hue: 'blue' },
+  { href: '/resume', title: 'Résumé', teaser: 'The work side, one page + PDF', icon: 'solar-resume', hue: 'accent' },
+  { href: '/life', title: 'Life', teaser: 'From Lunokhod (1995) to now', icon: 'solar-life', hue: 'green' },
+  { href: '/books', title: 'Books', teaser: "What I've been reading", icon: 'solar-books', hue: 'purple' },
+  { href: '/links', title: 'Links', teaser: 'Sites and people I like', icon: 'solar-links', hue: 'blue' },
+  { href: '/contact', title: 'Contact', teaser: null, icon: 'solar-contact', hue: 'green' },
 ];
 ---
 <ul class="section-cards">
-  {CARDS.map(({ href, title, teaser, thumb, hue }) => (
+  {CARDS.map(({ href, title, teaser, icon, hue }, i) => (
     <li class={`hue-${hue}`}>
       <a class="section-card" href={href}>
-        {'img' in thumb ? (
-          <Image src={thumb.img} alt="" width={56} height={56} densities={[1, 2]} format="webp" class="tile" style={thumb.pos ? `object-position: ${thumb.pos}` : undefined} />
-        ) : (
-          <span class="tile" aria-hidden="true" set:html={THUMBS[thumb.scene]} />
-        )}
-        <span>
+        <span class="num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+        <span class="body">
           <strong>{title}</strong>
           <span class="teaser">{teaser ?? <><ObfuscatedEmail /> — say hi</>}</span>
         </span>
+        <Icon name={icon} class="glyph" />
       </a>
     </li>
   ))}

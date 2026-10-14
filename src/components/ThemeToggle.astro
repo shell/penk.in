@@ -8,7 +8,7 @@ import Icon from './Icon.astro';
 <script is:inline>
   document.querySelector('[data-theme-toggle]')?.addEventListener('click', () => {
     const root = document.documentElement;
-    const current = root.dataset.theme ?? (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+    const current = root.dataset.theme ?? 'dark';
     const next = current === 'dark' ? 'light' : 'dark';
     root.dataset.theme = next;
     try { localStorage.setItem('theme', next); } catch {}
