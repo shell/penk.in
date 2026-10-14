@@ -15,7 +15,7 @@ const years = [
 const stars = (n: number) => '★'.repeat(n) + '☆'.repeat(5 - n);
 ---
 <Base title="Read Books" description="Books Vladimir Penkin has read, by year." og="books" path="/books">
-  <h1>Read Books</h1>
+  <h1>What I've been reading</h1>
   {years.map(({ key, items }) => (
     <section class="book-year">
       <h2>{key}</h2>
