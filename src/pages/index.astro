@@ -1,0 +1,22 @@
+---
+import { render } from 'astro:content';
+import AvatarCard from '../components/AvatarCard.astro';
+import SectionCards from '../components/SectionCards.astro';
+import StatChips from '../components/StatChips.astro';
+import Base from '../layouts/Base.astro';
+import { requirePage } from '../lib/content';
+import { inline } from '../lib/markdown';
+
+const home = await requirePage('home');
+const { Content } = await render(home);
+---
+<Base title={home.data.title} description={home.data.description} og="home" path="/" photo={home.data.photo} hero>
+  <section class="home">
+    <AvatarCard size={180} round />
+    <h1>{home.data.title}</h1>
+    {home.data.subtitle && <p class="subtitle" set:html={inline(home.data.subtitle)} />}
+    {home.data.stats && <StatChips stats={home.data.stats} />}
+    <div class="intro"><Content /></div>
+    <SectionCards />
+  </section>
+</Base>

@@ -1,0 +1,37 @@
+---
+import BookCover from '../components/BookCover.astro';
+import Base from '../layouts/Base.astro';
+import { requireCollection } from '../lib/content';
+import { yearOf } from '../lib/dates';
+import { groupBy, newestFirst } from '../lib/group';
+
+const books = await requireCollection('books');
+const dated = books.filter((b) => b.data.read !== undefined);
+const undated = books.filter((b) => b.data.read === undefined);
+const years = [
+  ...groupBy(newestFirst(dated, (b) => b.data.read!), (b) => String(yearOf(b.data.read!))),
+  ...(undated.length > 0 ? [{ key: 'Earlier', items: undated }] : []),
+];
+const stars = (n: number) => '★'.repeat(n) + '☆'.repeat(5 - n);
+---
+<Base title="Read Books" description="Books Vladimir Penkin has read, by year." og="books" path="/books">
+  <h1>Read Books</h1>
+  {years.map(({ key, items }) => (
+    <section class="book-year">
+      <h2>{key}</h2>
+      <ul class="book-list">
+        {items.map(({ data }) => (
+          <li>
+            <BookCover title={data.title} author={data.author} isbn={data.isbn} cover={data.cover} read={data.read} />
+            <div>
+              <span class="book-row-title">{data.url ? <a href={data.url}>{data.title}</a> : data.title}</span>
+              {data.rating && <span class="meta book-rating" aria-label={`${data.rating} out of 5`}>{stars(data.rating)}</span>}
+              {data.note && <p class="muted book-note">{data.note}</p>}
+            </div>
+            <span class="meta book-author">{data.author}</span>
+          </li>
+        ))}
+      </ul>
+    </section>
+  ))}
+</Base>

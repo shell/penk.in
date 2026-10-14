@@ -1,0 +1,7 @@
+---
+import { obfuscateEmail } from '../lib/obfuscate';
+import { SITE } from '../lib/site';
+
+const pieces = obfuscateEmail(SITE.email);
+---
+<span class="obf">{pieces.map(({ tag: Tag, text }) => <Tag>{text}</Tag>)}</span>

@@ -1,0 +1,117 @@
+# Source: ~/Documents/Cover Letter(CV)/Vladimir_Penkin_CV_2026.pdf
+# Keep in sync by hand: when the CV changes, replace public/Vladimir_Penkin_CV_2026.pdf
+# and update this file in the same commit. If the PDF file name changes, update `pdf`.
+name: Vladimir Penkin
+title: Staff Software Engineer
+location: San Francisco, California
+contact:
+  email: work@penk.in
+  github: shell
+  linkedin: vladimirpenkin
+pdf: /Vladimir_Penkin_CV_2026.pdf
+
+profile:
+  - Staff Software Engineer with 19 years building web products, including 11 at Rev through its ~10x revenue growth.
+  - "Most recently tech lead for SmartDepo, an acquired legal-AI product: led its integration into Rev’s platform in 4 months, moved it onto Kubernetes and Terraform, and owned its LLM summarization pipelines. Backend in C#/.NET and Python; hands-on with Kubernetes, Terraform, CI/CD, AWS and Linux. Deep expertise in complex browser editors (React, ProseMirror)."
+  - Looking for Staff Backend or Platform engineering roles. Open to full-stack engineering for the right opportunity.
+
+skills:
+  - { label: AI/LLM, items: [LiteLLM, summarization pipelines, scikit-learn, spaCy] }
+  - { label: Platform Engineering, items: [Kubernetes, Docker, Helm, Terraform, Infrastructure as Code, CI/CD] }
+  - { label: Cloud & Infrastructure, items: [AWS, Azure, Linux] }
+  - { label: Databases, items: [PostgreSQL, MSSQL, MongoDB, Supabase, Snowflake, Looker] }
+  - { label: Observability, items: [Prometheus, Grafana] }
+  - { label: CI/CD & Tooling, items: [Jenkins, GitHub Actions, Ansible] }
+  - { label: Programming, items: ["C#", Python, Ruby, Node.js, TypeScript/JavaScript] }
+  - { label: Frontend, items: [React, Next.js, ProseMirror] }
+  - { label: Communication, items: [Cross-team communication, Remote work] }
+
+experience:
+  - company: Rev.com
+    url: http://rev.com/
+    start: 2015
+    end: 2026
+    roles:
+      - title: Staff SWE, Technical Lead (SmartDepo)
+        start: 2025
+        end: 2026
+        context: "[SmartDepo](https://www.smartdepo.law/): legal deposition-summary product acquired by Rev in 2025. Inherited with no CI, tests, staging or secrets management, and only one engineer able to work on it."
+        highlights:
+          - Delivered Multi-Witness processing, SmartDepo’s key product milestone of the year, coordinating changes across the AI backend, web frontend, database schemas and admin tooling; shipped on deadline and expanded the product’s addressable market.
+          - Owned hierarchical LLM summarization pipelines for legal depositions, mixing open-weight and commercial models via LiteLLM; processed ~1,000 depositions per week.
+          - Led technical integration of SmartDepo into Rev’s platform (auth, infrastructure, observability, scaling) in 4 months.
+          - Rebuilt delivery on Jenkins, Kubernetes and Terraform, going from 2 deploys per month to multiple per day; added unit tests and database migrations, keeping schemas in sync from local to production.
+          - Migrated the backend from AWS Lambda to Kubernetes and Terraform for reliability, adding dev and staging environments alongside production.
+          - Replaced hardcoded secrets with proper secrets management across a system split between 4 vendors (Supabase, Vercel, Azure, AWS).
+          - Mentored incoming engineers, contractors and QA through a year of heavy team turnover; upheld engineering standards across SmartDepo and Rev Legal through code review.
+      - title: Staff SWE (Rev Legal)
+        start: 2023
+        end: 2025
+        highlights:
+          - Led the launch of Legal Essentials, a new high-margin product tier.
+          - Built checkout and ordering for Rev Legal offerings, handling millions of dollars in orders per year.
+          - Designed the workflow that turns a marketplace job into a final legal deliverable.
+          - Developed an editor for legal transcripts and depositions.
+          - Set up checkout and workflow analytics pipelines in Snowflake and Looker.
+          - Built foundational infrastructure for Legal Live Capture, a real-time streaming editor for documenting legal proceedings; piloted with select customers.
+      - title: Senior SWE (Freelancer Platform & Editors)
+        start: 2015
+        end: 2022
+        highlights:
+          - Led development of Rev’s four core work editors (transcription, ASR review, captions, subtitles) through Rev’s ~10x revenue growth.
+          - Scaled the editors to tens of thousands of freelancers transcribing millions of minutes of audio, with autosave every second.
+          - "Built freelancer marketplace tools: application process, earnings and performance dashboards, rating and quality control."
+          - Migrated a significant share of services from .NET Framework to .NET Core as part of a year-long company-wide migration.
+          - Owned the multi-caption selection epic end to end, from technical approach to coordinating other engineers’ contributions; mentored newer engineers through code review and pairing.
+
+  - company: StaunchRobots
+    location: Medellín
+    start: 2012
+    end: 2013
+    roles:
+      - title: Co-founder
+        highlights:
+          - Co-founded a Rails development shop with a US-based partner and relocated to Medellín, Colombia. Led engineering while my partner ran sales, clients and operations.
+          - Built an international team of up to 7 engineers from Colombia, Brazil, Russia, Romania and the US, working from our Medellín office and remotely. Recruited developers from Brazil.
+          - Worked full-time as a senior Rails engineer, embedded in US clients’ teams (BigBinary, Verdacom, TruckingOffice).
+          - Trained new hires in Ruby and Rails and mentored the team on engineering problems. Ran a free Ruby course for 5 aspiring developers.
+
+  - company: Early Career
+    roles:
+      - title: Self-employed / Freelance
+        location: Russia
+        start: 2009
+        end: 2012
+        highlights:
+          - Developed bespoke project management tool for [arbel-designs.com](https://web.archive.org/web/20110206060859/http://www.arbel-designs.com/).
+          - Built data crawlers and analytics pipelines at Visual Systems Research Group (VSRG).
+          - Developed CV application tool and file conversion service at [Jobstar.se](http://jobstar.se/).
+          - Application design, maintenance and upgrade for Ruby projects at [railsrescue.com](https://railsrescue.com/).
+      - title: Web Developer (employed)
+        location: Russia
+        start: 2007
+        end: 2011
+        highlights:
+          - Built bespoke auctions platform on top of Magento e-commerce solution for [bstock.com](https://bstock.com/).
+          - Developed e-commerce websites and modules using Magento e-commerce framework, bespoke plugins for WordPress platform, Zend Framework, PHP, MySQL at [oggetto.team](https://oggetto.team/).
+          - Developed admin panel and spellchecking solution for WebMail product at [afterlogic.com](http://afterlogic.com/).
+
+projects:
+  intro: "Personal projects:"
+  items:
+    - "[Homelab automation (shell/infra)](https://github.com/shell/infra) — running a few servers at home and in the public cloud to provide self-governed services for myself and my family. Using Proxmox, Ansible, Grafana, Prometheus, Talos Linux, Kubernetes cluster, Terraform, Tailscale, Cloudflare."
+    - "[Vscode-jump-to-alternative](https://github.com/shell/vscode-jump-to-alternative) — a VS Code extension to jump between code and test files."
+    - "[Map to Poster](https://maptoposter.penk.in/) — lets you create striking map posters."
+    - "Prize winner: MyGengo API Wrapper contest for [Ruby](https://github.com/shell/mugen) and [Zend Framework](https://github.com/shell/zf-mygengo)."
+
+education:
+  - school: Southern Federal University
+    location: Taganrog, Russia
+    field: Computer Science
+    start: 2007
+    end: 2011
+
+languages:
+  - { language: English, level: Fluent }
+  - { language: Russian, level: Native }
+  - { language: Spanish, level: basic }

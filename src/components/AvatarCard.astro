@@ -1,0 +1,22 @@
+---
+import { Image } from 'astro:assets';
+import avatar from '../assets/avatar.png';
+
+interface Props {
+  size?: number;
+  /** Circle with an amber ring and glow (homepage) instead of the rounded card. */
+  round?: boolean;
+  class?: string;
+}
+const { size = 160, round = false, class: className } = Astro.props;
+---
+<Image
+  src={avatar}
+  alt="Illustrated portrait of Vladimir Penkin"
+  width={size}
+  height={size}
+  densities={[1, 2]}
+  format="webp"
+  loading="eager"
+  class:list={['avatar-card', round && 'avatar-card--round', className]}
+/>

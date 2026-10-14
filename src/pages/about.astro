@@ -1,0 +1,36 @@
+---
+import { render } from 'astro:content';
+import AvatarCard from '../components/AvatarCard.astro';
+import Base from '../layouts/Base.astro';
+import { requirePage } from '../lib/content';
+import { SITE } from '../lib/site';
+
+const about = await requirePage('about');
+const { Content } = await render(about);
+const { location, tech = [], dabbling = [] } = about.data;
+const links = [
+  { href: '/resume', label: 'résumé' },
+  { href: '/life', label: 'life so far' },
+  { href: '/books', label: 'books' },
+];
+---
+<Base title={about.data.title} description={about.data.description} og="about" path="/about" photo={about.data.photo}>
+  <h1>{about.data.title}</h1>
+  <div class="about-grid">
+    <aside class="about-card">
+      <AvatarCard size={120} round />
+      <p class="about-name">{SITE.name}</p>
+      {location && <p class="meta">📍 {location}</p>}
+      {(tech.length > 0 || dabbling.length > 0) && (
+        <ul class="pills" aria-label="Languages">
+          {tech.map((t) => <li class="pill">{t}</li>)}
+          {dabbling.map((t) => <li class="pill pill--dim">{t}</li>)}
+        </ul>
+      )}
+      <ul class="about-links">
+        {links.map(({ href, label }) => <li><a href={href}>{label} →</a></li>)}
+      </ul>
+    </aside>
+    <div class="prose"><Content /></div>
+  </div>
+</Base>

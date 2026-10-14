@@ -1,0 +1,44 @@
+# Life milestones, any order (the page sorts newest first; entries with the same date keep file order).
+# date: YYYY, YYYY-MM or YYYY-MM-DD. description, url and hue are optional.
+# hue (accent, blue, green, purple) overrides the decade colour for one milestone.
+- date: 1995
+  title: First programming, on a Lunokhod (Big Trak)
+  description: "A programmable toy rover: punch in moves, watch it go."
+  url: https://en.wikipedia.org/wiki/Big_Trak
+- date: 2000
+  title: First computer programs, in BASIC
+- date: 2004
+  title: Started studying Computer Science
+  description: Technology Institute DSTU, in my hometown.
+- date: 2007
+  title: First job as a web developer
+- date: 2007
+  title: Moved to 📍Taganrog, Russia
+  description: Southern Federal University.
+- date: 2009
+  title: Started my own freelance practice
+  description: Found my own clients, ran the business side and shipped Ruby projects end to end.
+- date: 2011
+  title: Graduated from Southern Federal University
+  description: Master of Computer Science · Taganrog, Russia.
+- date: 2012
+  title: Moved to 📍Medellín, Colombia
+  description: Co-founded StaunchRobots, a Rails consultancy.
+- date: 2015
+  title: Joined Rev
+  hue: purple
+- date: 2016
+  title: Moved to 📍Moscow, Russia
+  hue: purple
+- date: 2021
+  title: Moved to 📍San Francisco, California
+  description: One dream comes true.
+- date: 2023
+  title: Staff SWE, Rev Legal
+- date: 2024
+  title: Married Anna 💍
+- date: 2025
+  title: Became tech lead for SmartDepo
+  description: Led its integration into Rev’s platform after the acquisition.
+- date: 2026
+  title: Left Rev

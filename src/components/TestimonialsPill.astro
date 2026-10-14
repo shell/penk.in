@@ -1,0 +1,16 @@
+---
+import { Image } from 'astro:assets';
+import { avatarFor } from '../lib/avatars';
+import { requireCollection } from '../lib/content';
+import { newestFirst } from '../lib/group';
+
+// Social proof for the résumé header: a few recommenders' faces (newest first, each person once) and the count.
+const testimonials = newestFirst(await requireCollection('testimonials'), (t) => t.data.date);
+const faces = [...new Set(testimonials.flatMap((t) => (t.data.avatar ? [t.data.avatar] : [])))].slice(0, 5);
+---
+<a class="proof" href="/testimonials">
+  <span class="proof-faces" aria-hidden="true">
+    {faces.map((name) => <Image src={avatarFor(name)} alt="" width={30} height={30} densities={[1, 2]} format="webp" class="proof-face" />)}
+  </span>
+  <span><strong>{testimonials.length} recommendations</strong> from teammates, managers &amp; <span class="proof-nowrap">clients <span class="proof-arrow">→</span></span></span>
+</a>

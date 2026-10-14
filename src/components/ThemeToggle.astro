@@ -1,0 +1,16 @@
+---
+import Icon from './Icon.astro';
+---
+<button class="theme-toggle" type="button" data-theme-toggle aria-label="Toggle dark and light theme">
+  <Icon name="sun" class="sun" />
+  <Icon name="moon" class="moon" />
+</button>
+<script is:inline>
+  document.querySelector('[data-theme-toggle]')?.addEventListener('click', () => {
+    const root = document.documentElement;
+    const current = root.dataset.theme ?? (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+    const next = current === 'dark' ? 'light' : 'dark';
+    root.dataset.theme = next;
+    try { localStorage.setItem('theme', next); } catch {}
+  });
+</script>

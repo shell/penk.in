@@ -1,0 +1,49 @@
+---
+import Icon from '../components/Icon.astro';
+import ResumeCompany from '../components/ResumeCompany.astro';
+import TestimonialsPill from '../components/TestimonialsPill.astro';
+import Base from '../layouts/Base.astro';
+import { requireDocument } from '../lib/content';
+import { formatPeriod } from '../lib/dates';
+import { inline } from '../lib/markdown';
+
+const { data: cv } = await requireDocument('resume');
+---
+<Base title="Résumé" description={`${cv.name}, ${cv.title}. ${cv.location}.`} og="resume" path="/resume">
+  <header class="resume-header">
+    <h1>{cv.name}</h1>
+    <p class="resume-title">{cv.title}</p>
+    <p class="meta">{cv.location}</p>
+    <p class="meta">
+      <a class="resume-linkedin" href={`https://www.linkedin.com/in/${cv.contact.linkedin}`}><Icon name="linkedin" /> linkedin.com/in/{cv.contact.linkedin}</a>
+    </p>
+    <TestimonialsPill />
+    <a class="button" href={cv.pdf} download><Icon name="download" /> Download PDF</a>
+  </header>
+
+  <h2>Profile</h2>
+  {cv.profile.map((p) => <p set:html={inline(p)} />)}
+
+  <h2>Experience</h2>
+  {cv.experience.map((company) => <ResumeCompany company={company} />)}
+
+  <h2>Skills</h2>
+  <ul class="skills">
+    {cv.skills.map((s) => <li><strong>{s.label}</strong> {s.items.join(', ')}</li>)}
+  </ul>
+
+  <h2>Projects</h2>
+  {cv.projects.intro && <p>{cv.projects.intro}</p>}
+  <ul>{cv.projects.items.map((item) => <li set:html={inline(item)} />)}</ul>
+
+  <h2>Education</h2>
+  {cv.education.map((e) => (
+    <div class="row">
+      <span><strong>{e.school}</strong>{e.location && `, ${e.location}`} — {e.field}</span>
+      <span class="meta">{formatPeriod(e.start, e.end)}</span>
+    </div>
+  ))}
+
+  <h2>Languages</h2>
+  <p>{cv.languages.map((l, i) => <>{i > 0 && ' · '}<strong>{l.language}</strong> — {l.level}</>)}</p>
+</Base>

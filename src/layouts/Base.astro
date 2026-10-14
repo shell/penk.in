@@ -1,0 +1,72 @@
+---
+import '@fontsource/schibsted-grotesk/400.css';
+import '@fontsource/schibsted-grotesk/600.css';
+import '@fontsource/schibsted-grotesk/700.css';
+import '@fontsource/jetbrains-mono/400.css';
+import '@fontsource/jetbrains-mono/600.css';
+import '../styles/tokens.css';
+import '../styles/global.css';
+import Footer from '../components/Footer.astro';
+import Nav from '../components/Nav.astro';
+import PhotoBand from '../components/PhotoBand.astro';
+import { DEFAULT_PHOTO } from '../lib/photos';
+import { SITE, type OgSlug } from '../lib/site';
+
+interface Props {
+  title: string;
+  description: string;
+  og: OgSlug;
+  path: string;
+  noindex?: boolean;
+  /** Photo name in src/assets/photos, or false for no photo band. */
+  photo?: string | false;
+  /** Tall homepage hero instead of the short page band. */
+  hero?: boolean;
+}
+const { title, description, og, path, noindex = false, photo = DEFAULT_PHOTO, hero = false } = Astro.props;
+const fullTitle = path === '/' ? SITE.name : `${title} · ${SITE.name}`;
+const canonical = `${SITE.url}${path === '/' ? '/' : path}`;
+const ogImage = `${SITE.url}/og/${og}.png`;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{fullTitle}</title>
+    <meta name="description" content={description}>
+    <meta name="author" content={SITE.name}>
+    {noindex ? <meta name="robots" content="noindex"> : <link rel="canonical" href={canonical}>}
+    <meta name="theme-color" content="#0d1117">
+    <link rel="icon" href="/favicon.ico" sizes="32x32">
+    <link rel="icon" href="/icon-192.png" type="image/png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="sitemap" href="/sitemap-index.xml">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content={SITE.name}>
+    <meta property="og:title" content={fullTitle}>
+    <meta property="og:description" content={description}>
+    {!noindex && <meta property="og:url" content={canonical}>}
+    <meta property="og:image" content={ogImage}>
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <script is:inline>
+      try {
+        const t = localStorage.getItem('theme');
+        if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t;
+      } catch {}
+    </script>
+    <script is:inline defer src="https://umami.penk.in/script.js" data-website-id={SITE.umamiId}></script>
+  </head>
+  <body>
+    {photo !== false && <PhotoBand photo={photo} variant={hero ? 'hero' : 'band'} />}
+    <div class="container">
+      <Nav path={path} />
+      <main>
+        <slot />
+      </main>
+      <Footer />
+    </div>
+  </body>
+</html>

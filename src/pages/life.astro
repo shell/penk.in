@@ -1,0 +1,22 @@
+---
+import Base from '../layouts/Base.astro';
+import { requireCollection } from '../lib/content';
+import { decadeColor, formatPartialDate } from '../lib/dates';
+import { newestFirst } from '../lib/group';
+
+const entries = newestFirst(await requireCollection('life'), (e) => e.data.date);
+---
+<Base title="Life" description="Milestones from Vladimir Penkin's life, newest first." og="life" path="/life">
+  <h1>Life</h1>
+  <ol class="timeline">
+    {entries.map(({ data }) => (
+      <li class={`hue-${data.hue ?? decadeColor(data.date)}`}>
+        <span class="meta">{formatPartialDate(data.date)}</span>
+        <div>
+          <strong>{data.url ? <a href={data.url}>{data.title}</a> : data.title}</strong>
+          {data.description && <p>{data.description}</p>}
+        </div>
+      </li>
+    ))}
+  </ol>
+</Base>

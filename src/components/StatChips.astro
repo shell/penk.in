@@ -1,0 +1,11 @@
+---
+import { inline } from '../lib/markdown';
+
+interface Props {
+  stats: string[];
+}
+const { stats } = Astro.props;
+---
+<ul class="chips">
+  {stats.map((stat) => <li set:html={inline(stat)} />)}
+</ul>

@@ -1,0 +1,25 @@
+---
+import Base from '../layouts/Base.astro';
+import { requireCollection } from '../lib/content';
+import { domainOf } from '../lib/links';
+
+const topics = await requireCollection('links');
+---
+<Base title="Links" description="Sites, blogs and resources Vladimir Penkin recommends." og="links" path="/links">
+  <h1>Links</h1>
+  {topics.map(({ data }) => (
+    <section>
+      <h2>{data.topic}</h2>
+      <ul class="link-cards">
+        {data.links.map((link) => (
+          <li>
+            <a class="link-card" href={link.url} title={domainOf(link.url)} target="_blank" rel="noopener">
+              <strong>{link.title}</strong>
+              {link.note && <span class="note">{link.note}</span>}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  ))}
+</Base>
