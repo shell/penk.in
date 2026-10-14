@@ -44,9 +44,9 @@ describe('homepage', () => {
     expect(page).toMatch(/<img(?=[^>]*alt="Illustrated portrait of Vladimir Penkin")(?=[^>]*class="avatar-card avatar-card--round")[^>]*>/);
   });
 
-  it('links all six sections as cards', () => {
+  it('links all seven sections as cards', () => {
     const hrefs = [...page.matchAll(/<a class="section-card" href="([^"]+)"/g)].map((m) => m[1]);
-    expect(hrefs).toEqual(['/about', '/resume', '/life', '/books', '/links', '/contact']);
+    expect(hrefs).toEqual(['/about', '/resume', '/testimonials', '/life', '/books', '/links', '/contact']);
   });
 
   it('has the nav in order and the social links', () => {

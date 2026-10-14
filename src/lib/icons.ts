@@ -36,6 +36,7 @@ export const ICONS = {
   link,
   'solar-user': solar('user-rounded-bold-duotone'),
   'solar-resume': solar('document-text-bold-duotone'),
+  'solar-testimonials': solar('chat-round-like-bold-duotone'),
   'solar-life': solar('map-bold-duotone'),
   'solar-books': solar('book-2-bold-duotone'),
   'solar-links': solar('link-round-bold-duotone'),
