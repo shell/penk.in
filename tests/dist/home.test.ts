@@ -51,7 +51,7 @@ describe('homepage', () => {
 
   it('has the nav in order and the social links', () => {
     const nav = page.slice(page.indexOf('<nav'), page.indexOf('</nav>'));
-    const order = ['/about', '/resume', '/links', '/contact'].map((href) => nav.indexOf(`href="${href}"`));
+    const order = ['/about', '/resume', '/life', '/contact'].map((href) => nav.indexOf(`href="${href}"`));
     expect(order.every((i) => i > -1)).toBe(true);
     expect([...order].sort((a, b) => a - b)).toEqual(order);
     expect(page).toContain('href="https://github.com/shell"');

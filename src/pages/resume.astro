@@ -24,13 +24,13 @@ const { data: cv } = await requireDocument('resume');
   <h2>Profile</h2>
   {cv.profile.map((p) => <p set:html={inline(p)} />)}
 
-  <h2>Experience</h2>
-  {cv.experience.map((company) => <ResumeCompany company={company} />)}
-
   <h2>Skills</h2>
   <ul class="skills">
     {cv.skills.map((s) => <li><strong>{s.label}</strong> {s.items.join(', ')}</li>)}
   </ul>
+
+  <h2>Experience</h2>
+  {cv.experience.map((company) => <ResumeCompany company={company} />)}
 
   <h2>Projects</h2>
   {cv.projects.intro && <p>{cv.projects.intro}</p>}
