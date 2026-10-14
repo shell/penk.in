@@ -33,6 +33,8 @@ h3 { font-size: 1.15rem; margin: 1.5rem 0 0.25rem; }
 .site-nav { display: flex; align-items: center; gap: 1.25rem; font-family: var(--font-mono); font-size: 0.9rem; }
 .site-nav a { color: var(--text); text-decoration: none; }
 .site-nav a:hover, .site-nav a[aria-current='page'] { color: var(--accent); }
+.site-nav a:hover { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.4rem; }
+:root:not([data-theme='light']) .site-nav a:not(:hover):not([aria-current='page']) { color: color-mix(in srgb, var(--text) 80%, white); }
 .brand, .site-nav a { text-shadow: 0 1px 8px color-mix(in srgb, var(--bg) 85%, transparent); }
 
 /* Icons + theme toggle */
@@ -71,7 +73,7 @@ h3 { font-size: 1.15rem; margin: 1.5rem 0 0.25rem; }
 .chips { display: flex; flex-wrap: wrap; justify-content: flex-start; gap: 0.5rem; list-style: none; padding: 0; margin: 2.5rem 0 2.5rem; }
 .chips li { font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted); padding: 0.25rem 0.65rem; border: 1px solid var(--border); border-radius: 999px; background: color-mix(in srgb, var(--bg) 70%, transparent); backdrop-filter: blur(6px); }
 .chips strong { color: var(--heading); font-weight: 600; }
-.home .intro { color: var(--text); text-align: left; max-width: 38rem; line-height: 1.8; }
+.home .intro { color: var(--text); text-align: left; max-width: 42rem; line-height: 1.8; }
 .home .intro p { margin: 0 0 1.5rem; }
 .home .intro > :first-child { margin-top: 0; }
 .home .intro > :last-child { margin-bottom: 0; }
