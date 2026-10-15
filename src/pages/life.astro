@@ -1,7 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import { requireCollection } from '../lib/content';
-import { decadeColor, formatPartialDate } from '../lib/dates';
+import { formatPartialDate } from '../lib/dates';
 import { newestFirst } from '../lib/group';
 
 const entries = newestFirst(await requireCollection('life'), (e) => e.data.date);
@@ -10,7 +10,7 @@ const entries = newestFirst(await requireCollection('life'), (e) => e.data.date)
   <h1>Life</h1>
   <ol class="timeline">
     {entries.map(({ data }) => (
-      <li class={`hue-${data.hue ?? decadeColor(data.date)}`}>
+      <li class={`hue-${data.hue}`}>
         <span class="meta">{formatPartialDate(data.date)}</span>
         <div>
           <strong>{data.url ? <a href={data.url}>{data.title}</a> : data.title}</strong>

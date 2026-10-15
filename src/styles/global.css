@@ -146,7 +146,7 @@ h3 { font-size: 1.15rem; margin: 1.5rem 0 0.25rem; }
 .skills li { margin: 0.2rem 0; }
 .skills strong { color: var(--heading); display: inline-block; min-width: 12rem; }
 
-/* Life timeline: one line, coloured by decade via --c */
+/* Life timeline: one line, coloured per milestone via --c (hue in life.yaml) */
 .timeline { list-style: none; padding: 0; margin: 0; }
 .timeline li { display: grid; grid-template-columns: 7rem 1fr; gap: 1rem; padding: 0 0 1.1rem 1rem; position: relative; border-left: 2px solid color-mix(in srgb, var(--c) 45%, transparent); }
 .timeline li::before { content: ''; position: absolute; left: -6px; top: 0.55rem; width: 10px; height: 10px; border-radius: 50%; background: var(--c); box-shadow: 0 0 0 3px var(--bg); }

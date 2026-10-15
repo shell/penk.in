@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { decadeColor, decadeOf, formatPartialDate, formatPeriod, sortKey, yearOf } from '../../src/lib/dates';
+import { decadeOf, formatPartialDate, formatPeriod, sortKey, yearOf } from '../../src/lib/dates';
 
 describe('yearOf', () => {
   it('handles all partial date shapes', () => {
@@ -42,21 +42,5 @@ describe('sortKey', () => {
     expect(sortKey(2015)).toBe('2015-00-00');
     expect(sortKey('2026-03')).toBe('2026-03-00');
     expect(sortKey('2026-03-15')).toBe('2026-03-15');
-  });
-});
-
-describe('decadeColor', () => {
-  it('maps the 1990s–2020s to accent, blue, green, purple', () => {
-    expect(decadeColor(1995)).toBe('accent');
-    expect(decadeColor(2000)).toBe('blue');
-    expect(decadeColor('2009-12')).toBe('blue');
-    expect(decadeColor(2015)).toBe('green');
-    expect(decadeColor('2026-03-01')).toBe('purple');
-  });
-
-  it('cycles for decades outside that range', () => {
-    expect(decadeColor(2030)).toBe('accent');
-    expect(decadeColor(1989)).toBe('purple');
-    expect(decadeColor(1950)).toBe('accent');
   });
 });

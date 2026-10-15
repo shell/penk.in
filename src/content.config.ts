@@ -65,8 +65,7 @@ const life = defineCollection({
     title: z.string(),
     description: z.string().optional(),
     url: z.string().url().optional(),
-    /** Overrides the decade colour for this milestone. */
-    hue: z.enum(ALL_HUES).optional(),
+    hue: z.enum(ALL_HUES),
   }).strict(),
 });
 
