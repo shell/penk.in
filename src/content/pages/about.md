@@ -5,13 +5,12 @@ location: San Francisco
 tech: [Python, C#, TypeScript, Ruby, Node.js]
 dabbling: [Go]
 ---
-I studied computer science at Southern Federal University in Taganrog. I like writing code and
-learning new things. I love to travel and have lived in Colombia.
+I love building products on the internet and learning how the world works.
 
-I'm a generalist. I believe with a good knowledge base you can do stuff, and the language or
-framework is not that important. You take a performance hit at the beginning, but in the end you
-can always grow wiser and bring something new to the table.
+I grew up in Russia playing games on a ZX Spectrum and punching commands into a Lunokhod (Big Trak) toy rover. Then came Pascal, FidoNet, and in 2001 the Internet, which was billed by the hour rather than by the kilobyte, so every minute online counted. I haven't stopped exploring since.
 
-Also: city-explorer, e-bike-sharing enthusiast, loose leaf tea drinker; on a mission to understand how the world works
+I've lived in Russia, Colombia and now call the United States home. Each place taught me the same lesson: there's no such thing as an ideal place to live. Every country has its upsides and its downsides, so you choose the downsides you can be content with and enjoy the upsides.
 
-[//]: # (Your story: who you are outside work, in your own words.)
+I'm a generalist software engineer. I like to understand how the whole thing fits together, and how pieces of tech work underneath.
+
+Outside of work I'm a husband, a city explorer, an e-bike-sharing enthusiast and a loose-leaf tea drinker.

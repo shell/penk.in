@@ -1,6 +1,7 @@
 *, *::before, *::after { box-sizing: border-box; }
 
-html { -webkit-text-size-adjust: 100%; }
+/* Reserve the scrollbar's width on every page so short pages (about, contact) don't sit a few px right of long ones. */
+html { -webkit-text-size-adjust: 100%; scrollbar-gutter: stable; }
 
 body {
   margin: 0;
