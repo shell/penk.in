@@ -36,7 +36,7 @@ describe('/books', () => {
   const books = yamlList<{ title: string; author: string; read?: number | string; url?: string; isbn?: string; cover?: string }>('books.yaml');
 
   it('groups books by year, newest first, then undated ones under "Earlier", without a count', () => {
-    expect(page).toMatch(/<h1[^>]*>Read Books<\/h1>/);
+    expect(page).toMatch(/<h1[^>]*>What I(?:'|&#39;|’)ve been reading<\/h1>/);
     const years = [...new Set(books.flatMap((b) => (b.read === undefined ? [] : [yearOf(b.read)])))].sort((a, b) => b - a);
     const headings = years.map(String);
     if (books.some((b) => b.read === undefined)) headings.push('Earlier');

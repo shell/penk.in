@@ -42,7 +42,7 @@ describe('/resume', () => {
 
   it('orders sections like the CV', () => {
     const headings = innerAll(page, 'h2').map(textOf);
-    expect(headings).toEqual(['Profile', 'Experience', 'Skills', 'Projects', 'Education', 'Languages']);
+    expect(headings).toEqual(['Profile', 'Skills', 'Experience', 'Projects', 'Education', 'Languages']);
   });
 
   it('lists companies and their roles in file order, with periods', () => {
