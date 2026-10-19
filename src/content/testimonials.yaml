@@ -1,6 +1,54 @@
 # LinkedIn recommendations, copied as written (https://www.linkedin.com/in/vladimirpenkin/details/recommendations/).
 # url: their LinkedIn profile. avatar: photo file name in src/assets/testimonials (no extension), optional.
 # date: when it was given (YYYY, YYYY-MM or YYYY-MM-DD). text: paragraphs separated by a blank line.
+- name: Albert Menio
+  url: https://www.linkedin.com/in/albert-menio/
+  avatar: albert-menio
+  headline: Software Engineer
+  relationship: Was senior to me, but didn’t manage me directly
+  date: 2026-10-18
+  text: |
+    Working with Vlad during my time at Rev was a great joy. Vlad is a thoughtful, curious, and tenacious software engineer who is constantly pushing other engineers to deliver high quality software. He is a great coworker and mentor that cares deeply about those he works with and is always encourage those around him to learn and grow. As an individual contributor, Vlad excels at setting the technical direction for his team, as well as exploring and evaluating new technologies to see how they could improve our tech stack.
+- name: Deb Dasgupta
+  url: https://www.linkedin.com/in/deb-dasgupta-85ba9b3/
+  avatar: deb-dasgupta
+  headline: Principal Software Engineer at Truemed
+  relationship: Managed Vladimir directly
+  date: 2026-10-18
+  text: |
+    I had the pleasure of working with Vlad for many years at Rev, both as his manager and his teammate. He was one of the first hires we made when building out my team at the time. The successes that Rev had while he was there are in no small part because Vlad was on the team.
+
+    Vlad was always a trusted engineer on the teams that he was a part of. We could give him any problem and trust that the solution would be of high quality. Vlad repeatedly showed that he was capable and comfortable across our tech stack.
+
+    One thing that has always impressed me about Vlad is his dedication to the team. In his first years at Rev, he was willing to work off hours to accommodate the time difference he had at the time, to ensure that he had sufficient overlap with the rest of the team. He was also a generous teammate that was always willing to give some of his time to help his teammates out. Those are just a couple examples of how Vlad invests in his team’s success.
+
+    Vlad was a key member of my team at Rev, and I’m sure the same would be true of any team he joins.
+- name: Adhitya Prakash
+  url: https://www.linkedin.com/in/adhityaprakash/
+  avatar: adhitya-prakash
+  headline: Engineering Leader | Always leave things better than you found them.
+  relationship: Managed Vladimir directly
+  date: 2026-10-17
+  text: |
+    I had the pleasure of managing Vlad for nearly four years at Rev, and throughout that time, what consistently impressed me was his strong sense of ownership, accountability, and conviction. Vlad was never afraid to speak his mind or challenge ideas, but he always did so with the shared goal of making the product, team, and company better. He cared deeply about doing things the right way and consistently backed his words with action.
+
+    As an engineer, Vlad was a strong backend developer with a particular passion for architecture, infrastructure, and solving complex technical challenges. But what made him truly special was the kind of teammate he was. He was always willing to lend a hand, make himself available, and support those around him. Quiet yet confident, kind yet direct, Vlad earned the trust and respect of everyone he worked with.
+
+    Beyond work, I was fortunate to build a genuine personal connection with Vlad. We shared stories about our lives, including our immigration journeys, and I came to know him as someone with tremendous character and integrity.
+
+    Vlad is a thoughtful, sharp, strong-willed engineer who genuinely cares about his team and the work he does. He's someone I'd love to work with again, and any engineering team would be fortunate to have him.
+- name: Josh Taylor
+  url: https://www.linkedin.com/in/joshuata/
+  avatar: josh-taylor
+  headline: Quality Engineer
+  relationship: Worked with Vladimir on the same team
+  date: 2026-10-16
+  text: |
+    I had the pleasure of working closely with Vladimir during my time at Rev, where he was one of the lead developers on our team for the entirety of my time there. From the moment I joined, Vladimir was instrumental in helping me get up to speed, taking the time to answer all of my questions, and make sure I had everything I needed to succeed. For years, I worked alongside him daily and saw firsthand both his technical expertise and his commitment to delivering high-quality work.
+
+    What stood out most to me was his ability to combine exceptional development skills with genuine leadership and mentorship. Although we always worked remotely, I felt like he always put in a huge effort to be a vocal leader on our team and push us to be our best. Vladimir made the entire team better, and I personally learned a tremendous amount from working with him.
+
+    I'd highly recommend him to any team looking for a talented engineer to push you to the next level.
 - name: Blake Henry
   url: https://www.linkedin.com/in/blakeh42/
   avatar: blake-henry
