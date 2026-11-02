@@ -1,6 +1,14 @@
 # LinkedIn recommendations, copied as written (https://www.linkedin.com/in/vladimirpenkin/details/recommendations/).
 # url: their LinkedIn profile. avatar: photo file name in src/assets/testimonials (no extension), optional.
 # date: when it was given (YYYY, YYYY-MM or YYYY-MM-DD). text: paragraphs separated by a blank line.
+- name: Evgenii Petrov
+  url: https://www.linkedin.com/in/evgenii-petrov-80ab3367/
+  avatar: evgenii-petrov
+  headline: .Net Software developer at Rev.com, Rev.ai, Temi.com
+  relationship: Worked with Vladimir on different teams
+  date: 2026-11-01
+  text: |
+    I’ve had the pleasure of working with Vladimir for over seven years. He is a highly responsible engineer who consistently steps up to lead new areas of development. His knowledge is remarkably broad, and he never stops learning and expanding his expertise. I’d recommend Vladimir to any team looking for a dependable engineer who takes ownership and grows with every challenge.
 - name: Albert Menio
   url: https://www.linkedin.com/in/albert-menio/
   avatar: albert-menio
