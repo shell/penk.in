@@ -26,6 +26,7 @@ const company = z.object({
   location: z.string().optional(),
   start: partialDate.optional(),
   end: endDate.optional(),
+  context: z.string().optional(),
   roles: z.array(role).min(1),
 }).strict();
 
@@ -36,6 +37,7 @@ const resume = defineCollection({
     name: z.string(),
     title: z.string(),
     location: z.string(),
+    authorization: z.string().optional(),
     contact: z.object({ email: z.string().email(), github: z.string(), linkedin: z.string() }).strict(),
     pdf: z.string().startsWith('/'),
     profile: z.array(z.string()).min(1),

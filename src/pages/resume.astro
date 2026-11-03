@@ -14,6 +14,7 @@ const { data: cv } = await requireDocument('resume');
     <h1>{cv.name}</h1>
     <p class="resume-title">{cv.title}</p>
     <p class="meta">{cv.location}</p>
+    {cv.authorization && <p class="meta">{cv.authorization}</p>}
     <p class="meta">
       <a class="resume-linkedin" href={`https://www.linkedin.com/in/${cv.contact.linkedin}`}><Icon name="linkedin" /> linkedin.com/in/{cv.contact.linkedin}</a>
     </p>

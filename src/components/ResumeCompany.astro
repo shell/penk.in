@@ -15,6 +15,7 @@ const companyMeta = meta(company.location, formatPeriod(company.start, company.e
     <h3>{company.url ? <a href={company.url}>{company.company}</a> : company.company}</h3>
     {companyMeta && <span class="meta">{companyMeta}</span>}
   </div>
+  {company.context && <p class="context" set:html={inline(company.context)} />}
   {company.roles.map((role) => {
     const roleMeta = meta(role.location, formatPeriod(role.start, role.end));
     return (
